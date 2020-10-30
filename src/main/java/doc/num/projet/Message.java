@@ -15,11 +15,9 @@ import lombok.Data;
 
 @Data
 @Entity
-
 public class Message{
 
     @Id
-
     Long id;
     Date date;
     Date validity;

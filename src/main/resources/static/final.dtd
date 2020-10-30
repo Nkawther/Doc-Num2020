@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT file (header, body)>
+
+<!ELEMENT header (nbMsg, transmitter, receiver, authRef?, authDate?)>
+<!ATTLIST header idF CDATA #REQUIRED>
+
+<!ELEMENT nbMsg (#PCDATA)>
+
+<!ELEMENT transmitter (#PCDATA)>
+<!ATTLIST transmitter idUser CDATA #REQUIRED>
+
+<!ELEMENT receiver (#PCDATA)>
+<!ATTLIST receiver idUser CDATA #REQUIRED>
+
+<!ELEMENT authRef (#PCDATA)>
+<!ELEMENT authDate (#PCDATA)>
+
+<!ELEMENT body (listMsg)>
+
+<!ELEMENT listMsg (message+)>
+
+<!ELEMENT message (dateMsg,validityDuration,(authRequest|auth|accept|deny|barter|request|donation|catRequest|cat|noCat|errorMsg))>
+<!ATTLIST message idMsg CDATA #REQUIRED>
+
+<!ELEMENT dateMsg (#PCDATA)>
+<!ELEMENT validityDuration (#PCDATA)>
+
+<!ELEMENT authRequest EMPTY>
+<!ELEMENT auth (authRef, authDate)>
+<!ELEMENT accept (idPropositionMsg)>
+<!ELEMENT deny (idPropositionMsg, reason)>
+
+<!ELEMENT barter (rcvObjectList, sndObjectList, idPrevMsg)>
+<!ELEMENT request (rcvObjectList, idPrevMsg)>
+<!ELEMENT donation (sndObjectList, idPrevMsg)>
+
+<!ELEMENT catRequest EMPTY>
+<!ELEMENT cat (idCatRequestMsg, catDate, (object)+)>
+<!ELEMENT noCat (idCatRequestMsg, reason)>
+
+<!ELEMENT errorMsg (#PCDATA)>
+<!ATTLIST errorMsg idMsg CDATA #REQUIRED>
+<!ATTLIST errorMsg idError CDATA #REQUIRED>
+
+<!ELEMENT idPropositionMsg (#PCDATA)>
+<!ELEMENT reason (#PCDATA)>
+
+<!ELEMENT object (objectName, objectDetails, objectImage)>
+<!ATTLIST object idObject CDATA #REQUIRED>
+
+<!ELEMENT objectName (#PCDATA)>
+<!ELEMENT objectDetails (#PCDATA)>
+<!ELEMENT objectImage ANY>
+
+<!ELEMENT catDate (#PCDATA)>
+<!ELEMENT idCatRequestMsg (#PCDATA)>
+
+<!ELEMENT sndObjectList (object)+>
+<!ELEMENT rcvObjectList (object)+>
+
+<!ELEMENT idPrevMsg (#PCDATA)>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="file">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="header" type="header" />
+				<xs:element name="body" type="body" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="header">
+		<xs:sequence>
+			<xs:element name="nbMsg" type="xs:int" />
+			<xs:element name="transmitter" type="user" />
+			<xs:element name="receiver" type="user" />
+			<xs:element name="authRef" type="ref" minOccurs="0" />
+			<xs:element name="authDate" type="xs:dateTime" minOccurs="0" />
+		</xs:sequence>
+		<xs:attribute name="idF" type="id" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="body">
+		<xs:sequence>
+			<xs:element name="listMsg" type="listMsg" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="listMsg">
+		<xs:sequence minOccurs="1" maxOccurs="unbounded">
+			<xs:element name="message" type="message" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="message">
+		<xs:sequence>
+			<xs:element name="dateMsg" type="xs:dateTime" />
+			<xs:element name="validityDuration" type="xs:duration" />
+			<xs:choice>
+				<xs:element name="authRequest" type="authRequest" />
+				<xs:element name="auth" type="auth" />
+				<xs:element name="accept" type="accept" />
+				<xs:element name="deny" type="deny" />
+				<xs:element name="barter" type="barter" />
+				<xs:element name="request" type="request" />
+				<xs:element name="donation" type="donation" />
+				<xs:element name="catRequest" type="catRequest" />
+				<xs:element name="cat" type="cat" />
+				<xs:element name="noCat" type="noCat" />
+				<xs:element name="errorMsg" type="errorMsg" />
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="idMsg" type="id" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="authRequest">
+		<xs:sequence></xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="auth">
+		<xs:sequence>
+			<xs:element name="authRef" type="ref" />
+			<xs:element name="authDate" type="xs:dateTime" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="accept">
+		<xs:sequence>
+			<xs:element name="idPropositionMsg" type="id" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="deny">
+		<xs:sequence>
+			<xs:element name="idPropositionMsg" type="id" />
+			<xs:element name="reason" type="reason" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="barter">
+		<xs:sequence>
+			<xs:element name="rcvObjectList" type="rcvObjectList" />
+			<xs:element name="sndObjectList" type="sndObjectList" />
+			<xs:element name="idPrevMsg" type="id" />
+		</xs:sequence>
+	</xs:complexType>
+		
+	<xs:complexType name="request">
+		<xs:sequence>
+			<xs:element name="rcvObjectList" type="rcvObjectList" />
+			<xs:element name="idPrevMsg" type="id" />
+		</xs:sequence>
+	</xs:complexType>
+		
+	<xs:complexType name="donation">
+		<xs:sequence>
+			<xs:element name="sndObjectList" type="sndObjectList" />
+			<xs:element name="idPrevMsg" type="id" />
+		</xs:sequence>
+	</xs:complexType>
+		
+	<xs:complexType name="catRequest">
+		<xs:sequence></xs:sequence>
+	</xs:complexType>
+		
+	<xs:complexType name="cat">
+		<xs:sequence>
+			<xs:element name="idCatRequestMsg" type="id" />
+			<xs:element name="catDate" type="xs:dateTime" />
+			<xs:group ref="objectList" />
+		</xs:sequence>
+	</xs:complexType>
+		
+	<xs:complexType name="noCat">
+		<xs:sequence>
+			<xs:element name="idCatRequestMsg" type="id" />
+			<xs:element name="reason" type="reason" />
+		</xs:sequence>
+	</xs:complexType>
+		
+	<xs:complexType name="errorMsg">
+		<xs:attribute name="idMsg" type="id" use="required" />
+		<xs:attribute name="idError" type="id" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="rcvObjectList">
+		<xs:group ref="objectList"></xs:group>
+	</xs:complexType>
+
+	<xs:complexType name="sndObjectList">
+		<xs:group ref="objectList"></xs:group>
+	</xs:complexType>
+
+	<xs:group name="objectList">
+		<xs:sequence>
+			<xs:element name="object" type="object" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:group>
+
+	<xs:complexType name="object">
+		<xs:sequence>
+			<xs:element name="objectName" type="xs:string" />
+			<xs:element name="objectDetails" type="xs:string" />
+			<xs:element name="objectImage" type="xs:anySimpleType" />
+		</xs:sequence>
+		<xs:attribute name="idObject" type="id" use="required" />
+	</xs:complexType>
+
+	<xs:complexType name="user">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="idUser" type="id" use="required" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:simpleType name="id">
+		<xs:restriction base="xs:string" />
+	</xs:simpleType>
+
+	<xs:simpleType name="ref">
+		<xs:restriction base="xs:string" />
+	</xs:simpleType>
+
+	<xs:simpleType name="reason">
+		<xs:restriction base="xs:string" />
+	</xs:simpleType>
+</xs:schema>
