@@ -1,4 +1,4 @@
-package doc.num.projet;
+package doc.num.projet.model;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.Data;
@@ -18,6 +20,7 @@ import lombok.Data;
 public class Message{
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     Date date;
     Date validity;
