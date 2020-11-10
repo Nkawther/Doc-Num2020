@@ -1,58 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
     <title>[[ ${pageName}]]</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <form  method="POST" action="">
-            <h1>XML Writing</h1>
-            <label><strong>Name of receiver</strong></label>
-            <input type="text" placeholder="Name" name="namersv" required>
-           
-            <label><strong>Name of Transmitter</strong></label>
-            <input type="text" placeholder="Name" name="nametrm" required>
+      <form method="POST" action="">
+        <h1>XML Writing</h1>
+        <label><strong>Name of receiver</strong></label>
+        <input type="text" placeholder="Name" name="namersv" required />
 
-            <label><strong>Date</strong></label>
-            <input type="Date"  name="date" required>
+        <label><strong>Name of Transmitter</strong></label>
+        <input type="text" placeholder="Name" name="nametrm" required />
 
-            <label><strong>Date Validity</strong></label>
-            <input type="Date"  name="dateV" required>
+        <label><strong>Date</strong></label>
+        <input type="Date" name="date" required />
 
-            <!-- Type of message -->
-            <label for="type"><strong>Type</strong></label>
-            <select name="type" id="type" onchange="if(this.selectedIndex==1) ajouterbarter(); else if(this.selectedIndex==2) ajouterrequest();">
-                <option value="default" selected>Select-type</option>
-                <option value="barter">Barter</option>
-                <option value="request">Request</option>
-                <option value="donation">Donation</option>
-                <option value="accept">Accept</option>
-                <option value="deny">Deny</option>
-                <option value="cat">Catalogue</option>
-                <option value="catrequest">Catalogue Request</option>
-                <option value="nocat">No Catalogue</option>
-                <option value="errormsg">Error Message</option>
-                <option value="auth">Auth</option>
-                <option value="authrequest">AuthRequest</option>
-            </select><br>
-            <div id="enplus"></div>
-            <script>
-                function ajouterbarter() {     
-                    document.getElementById("enplus").innerHTML = '<label ><strong>Object Name</strong></label> <input type="text" name="objectnamercv" required><br> <label ><strong>Object Details</strong></label> <input type="text" name="objectdetailsrcv" required><br> <label ><strong>Object Name send</strong></label> <input type="text" name="objectnamesnd" required><br> <label ><strong>Object Details send</strong></label> <input type="text" name="objectdetailssnd" required><br> <label ><strong>ID of PrevMsg</strong></label> <input type="text" name="id" required><br>';   
-                    document.getElementById("forme").action = "/add-barter"; 
-                }
-                function ajouterrequest() {     
-                    document.getElementById("enplus").innerHTML = '<label ><strong>Object receiver Name</strong></label> <input type="text" name="objectnamercv" required><br> <label ><strong>Object Details</strong></label> <input type="text" name="objectdetailsrcv" required><br> <label ><strong>ID of PrevMsg</strong></label> <input type="text" name="id" required><br>';
-                    document.getElementById("forme").action = "/add-request";   
-                }
-            </script>
+        <label><strong>Date Validity</strong></label>
+        <input type="Date" name="dateV" required />
 
-            
-            <input type="submit" id="submit" value='write' >
-        </form>
-    </div>     
-</body>
+        <!-- Type of message -->
+        <label for="type"><strong>Type</strong></label>
+        <select
+          name="type"
+          id="type"
+          onchange="if(this.selectedIndex==1) ajouterbarter(); else if(this.selectedIndex==2) ajouterrequest(); else if(this.selectedIndex==3) authresponse(); else if(this.selectedIndex==6) denyresponse();"
+        >
+          <option value="default" selected>Select-type</option>
+          <option value="barter">Barter</option>
+          <option value="request">Request</option>
+          <option value="auth">Auth</option>
+          <option value="donation">Donation</option>
+          <option value="accept">Accept</option>
+          <option value="deny">Deny</option>
+          <option value="cat">Catalogue</option>
+          <option value="catrequest">Catalogue Request</option>
+          <option value="nocat">No Catalogue</option>
+          <option value="errormsg">Error Message</option>
+          <option value="authrequest">AuthRequest</option></select
+        ><br />
+        <div id="enplus"></div>
+        <script>
+          function ajouterbarter() {
+            document.getElementById("enplus").innerHTML =
+              '<label ><strong>Object Name</strong></label> <input type="text" name="objectnamercv" required><br> <label ><strong>Object Details</strong></label> <input type="text" name="objectdetailsrcv" required><br> <label ><strong>Object Name send</strong></label> <input type="text" name="objectnamesnd" required><br> <label ><strong>Object Details send</strong></label> <input type="text" name="objectdetailssnd" required><br> <label ><strong>ID of PrevMsg</strong></label> <input type="text" name="id" required><br>';
+            document.getElementById("forme").action = "/add-barter";
+          }
+          function ajouterrequest() {
+            console.log("request");
+            document.getElementById("enplus").innerHTML =
+              '<label ><strong>Object receiver Name</strong></label> <input type="text" name="objectnamercv" required><br> <label ><strong>Object Details</strong></label> <input type="text" name="objectdetailsrcv" required><br> <label ><strong>ID of PrevMsg</strong></label> <input type="text" name="id" required><br>';
+            document.getElementById("forme").action = "/add-request";
+          }
+          function authresponse() {
+            console.log("auth");
+            document.getElementById("enplus").innerHTML =
+              "<label> Envoi une demande de message</label>";
+            document.getElementById("forme").action = "/auth";
+          }
+          function denyresponse() {
+            document.getElementById("enplus").innerHTML =
+              '<label ><strong>ID of PrevMsg</strong></label><input type="text" name="id" required><br>';
+            document.getElementById("forme").action = "/deny";
+          }
+        </script>
+
+        <input type="submit" id="submit" value="write" />
+      </form>
+    </div>
+  </body>
 </html>
