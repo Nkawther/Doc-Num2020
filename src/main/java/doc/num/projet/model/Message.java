@@ -1,4 +1,4 @@
-package doc.num.projet;
+package doc.num.projet.model;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -9,15 +9,18 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.Data;
 
 @Data
 @Entity
-public class Message{
+public class Message {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     Date date;
     Date validity;
@@ -25,12 +28,13 @@ public class Message{
     @Enumerated(EnumType.STRING)
     public Set<AttributRole> roles = new HashSet<>();
 
-    public Message(){
+    public Message() {
 
     }
-    public Message(Date date, Date validity){
+
+    public Message(Date date, Date validity) {
         this.date = date;
-        this.validity=validity;
+        this.validity = validity;
         this.roles.add(AttributRole.MESSAGE);
     }
 }
