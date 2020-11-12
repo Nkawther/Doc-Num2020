@@ -22,9 +22,9 @@ public class CatalogueController {
     @Autowired
     CatalogueRepository catrepo;
 
-    @Autowired
-    MessageRepository msgrepo;
-
+    /*
+     * @Autowired MessageRepository msgrepo;
+     */
     @RequestMapping(value = "/add-cat", method = RequestMethod.POST)
     public String addcat(@RequestParam String date, @RequestParam String dateV, @RequestParam String catDate,
             @RequestParam String objectnameinit, @RequestParam String objectdetailsinit) throws ParseException {
@@ -37,7 +37,7 @@ public class CatalogueController {
 
         Catalogue cat = new Catalogue(dateS, dateVS, catDateS, initobj);
         System.err.println(dateS);
-        msgrepo.save(initobj);
+        // msgrepo.save(initobj);
 
         catrepo.save(cat);
         return "writing";
