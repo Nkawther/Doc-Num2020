@@ -1,5 +1,7 @@
 package doc.num.projet.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.inject.Inject;
@@ -23,16 +25,19 @@ public class BarterController {
         value = "/add-barter",
         method = RequestMethod.POST
     )
-    public String addrequest( @RequestParam Date date,
-                            @RequestParam Date dateV,
+    public String addrequest( @RequestParam String date,
+                            @RequestParam String dateV,
                             @RequestParam String objectnamercv, 
                             @RequestParam String objectdetailsrcv,
                             @RequestParam String objectnamesnd, 
                             @RequestParam String objectdetailssnd,
-                            @RequestParam String id){
+                            @RequestParam String id) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date dateS = formatter.parse(date);
+        Date dateVS = formatter.parse(dateV);
         Object orcv = new Object(objectnamercv, objectdetailsrcv);
         Object osnd = new Object(objectnamesnd, objectdetailssnd);
-        Barter b = new Barter(date, dateV, id, orcv, osnd);
+        Barter b = new Barter(dateS, dateVS, id, orcv, osnd);
         barterrepo.save(b);
         return "writing";
     }
