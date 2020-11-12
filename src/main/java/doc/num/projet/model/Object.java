@@ -4,7 +4,7 @@ import javax.imageio.ImageIO;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import lombok.Data;;
+import lombok.Data;
 
 @Data
 @Entity

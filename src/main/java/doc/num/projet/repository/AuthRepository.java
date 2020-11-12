@@ -1,16 +1,16 @@
 package doc.num.projet.repository;
 
 import java.util.List;
+
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import doc.num.projet.model.Message;
+import doc.num.projet.model.Auth;
 
 @Repository
 @Primary
-public interface MessageRepository extends CrudRepository<Message, Long> {
+public interface AuthRepository extends CrudRepository<Auth, Long> {
 
-    public List<Message> findAllByOrderById();
-
+    public List<Auth> findAllByOrderById();
 }

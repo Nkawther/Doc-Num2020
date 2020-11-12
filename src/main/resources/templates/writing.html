@@ -28,7 +28,7 @@
         <select
           name="type"
           id="type"
-          onchange="if(this.selectedIndex==1) ajouterbarter(); else if(this.selectedIndex==2) ajouterrequest();else if(this.selectedIndex==6) ajouterCat();else if(this.selectedIndex==7) ajouterCatReq();else if(this.selectedIndex==8) ajouterNoCat()"
+          onchange="if(this.selectedIndex==1) ajouterbarter(); else if(this.selectedIndex==2) ajouterrequest();else if(this.selectedIndex==5) denyresponse();else if(this.selectedIndex==6) ajouterCat();else if(this.selectedIndex==7) ajouterCatReq();else if(this.selectedIndex==8) ajouterNoCat();else if(this.selectedIndex==10) authresponse();"
         >
           <option value="default" selected>Select-type</option>
           <option value="barter">Barter</option>
@@ -70,6 +70,17 @@
             document.getElementById("enplus").innerHTML =
               '<label ><strong>Raison : </strong></label><input type="text" name="reason" required>';
             document.getElementById("monForm").action = "/add-nocat";
+          }
+          function authresponse() {
+            console.log("auth");
+            document.getElementById("enplus").innerHTML =
+              "<label> Envoi une demande de message</label>";
+            document.getElementById("forme").action = "/auth";
+          }
+          function denyresponse() {
+            document.getElementById("enplus").innerHTML =
+              '<label ><strong>ID of PrevMsg</strong></label><input type="text" name="id" required><br>';
+            document.getElementById("forme").action = "/deny";
           }
         </script>
 
