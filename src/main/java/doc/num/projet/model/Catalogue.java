@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -15,7 +16,7 @@ public class Catalogue extends Message {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
-    @OneToMany
+    @ManyToMany
     List<Objects> catObjectList = new ArrayList<Objects>();
 
     Date catDate;
@@ -32,6 +33,10 @@ public class Catalogue extends Message {
         this.catDate = catDate;
         this.catObjectList.add(unObjectList);
         this.roles.add(AttributRole.CAT);
+    }
+
+    public void add(Objects o) {
+        this.catObjectList.add(o);
     }
 
 }
