@@ -16,18 +16,18 @@ public class Catalogue extends Message {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     @OneToMany
-    List<Object> catObjectList = new ArrayList<Object>();
+    List<Objects> catObjectList = new ArrayList<Objects>();
 
     Date catDate;
 
-    public Catalogue(Date date, Date dateV, Date catDate, List<Object> catObjectList) {
+    public Catalogue(Date date, Date dateV, Date catDate, List<Objects> catObjectList) {
         super(date, dateV);
         this.catDate = catDate;
         this.catObjectList = catObjectList;
         this.roles.add(AttributRole.CAT);
     }
 
-    public Catalogue(Date date, Date dateV, Date catDate, Object unObjectList) {
+    public Catalogue(Date date, Date dateV, Date catDate, Objects unObjectList) {
         super(date, dateV);
         this.catDate = catDate;
         this.catObjectList.add(unObjectList);

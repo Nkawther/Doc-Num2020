@@ -8,28 +8,28 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Object {
+public class Objects {
 
     @Id
     String objectName;
     String objectDetails;
     // ImageIO objectImage;
 
-    public Object() {
+    public Objects() {
 
     }
 
-    public Object(String objectName, String objectDetails, ImageIO objectImage) {
+    public Objects(String objectName, String objectDetails, ImageIO objectImage) {
         this.objectName = objectName;
         this.objectDetails = objectDetails;
         // this.objectImage=objectImage;
     }
 
-    public Object(String objectName) {
+    public Objects(String objectName) {
         this.objectName = objectName;
     }
 
-    public Object(String objectName, String objectDetails) {
+    public Objects(String objectName, String objectDetails) {
         this.objectName = objectName;
         this.objectDetails = objectDetails;
     }

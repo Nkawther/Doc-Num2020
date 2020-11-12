@@ -11,16 +11,14 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Deny extends Message {
+public class Accept extends Message {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     String idPropositionMsg;
-    String reason;
 
-    public Deny(Date date, Date validity, String idPropositionMsg, String reason) {
+    public Accept(Date date, Date validity, String idPropositionMsg) {
         super(date, validity);
         this.idPropositionMsg = idPropositionMsg;
-        this.reason = reason;
     }
 }
