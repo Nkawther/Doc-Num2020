@@ -1,6 +1,5 @@
 package doc.num.projet.model;
 
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,34 +10,33 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-
-
 @Entity
-public class Barter extends Message{
-    
+public class Barter extends Message {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     @OneToMany
-    List<Object> rcvObjectList = new ArrayList<Object>();
+    List<Objects> rcvObjectList = new ArrayList<Objects>();
     @OneToMany
-    List<Object> sndObjectList = new ArrayList<Object>();
+    List<Objects> sndObjectList = new ArrayList<Objects>();
     String idPrevMsg;
 
-    public Barter(){
+    public Barter() {
         super();
     }
-    public Barter(Date date, Date dateV, String idPrevMsg, List<Object> rcvObjectList, List<Object> sndObjectList){
+
+    public Barter(Date date, Date dateV, String idPrevMsg, List<Objects> rcvObjectList, List<Objects> sndObjectList) {
         super(date, dateV);
-        this.idPrevMsg=idPrevMsg;
-        this.rcvObjectList=rcvObjectList;
-        this.sndObjectList=sndObjectList;
+        this.idPrevMsg = idPrevMsg;
+        this.rcvObjectList = rcvObjectList;
+        this.sndObjectList = sndObjectList;
         this.roles.add(AttributRole.BARTER);
     }
 
-    public Barter(Date date, Date dateV, String idPrevMsg, Object rcvObject, Object sndObject){
+    public Barter(Date date, Date dateV, String idPrevMsg, Objects rcvObject, Objects sndObject) {
         super(date, dateV);
-        this.idPrevMsg=idPrevMsg;
+        this.idPrevMsg = idPrevMsg;
         this.rcvObjectList.add(rcvObject);
         this.sndObjectList.add(sndObject);
         this.roles.add(AttributRole.BARTER);

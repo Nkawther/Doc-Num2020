@@ -1,6 +1,5 @@
 package doc.num.projet.model;
 
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,31 +10,31 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-
-
 @Entity
-public class Request extends Message{
-    
+public class Request extends Message {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     @OneToMany
-    List<Object> rcvObjectList = new ArrayList<Object>();
+    List<Objects> listMsgRcv = new ArrayList<Objects>();
     String idPrevMsg;
 
-    public Request(){
+    public Request() {
         super();
     }
-    public Request(Date date, Date dateV, String idPrevMsg, List<Object> rcvObjectList){
+
+    public Request(Date date, Date dateV, String idPrevMsg, List<Objects> rcvObjectList) {
         super(date, dateV);
-        this.idPrevMsg=idPrevMsg;
-        this.rcvObjectList=rcvObjectList;
+        this.idPrevMsg = idPrevMsg;
+        this.listMsgRcv = rcvObjectList;
         this.roles.add(AttributRole.REQUEST);
     }
-    public Request(Date date, Date dateV, String idPrevMsg, Object rcvObject){
+
+    public Request(Date date, Date dateV, String idPrevMsg, Objects rcvObject) {
         super(date, dateV);
-        this.idPrevMsg=idPrevMsg;
-        this.rcvObjectList.add(rcvObject);
+        this.idPrevMsg = idPrevMsg;
+        this.listMsgRcv.add(rcvObject);
         this.roles.add(AttributRole.REQUEST);
     }
 

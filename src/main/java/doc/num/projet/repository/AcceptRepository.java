@@ -6,11 +6,11 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import doc.num.projet.model.Deny;
+import doc.num.projet.model.Accept;
 
 @Repository
 @Primary
-public interface DenyRepository extends CrudRepository<Deny, Long> {
+public interface AcceptRepository extends CrudRepository<Accept, Long> {
 
-    public List<Deny> findAllByOrderById();
+    public List<Accept> findAllByOrderById();
 }
