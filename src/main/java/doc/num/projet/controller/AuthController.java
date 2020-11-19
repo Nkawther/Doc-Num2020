@@ -19,10 +19,10 @@ public class AuthController {
     AuthRepository authrepo;
 
     @RequestMapping(value = "/auth", method = RequestMethod.POST)
-    public String addrequest(@RequestParam Date date, @RequestParam Date dateV) {
+    public String addrequest(@RequestParam Date date, @RequestParam Date dateV, @RequestParam Long idHeader) {
         System.err.println("auth controller");
-        Auth auth = new Auth(date, dateV);
+        Auth auth = new Auth(date, dateV, idHeader);
         authrepo.save(auth);
-        return "writing";
+        return "redirect:header";
     }
 }

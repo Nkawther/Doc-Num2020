@@ -28,12 +28,13 @@ public class RequestController {
     @RequestMapping(value = "/add-request", method = RequestMethod.POST)
     public String addrequest(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateV, @RequestParam String objectnamercv,
-            @RequestParam String objectdetailsrcv, @RequestParam String id) throws ParseException {
+            @RequestParam String objectdetailsrcv, @RequestParam String id, @RequestParam Long idHeader)
+            throws ParseException {
 
         Objects o = new Objects(objectnamercv, objectdetailsrcv);
         objrepo.save(o);
-        Request r = new Request(date, dateV, id, o);
+        Request r = new Request(date, dateV, id, o, idHeader);
         requestrepo.save(r);
-        return "writing";
+        return "redirect:header";
     }
 }

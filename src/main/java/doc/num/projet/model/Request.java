@@ -10,7 +10,6 @@ import javax.persistence.OneToMany;
 @Entity
 public class Request extends Message {
 
-   
     @OneToMany
     List<Objects> listMsgRcv = new ArrayList<Objects>();
     String idPrevMsg;
@@ -19,15 +18,15 @@ public class Request extends Message {
         super();
     }
 
-    public Request(Date date, Date dateV, String idPrevMsg, List<Objects> rcvObjectList) {
-        super(date, dateV);
+    public Request(Date date, Date dateV, String idPrevMsg, List<Objects> rcvObjectList, Long idHeader) {
+        super(date, dateV, idHeader);
         this.idPrevMsg = idPrevMsg;
         this.listMsgRcv = rcvObjectList;
         this.roles.add(AttributRole.REQUEST);
     }
 
-    public Request(Date date, Date dateV, String idPrevMsg, Objects rcvObject) {
-        super(date, dateV);
+    public Request(Date date, Date dateV, String idPrevMsg, Objects rcvObject, Long idHeader) {
+        super(date, dateV, idHeader);
         this.idPrevMsg = idPrevMsg;
         this.listMsgRcv.add(rcvObject);
         this.roles.add(AttributRole.REQUEST);

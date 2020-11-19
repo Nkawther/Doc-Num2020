@@ -19,14 +19,15 @@ public class AuthRequestController {
     AuthRequestRepository authrepo;
 
     @RequestMapping(value = "/authreq", method = RequestMethod.POST)
-    public String addauth(@RequestParam String date, @RequestParam String validity) throws ParseException {
+    public String addauth(@RequestParam String date, @RequestParam String validity, @RequestParam Long idHeader)
+            throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date dateS = formatter.parse(date);
         Date dateVS = formatter.parse(validity);
-        AuthRequest authreq = new AuthRequest(dateS, dateVS);
+        AuthRequest authreq = new AuthRequest(dateS, dateVS, idHeader);
 
         authrepo.save(authreq);
-        return "writing";
+        return "redirect:header";
     }
 
 }

@@ -9,11 +9,11 @@ import lombok.Data;
 @Data
 @Entity
 public class Accept extends Message {
-  
+
     String idPropositionMsg;
 
-    public Accept(Date date, Date validity, String idPropositionMsg) {
-        super(date, validity);
+    public Accept(Date date, Date validity, String idPropositionMsg, Long idHeader) {
+        super(date, validity, idHeader);
         this.idPropositionMsg = idPropositionMsg;
     }
 }

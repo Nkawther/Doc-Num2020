@@ -28,7 +28,8 @@ public class CatalogueController {
      */
     @RequestMapping(value = "/add-cat", method = RequestMethod.POST)
     public String addcat(@RequestParam String date, @RequestParam String dateV, @RequestParam String catDate,
-            @RequestParam String objectnameinit, @RequestParam String objectdetailsinit) throws ParseException {
+            @RequestParam String objectnameinit, @RequestParam String objectdetailsinit, @RequestParam Long idHeader)
+            throws ParseException {
 
         System.err.println("test " + objectdetailsinit);
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -38,12 +39,12 @@ public class CatalogueController {
         Date dateVS = formatter.parse(dateV);
         Date catDateS = formatter.parse(catDate);
 
-        Catalogue cat = new Catalogue(dateS, dateVS, catDateS, initobj);
+        Catalogue cat = new Catalogue(dateS, dateVS, catDateS, initobj, idHeader);
         System.err.println(dateS);
         // msgrepo.save(initobj);
 
         catrepo.save(cat);
-        return "writing";
+        return "redirect:header";
     }
 
 }

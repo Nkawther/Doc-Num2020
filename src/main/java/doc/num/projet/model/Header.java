@@ -1,11 +1,14 @@
 package doc.num.projet.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import lombok.Data;
 
@@ -20,6 +23,8 @@ public class Header {
     String nameReceiver;
     String authRef;
     Date authDate;
+    @OneToMany
+    List<Message> lsMessage = new ArrayList<>();
 
     public Header() {
 

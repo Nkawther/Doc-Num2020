@@ -29,7 +29,8 @@ public class BarterController {
     @RequestMapping(value = "/add-barter", method = RequestMethod.POST)
     public String addrequest(@RequestParam String date, @RequestParam String dateV, @RequestParam String objectnamercv,
             @RequestParam String objectdetailsrcv, @RequestParam String objectnamesnd,
-            @RequestParam String objectdetailssnd, @RequestParam String id) throws ParseException {
+            @RequestParam String objectdetailssnd, @RequestParam String id, @RequestParam Long idHeader)
+            throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date dateS = formatter.parse(date);
         Date dateVS = formatter.parse(dateV);
@@ -37,8 +38,8 @@ public class BarterController {
         Objects osnd = new Objects(objectnamesnd, objectdetailssnd);
         objrepo.save(orcv);
         objrepo.save(osnd);
-        Barter b = new Barter(dateS, dateVS, id, orcv, osnd);
+        Barter b = new Barter(dateS, dateVS, id, orcv, osnd, idHeader);
         barterrepo.save(b);
-        return "writing";
+        return "redirect:header";
     }
 }

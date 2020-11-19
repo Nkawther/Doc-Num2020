@@ -25,13 +25,14 @@ public class DonationController {
 
     @RequestMapping(value = "/add-donation", method = RequestMethod.POST)
     public String adddonation(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
-        @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateV, @RequestParam String objectnamesnd,
-        @RequestParam String objectdetailssnd, @RequestParam String id) throws ParseException {
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateV, @RequestParam String objectnamesnd,
+            @RequestParam String objectdetailssnd, @RequestParam String id, @RequestParam Long idHeader)
+            throws ParseException {
 
-    Objects o = new Objects(objectnamesnd, objectdetailssnd);
-    objrepo.save(o);
-    Donation d = new Donation(date, dateV, id, o);
-    donationrepo.save(d);
-    return "writing";
+        Objects o = new Objects(objectnamesnd, objectdetailssnd);
+        objrepo.save(o);
+        Donation d = new Donation(date, dateV, id, o, idHeader);
+        donationrepo.save(d);
+        return "redirect:header";
     }
 }

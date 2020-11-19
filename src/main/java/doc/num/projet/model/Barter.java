@@ -21,16 +21,17 @@ public class Barter extends Message {
         super();
     }
 
-    public Barter(Date date, Date dateV, String idPrevMsg, List<Objects> rcvObjectList, List<Objects> sndObjectList) {
-        super(date, dateV);
+    public Barter(Date date, Date dateV, String idPrevMsg, List<Objects> rcvObjectList, List<Objects> sndObjectList,
+            Long idHeader) {
+        super(date, dateV, idHeader);
         this.idPrevMsg = idPrevMsg;
         this.rcvObjectList = rcvObjectList;
         this.sndObjectList = sndObjectList;
         this.roles.add(AttributRole.BARTER);
     }
 
-    public Barter(Date date, Date dateV, String idPrevMsg, Objects rcvObject, Objects sndObject) {
-        super(date, dateV);
+    public Barter(Date date, Date dateV, String idPrevMsg, Objects rcvObject, Objects sndObject, Long idHeader) {
+        super(date, dateV, idHeader);
         this.idPrevMsg = idPrevMsg;
         this.rcvObjectList.add(rcvObject);
         this.sndObjectList.add(sndObject);

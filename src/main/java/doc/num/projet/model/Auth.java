@@ -12,8 +12,8 @@ public class Auth extends Message {
 
     Date authDate;
 
-    public Auth(Date date, Date validity) {
-        super(date, validity);
+    public Auth(Date date, Date validity, Long idHeader) {
+        super(date, validity, idHeader);
         this.authDate = date;
     }
 }

@@ -20,14 +20,14 @@ public class NoCatalogueController {
     NoCatalogueRepository nocatrepo;
 
     @RequestMapping(value = "/add-nocat", method = RequestMethod.POST)
-    public String addcat(@RequestParam String date, @RequestParam String dateV, @RequestParam String reason)
-            throws ParseException {
+    public String addcat(@RequestParam String date, @RequestParam String dateV, @RequestParam String reason,
+            @RequestParam Long idHeader) throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date dateS = formatter.parse(date);
         Date dateVS = formatter.parse(dateV);
-        NoCatalogue nocat = new NoCatalogue(dateS, dateVS, reason);
+        NoCatalogue nocat = new NoCatalogue(dateS, dateVS, reason, idHeader);
         nocatrepo.save(nocat);
-        return "writing";
+        return "redirect:header";
     }
 
 }

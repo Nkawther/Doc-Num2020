@@ -21,10 +21,10 @@ public class DenyController {
     @RequestMapping(value = "/deny", method = RequestMethod.POST)
     public String addrequest(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateV, @RequestParam String id,
-            @RequestParam String reason) {
+            @RequestParam String reason, @RequestParam Long idHeader) {
         System.err.println("deny controller");
-        Deny d = new Deny(date, dateV, id, reason);
+        Deny d = new Deny(date, dateV, id, reason, idHeader);
         denyrepo.save(d);
-        return "writing";
+        return "redirect:header";
     }
 }

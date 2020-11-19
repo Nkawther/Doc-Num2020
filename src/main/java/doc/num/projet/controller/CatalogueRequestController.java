@@ -21,14 +21,15 @@ public class CatalogueRequestController {
     CatalogueRequestRepository nocatrepo;
 
     @RequestMapping(value = "/add-catreq", method = RequestMethod.POST)
-    public String addcat(@RequestParam String date, @RequestParam String dateV) throws ParseException {
+    public String addcat(@RequestParam String date, @RequestParam String dateV, @RequestParam Long idHeader)
+            throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date dateS = formatter.parse(date);
         Date dateVS = formatter.parse(dateV);
-        CatalogueRequest catreq = new CatalogueRequest(dateS, dateVS);
+        CatalogueRequest catreq = new CatalogueRequest(dateS, dateVS, idHeader);
 
         nocatrepo.save(catreq);
-        return "writing";
+        return "redirect:header";
     }
 
 }
