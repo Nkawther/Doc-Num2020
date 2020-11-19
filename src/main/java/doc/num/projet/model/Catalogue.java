@@ -5,16 +5,11 @@ import java.util.List;
 import java.util.ArrayList;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
 public class Catalogue extends Message {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    
     @OneToMany
     List<Objects> catObjectList = new ArrayList<Objects>();
 

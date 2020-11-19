@@ -9,7 +9,7 @@ public class ControllerInit {
 
     @RequestMapping("/")
     public String enterInside() {
-        return "redirect:index";
+        return "redirect:Parse";
     }
 
     @RequestMapping("/index")
