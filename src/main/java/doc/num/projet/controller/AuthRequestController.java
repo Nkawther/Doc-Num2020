@@ -18,9 +18,8 @@ public class AuthRequestController {
     @Autowired
     AuthRequestRepository authrepo;
 
-
-    @RequestMapping(value = "/auth", method = RequestMethod.POST)
-    public String addauth(@RequestParam String date, @RequestParam String validity) throws ParseException{
+    @RequestMapping(value = "/authreq", method = RequestMethod.POST)
+    public String addauth(@RequestParam String date, @RequestParam String validity) throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date dateS = formatter.parse(date);
         Date dateVS = formatter.parse(validity);
@@ -29,5 +28,5 @@ public class AuthRequestController {
         authrepo.save(authreq);
         return "writing";
     }
-    
+
 }
