@@ -9,9 +9,7 @@ import javax.persistence.Id;
 
 @Entity
 public class NoCatalogue extends Message {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    
     String reason;
 
     public NoCatalogue(Date date, Date dateV, String reason) {

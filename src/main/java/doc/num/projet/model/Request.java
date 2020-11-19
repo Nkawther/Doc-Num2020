@@ -5,17 +5,12 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
 public class Request extends Message {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+   
     @OneToMany
     List<Objects> listMsgRcv = new ArrayList<Objects>();
     String idPrevMsg;
