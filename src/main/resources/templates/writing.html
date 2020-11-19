@@ -11,12 +11,31 @@
     <div class="container">
       <form method="POST" action="" id="monForm">
         <h1>XML Writing</h1>
+        <h2>Header</h2>
+        <hr />
         <label><strong>Name of receiver</strong></label>
         <input type="text" placeholder="Name" name="namersv" required />
 
         <label><strong>Name of Transmitter</strong></label>
         <input type="text" placeholder="Name" name="nametrm" required />
 
+        <label><strong>Authorisation ref</strong></label>
+        <input
+          type="text"
+          placeholder="Authorisation ref"
+          name="authRef"
+          required
+        />
+
+        <label><strong>Authorisation date</strong></label>
+        <input
+          type="Date"
+          placeholder="Authorisation date"
+          name="authDate"
+          required
+        />
+        <h2>Body</h2>
+        <hr />
         <label><strong>Date</strong></label>
         <input type="Date" name="date" required />
 
@@ -24,6 +43,7 @@
         <input type="Date" name="dateV" required />
 
         <!-- Type of message -->
+        <h3>Add Message</h3>
         <label for="type"><strong>Type</strong></label>
         <select
           name="type"
@@ -44,7 +64,20 @@
           <option value="authrequest">AuthRequest</option></select
         ><br />
         <div id="enplus"></div>
+        <input type="button" value="Add message" onclick="ajouterMessage()"/>
+
+        <!-- List of message -->
+        <ol id="listMsg"></ol>
+
+        <!-- JavaScipt -->
         <script>
+          function ajoutermessage(){
+            newMsg = document.createElement("li");
+            newMsg.id = document.getElementById("listMsg").childNodes.length;
+            console.log(newMsg.id);
+            
+            document.getElementById("listMsg").ins
+          }
           function ajouterbarter() {
             document.getElementById("enplus").innerHTML =
               '<label ><strong>Object Name</strong></label> <input type="text" name="objectnamercv" required><br> <label ><strong>Object Details</strong></label> <input type="text" name="objectdetailsrcv" required><br> <label ><strong>Object Name send</strong></label> <input type="text" name="objectnamesnd" required><br> <label ><strong>Object Details send</strong></label> <input type="text" name="objectdetailssnd" required><br> <label ><strong>ID of PrevMsg</strong></label> <input type="text" name="id" required><br>';
@@ -85,7 +118,7 @@
           function acceptresponse() {
             document.getElementById("enplus").innerHTML =
               '<label ><strong>ID of proposition msg</strong></label><input type="text" name="id" required>';
-            document.getElementById("monForm").action = "/accept";
+            document.getElementById("monForm").action = "/accept, /head";
           }
         </script>
 

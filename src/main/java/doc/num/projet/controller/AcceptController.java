@@ -24,6 +24,6 @@ public class AcceptController {
         System.err.println("accept controller");
         Accept a = new Accept(date, dateV, id);
         acceptrepo.save(a);
-        return "writing";
+        return "addHeader";
     }
 }
