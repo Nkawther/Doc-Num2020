@@ -64,19 +64,19 @@
           <option value="authrequest">AuthRequest</option></select
         ><br />
         <div id="enplus"></div>
-        <input type="button" value="Add message" onclick="ajouterMessage()"/>
+        <input type="button" value="Add message" onclick="ajouterMessage();"/>
 
         <!-- List of message -->
         <ol id="listMsg"></ol>
 
         <!-- JavaScipt -->
         <script>
-          function ajoutermessage(){
+          function ajouterMessage(){
             newMsg = document.createElement("li");
             newMsg.id = document.getElementById("listMsg").childNodes.length;
             console.log(newMsg.id);
             
-            document.getElementById("listMsg").ins
+            document.getElementById("listMsg").appendChild(newMsg);
           }
           function ajouterbarter() {
             document.getElementById("enplus").innerHTML =
