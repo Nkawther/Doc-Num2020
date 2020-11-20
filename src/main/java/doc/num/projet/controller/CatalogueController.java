@@ -4,14 +4,18 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.inject.Inject;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.stereotype.Controller;
 import doc.num.projet.repository.CatalogueRepository;
+import doc.num.projet.repository.HeaderRepository;
 import doc.num.projet.repository.ObjectsRepository;
 import doc.num.projet.model.Catalogue;
+import doc.num.projet.model.Header;
 import doc.num.projet.model.Objects;
 
 @Controller
@@ -22,6 +26,8 @@ public class CatalogueController {
 
     @Autowired
     ObjectsRepository objrepo;
+    @Inject 
+    HeaderRepository headerrepo;
 
     /*
      * @Autowired MessageRepository msgrepo;
@@ -44,7 +50,12 @@ public class CatalogueController {
         // msgrepo.save(initobj);
 
         catrepo.save(cat);
-        return "redirect:header";
+        if (headerrepo.findAllByOrderById().contains(headerrepo.findHeaderById(idHeader))) {
+            Header h = headerrepo.findHeaderById(idHeader);
+            h.getLsMessage().add(cat);
+            headerrepo.save(h);
+        }
+        return "reading";
     }
 
 }

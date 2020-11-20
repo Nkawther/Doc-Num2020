@@ -1,16 +1,15 @@
 package doc.num.projet.controller;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import doc.num.projet.model.Header;
 import doc.num.projet.repository.HeaderRepository;
 
 @Controller
@@ -32,18 +31,31 @@ public class ControllerInit {
     @RequestMapping("/writing")
     public String writing(Model m) throws ParseException {
         m.addAttribute("pageName", "Writing XML");
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date dateS = formatter.parse("2020-11-20");
-        Header h = new Header(0, "New", "New", "0", dateS);
-        headerrepo.save(h);
         m.addAttribute("lsHeader", headerrepo.findAll());
-        System.err.println(headerrepo.findAll());
+        m.addAttribute("vide", "");
+        if(headerrepo.count()==0){
+            m.addAttribute("vide", "No file");
+        }
         return "writing";
     }
-
+    @RequestMapping("/header")
+    public String header()  {
+        return "header";
+    }
     @RequestMapping("/reading")
     public String creading(Model m) {
         m.addAttribute("pageName", "Reading XML");
         return "reading";
     }
+    @RequestMapping("add-a-message")
+    public String addmessage(Model m, @RequestParam long ind) {
+        m.addAttribute("idheader", ind);
+        m.addAttribute("lsHeader", headerrepo.findAll());
+        m.addAttribute("vide", "");
+        if(headerrepo.count()==0){
+            m.addAttribute("vide", "No file");
+        }
+        return "writing";
+    }
+
 }

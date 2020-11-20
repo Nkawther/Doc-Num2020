@@ -20,17 +20,12 @@ public class HeaderController {
     HeaderRepository headerrepo;
 
     @RequestMapping(value = "/addHeader", method = RequestMethod.POST)
-    public String addHeader(Model model, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date authDate,
-            @RequestParam String namersv, @RequestParam String nametrm, @RequestParam String authRef) {
-        Header h = new Header(1, nametrm, namersv, authRef, authDate);
+    public String addHeader(@RequestParam int nbMsg, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date authDate,
+            @RequestParam String namersv, @RequestParam String nametrm, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date authRef) {
+
+        Header h = new Header(nbMsg, nametrm, namersv, authRef, authDate);
         headerrepo.save(h);
-        model.addAttribute("idHeader", h.getId());
-        return "writing";
+        return "redirect:writing";
     }
 
-    @RequestMapping(value = "/Header")
-    public String header() {
-
-        return "writing";
-    }
 }

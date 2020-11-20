@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,49 +8,27 @@
   </head>
 
   <body>
-    <div class="container">
-      <form method="POST" action="" id="monForm">
-        <h1>XML Writing</h1>
-        <h2>Header</h2>
-        <hr />
-        <label for="idHeader"><strong>id Header</strong></label>
-
-        <!-- if the list of header are not empty -->
-        <select th:if="${lsHeader}" th:each="ls : ${lsHeader}" name="idHeader" id="type"
-        onchange="changeFile(this.selectedIndex);">
-          <option value="New" selected>New File</option>
-          <option value="[[${ls.id}]]" >[[${ls.id}]] [[${ls.nameReceiver}]]</option>
-        </select>
-
-        <div id="headInfo">
-        <label><strong>Name of receiver</strong></label>
-        <input type="text" placeholder="Name" name="namersv" required />
-
-        <label><strong>Name of Transmitter</strong></label>
-        <input type="text" placeholder="Name" name="nametrm" required />
-
-        <label><strong>Authorisation ref</strong></label>
-        <input
-          type="text"
-          placeholder="Authorisation ref"
-          name="authRef"
-          required
-        />
-
-        <label><strong>Authorisation date</strong></label>
-        <input
-          type="Date"
-          placeholder="Authorisation date"
-          name="authDate"
-          required
-        />
-        <input type="submit" id="submit" value="Create file" />
-        </div>
-        </form>
-
+    <h1>Write a new message</h1>
+    <div class="containerfile">
+      <h2>Liste of file</h2>
+      <p>[[${vide}]]</p>
+      <ul>
+        <li data-th-each="num,info : ${lsHeader}"> 
+          [[ ${num.nbMsg} ]]
+          [[ ${num.nameTransmitter} ]]
+          [[ ${num.nameReceiver} ]]
+          [[ ${num.authRef} ]]
+          [[ ${num.authDate} ]] 
+          <a data-th-href="@{add-a-message(ind=${num.id})}">Add Message</a>
+        </li>
+    </ul>
+    </div>
+    <div class="containermsg">
         <form method="POST" action="" id="formMessage">
         <h2>Body</h2>
         <hr />
+        <label><Strong>Id Header</Strong></label>
+        <input type="number" th:value="${idheader}" name="idHeader" required><br/>
         <label><strong>Date</strong></label>
         <input type="Date" name="date" required />
 
@@ -58,10 +36,6 @@
         <input type="Date" name="dateV" required />
 
         <!-- Type of message -->
-        
-        <h3>Add Message</h3>
-        <label><Strong>id Header</Strong></label><br>
-        <input type="number" name="idHeader" required>
         <label for="type"><strong>Type</strong></label>
         <select
           name="type"
@@ -88,10 +62,7 @@
         <ol id="listMsg"></ol>
         </form>
         <!-- JavaScipt -->
-        <script th:inline="javascript">
-          function changeFile(index){
-            console.log(index);
-          }
+        <script>
           function ajouterMessage(){
             newMsg = document.createElement("li");
             newMsg.id = document.getElementById("listMsg").childNodes.length;
@@ -139,7 +110,7 @@
           function acceptresponse() {
             document.getElementById("enplus").innerHTML =
               '<label ><strong>ID of proposition msg</strong></label><input type="text" name="id" required>';
-            document.getElementById("formMessage").action = "/accept, /head";
+            document.getElementById("formMessage").action = "/accept";
           }
         </script>
     </div>

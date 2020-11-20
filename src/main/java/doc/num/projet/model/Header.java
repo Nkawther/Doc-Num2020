@@ -21,7 +21,7 @@ public class Header {
     int nbMsg;
     String nameTransmitter;
     String nameReceiver;
-    String authRef;
+    Date authRef;
     Date authDate;
     @OneToMany
     List<Message> lsMessage = new ArrayList<>();
@@ -30,7 +30,7 @@ public class Header {
 
     }
 
-    public Header(int nbMsg, String nameTransmitter, String nameReceiver, String authRef, Date authDate) {
+    public Header(int nbMsg, String nameTransmitter, String nameReceiver, Date authRef, Date authDate) {
         this.nbMsg = nbMsg;
         this.nameTransmitter = nameTransmitter;
         this.nameReceiver = nameReceiver;

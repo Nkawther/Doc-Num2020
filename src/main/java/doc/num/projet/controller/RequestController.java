@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import doc.num.projet.model.Header;
 import doc.num.projet.model.Objects;
 import doc.num.projet.model.Request;
+import doc.num.projet.repository.HeaderRepository;
 import doc.num.projet.repository.ObjectsRepository;
 import doc.num.projet.repository.RequestRepository;
 
@@ -24,6 +26,8 @@ public class RequestController {
 
     @Inject
     ObjectsRepository objrepo;
+    @Inject
+    HeaderRepository headerrepo;
 
     @RequestMapping(value = "/add-request", method = RequestMethod.POST)
     public String addrequest(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
@@ -35,6 +39,11 @@ public class RequestController {
         objrepo.save(o);
         Request r = new Request(date, dateV, id, o, idHeader);
         requestrepo.save(r);
-        return "redirect:header";
+        if (headerrepo.findAllByOrderById().contains(headerrepo.findHeaderById(idHeader))) {
+            Header h = headerrepo.findHeaderById(idHeader);
+            h.getLsMessage().add(r);
+            headerrepo.save(h);
+        }
+        return "reading";
     }
 }

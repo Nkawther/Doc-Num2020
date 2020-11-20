@@ -11,12 +11,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import doc.num.projet.model.AuthRequest;
+import doc.num.projet.model.Header;
 import doc.num.projet.repository.AuthRequestRepository;
+import doc.num.projet.repository.HeaderRepository;
 
 @Controller
 public class AuthRequestController {
     @Autowired
     AuthRequestRepository authrepo;
+    @Autowired
+    HeaderRepository headerrepo;
 
     @RequestMapping(value = "/authreq", method = RequestMethod.POST)
     public String addauth(@RequestParam String date, @RequestParam String validity, @RequestParam Long idHeader)
@@ -27,7 +31,12 @@ public class AuthRequestController {
         AuthRequest authreq = new AuthRequest(dateS, dateVS, idHeader);
 
         authrepo.save(authreq);
-        return "redirect:header";
+        if (headerrepo.findAllByOrderById().contains(headerrepo.findHeaderById(idHeader))) {
+            Header h = headerrepo.findHeaderById(idHeader);
+            h.getLsMessage().add(authreq);
+            headerrepo.save(h);
+        }
+        return "reading";
     }
 
 }

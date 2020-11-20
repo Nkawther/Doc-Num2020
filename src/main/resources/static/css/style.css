@@ -2,6 +2,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #fe5936;
+    display: block;
 }
 
 h1{
@@ -19,6 +20,15 @@ h1{
     padding: 2%;
     cursor:pointer;
 }
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    display: none;
+    overflow: hidden;
+  }
 .menu{
     display: block;
     margin-top : 18%;
@@ -31,7 +41,13 @@ h1{
 }
 
 /********************Writing***********************/
-.container{
+.containerfile{
+    width: 400px;
+    margin: 11% auto;
+    padding-bottom: 10%;
+    filter: brightness(100%);
+}
+.containermsg{
     width: 400px;
     margin: 11% auto;
     padding-bottom: 10%;

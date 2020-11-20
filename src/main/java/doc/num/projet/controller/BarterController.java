@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import doc.num.projet.model.Barter;
+import doc.num.projet.model.Header;
 import doc.num.projet.model.Objects;
 import doc.num.projet.repository.BarterRepository;
+import doc.num.projet.repository.HeaderRepository;
 import doc.num.projet.repository.ObjectsRepository;
 
 @Controller
@@ -25,6 +27,8 @@ public class BarterController {
 
     @Autowired
     ObjectsRepository objrepo;
+    @Autowired
+    HeaderRepository headerrepo;
 
     @RequestMapping(value = "/add-barter", method = RequestMethod.POST)
     public String addrequest(@RequestParam String date, @RequestParam String dateV, @RequestParam String objectnamercv,
@@ -40,6 +44,11 @@ public class BarterController {
         objrepo.save(osnd);
         Barter b = new Barter(dateS, dateVS, id, orcv, osnd, idHeader);
         barterrepo.save(b);
-        return "redirect:header";
+        if (headerrepo.findAllByOrderById().contains(headerrepo.findHeaderById(idHeader))) {
+            Header h = headerrepo.findHeaderById(idHeader);
+            h.getLsMessage().add(b);
+            headerrepo.save(h);
+        }
+        return "reading";
     }
 }
