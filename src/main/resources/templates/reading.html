@@ -18,13 +18,7 @@
         <button onclick="window.location.href='header'">Write un new file</button><br/>
         <button onclick="window.location.href='writing'">Write un new message</button>
       </div>
-      <button
-        id="bouton"
-        class="positionbtwo"
-        onclick="window.location.href='reading'"
-      >
-        XML Reading
-      </button>
+
       <li data-th-each="num,info : ${lsHeader}"> 
         [[ ${num.nbMsg} ]]
         [[ ${num.nameTransmitter} ]]

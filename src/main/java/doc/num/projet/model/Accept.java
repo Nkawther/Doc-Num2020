@@ -12,6 +12,9 @@ public class Accept extends Message {
 
     String idPropositionMsg;
 
+    public Accept(){
+        super();
+    }
     public Accept(Date date, Date validity, String idPropositionMsg, Long idHeader) {
         super(date, validity, idHeader);
         this.idPropositionMsg = idPropositionMsg;

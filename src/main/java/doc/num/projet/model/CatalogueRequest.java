@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 @Entity
 public class CatalogueRequest extends Message {
 
+    public CatalogueRequest(){
+        super();
+    }
     public CatalogueRequest(Date date, Date dateV, Long idHeader) {
         super(date, dateV, idHeader);
 

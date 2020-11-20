@@ -28,11 +28,11 @@ public class NoCatalogueController {
 
     @RequestMapping(value = "/add-nocat", method = RequestMethod.POST)
     public String addcat(@RequestParam String date, @RequestParam String dateV, @RequestParam String reason,
-            @RequestParam Long idHeader) throws ParseException {
+            @RequestParam Long idHeader, @RequestParam String idcat) throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date dateS = formatter.parse(date);
         Date dateVS = formatter.parse(dateV);
-        NoCatalogue nocat = new NoCatalogue(dateS, dateVS, reason, idHeader);
+        NoCatalogue nocat = new NoCatalogue(dateS, dateVS, reason, idHeader, idcat);
         nocatrepo.save(nocat);
         if (headerrepo.findAllByOrderById().contains(headerrepo.findHeaderById(idHeader))) {
             Header h = headerrepo.findHeaderById(idHeader);

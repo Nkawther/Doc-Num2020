@@ -34,7 +34,7 @@ public class CatalogueController {
      */
     @RequestMapping(value = "/add-cat", method = RequestMethod.POST)
     public String addcat(@RequestParam String date, @RequestParam String dateV, @RequestParam String catDate,
-            @RequestParam String objectnameinit, @RequestParam String objectdetailsinit, @RequestParam Long idHeader)
+            @RequestParam String objectnameinit, @RequestParam String objectdetailsinit, @RequestParam Long idHeader, @RequestParam String idcat)
             throws ParseException {
 
         System.err.println("test " + objectdetailsinit);
@@ -45,7 +45,7 @@ public class CatalogueController {
         Date dateVS = formatter.parse(dateV);
         Date catDateS = formatter.parse(catDate);
 
-        Catalogue cat = new Catalogue(dateS, dateVS, catDateS, initobj, idHeader);
+        Catalogue cat = new Catalogue(dateS, dateVS, catDateS, initobj, idHeader, idcat);
         System.err.println(dateS);
         // msgrepo.save(initobj);
 

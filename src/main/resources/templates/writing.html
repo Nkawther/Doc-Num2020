@@ -83,7 +83,7 @@
 
           function ajouterCat() {
             document.getElementById("enplus").innerHTML =
-              '<label ><strong>Objet Nom Init</strong></label><input type="text" name="objectnameinit" required><br> <label ><strong>Object Nom Details</strong></label> <input type="text" name="objectdetailsinit" required><br> <label><strong>Date Validity</strong></label><input type="Date" name="catDate" required> <br>';
+              '<label ><strong>Objet Nom Init</strong></label><input type="text" name="objectnameinit" required><br> <label ><strong>Object Nom Details</strong></label> <input type="text" name="objectdetailsinit" required><br> <label><strong>Date Catalogue</strong></label><input type="Date" name="catDate" required> <br><label><strong>Id Catalogue Request</strong></label><input type="Text" name="idcat" required> <br>';
             document.getElementById("formMessage").action = "/add-cat";
           }
 
@@ -93,7 +93,7 @@
           }
           function ajouterNoCat() {
             document.getElementById("enplus").innerHTML =
-              '<label ><strong>Raison : </strong></label><input type="text" name="reason" required>';
+              '<label ><strong>Raison : </strong></label><input type="text" name="reason" required><br/><label><strong>Id Catalogue Request</strong></label><input type="Text" name="idcat" required> <br>';
             document.getElementById("formMessage").action = "/add-nocat";
           }
           function authresponse() {

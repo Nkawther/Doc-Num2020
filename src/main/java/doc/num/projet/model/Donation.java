@@ -4,8 +4,12 @@ import java.sql.Date;
 import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+
+import lombok.Data;
+
 import java.util.List;
 
+@Data
 @Entity
 public class Donation extends Message {
     @OneToMany

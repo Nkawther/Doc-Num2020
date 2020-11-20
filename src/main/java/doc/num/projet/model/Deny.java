@@ -13,6 +13,9 @@ public class Deny extends Message {
     String idPropositionMsg;
     String reason;
 
+    public Deny() {
+        super();
+    }
     public Deny(Date date, Date validity, String idPropositionMsg, String reason, Long idHeader) {
         super(date, validity, idHeader);
         this.idPropositionMsg = idPropositionMsg;
