@@ -2,6 +2,8 @@ package doc.num.projet.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -60,8 +62,11 @@ public class ReadXMLController {
 
     @RequestMapping("/stockage")
     public String aandsXml(Model m){
-        Element e;
+        Element e, nbmsg;
         NodeList message;
+        int p=0;
+        //List<Integer> idprev = new ArrayList<>();
+        //List<Integer> idmsg = new ArrayList<>();
 
         //recuperation de la racine 
         Element racine = this.doc.getDocumentElement();
@@ -75,10 +80,11 @@ public class ReadXMLController {
         }
          
         NodeList fils = header.getChildNodes();
+        nbmsg = (Element) fils.item(1);
         if(fils.item(1).getNodeType() == Node.ELEMENT_NODE) {
-            e = (Element) fils.item(1);
-            System.err.println("  "+e.getNodeName()+" = "+e.getTextContent());
-            m.addAttribute("idMsg", e.getTextContent());
+            nbmsg = (Element) fils.item(1);
+            System.err.println("  "+nbmsg.getNodeName()+" = "+nbmsg.getTextContent());
+            m.addAttribute("nbMsg", nbmsg.getTextContent());
         }
         if(fils.item(3).getNodeType() == Node.ELEMENT_NODE) {
             e = (Element) fils.item(3);
@@ -107,87 +113,46 @@ public class ReadXMLController {
         m.addAttribute("body", body.getNodeName());
         Node listMsg =  body.getChildNodes().item(1);
         System.err.println("  "+listMsg.getNodeName());
-        NodeList messages = listMsg.getChildNodes(); 
-
+        NodeList messages = listMsg.getChildNodes(); //liste des messages
+        int n = Integer.parseInt(nbmsg.getTextContent()); //convertir le nbmsg en int
         for(int i=0; i<messages.getLength(); i++){
             if(messages.item(i).getNodeType() == Node.ELEMENT_NODE){
-                e = (Element) messages.item(i);
-                System.err.println("   "+e.getNodeName());
-                message = e.getChildNodes();
-                for(int j = 0; j<message.getLength(); j++){
-                    if(message.item(j).getNodeType() == Node.ELEMENT_NODE){
-                        e = (Element) message.item(j);
-                        if(e.getNodeName().equals("dateMsg")){
-                            System.err.println("    "+e.getNodeName()+" : "+e.getTextContent());
-                            m.addAttribute("dateMsg", e.getTextContent());
-                        }
-                        if(e.getNodeName().equals("validityDuration")){
-                            System.err.println("    "+e.getNodeName()+" : "+e.getTextContent());
-                            m.addAttribute("validityDuration", e.getTextContent());
-                        }
-                        /*TYPE Msg*/
-                        if(e.getNodeName().equals("barter")){ //Barter
-                            m.addAttribute("typeMsg", e.getNodeName());
-                            System.out.println(e.getNodeName());
-                            NodeList type = (NodeList) message.item(j); //liste des attributs de barter
-                            for(int k=0; k<type.getLength(); k++){
-                                if(type.item(k).getNodeType() == Node.ELEMENT_NODE){
-                                    e = (Element) type.item(k);
-                                    if(e.getNodeName().equals("rcvObjectList")){ 
-                                        NodeList rcv = (NodeList) type.item(k); //liste des attributs de rcv de barter   
-                                        for(int x=0; x<rcv.getLength(); x++){
-                                            if(rcv.item(x).getNodeType() == Node.ELEMENT_NODE){
-                                                e = (Element) rcv.item(x);
-                                                System.err.println(rcv.item(x).getNodeName()+" : "+e.getAttribute("idObject"));
-                                                NodeList object = (NodeList) rcv.item(x); //Liste object rcv de barter
-                                                for(int y=0; y<object.getLength(); y++){
-                                                    if(object.item(y).getNodeType() == Node.ELEMENT_NODE){
-                                                        e = (Element) object.item(y);
-                                                        System.err.println("    "+e.getNodeName()+" : "+e.getTextContent());
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                    else{
-                                        if(e.getNodeName().equals("sndObjectList")){ //liste des attributs de snd de barter
-                                            NodeList snd = (NodeList) type.item(k);
-                                            for(int x=0; x<snd.getLength(); x++){
-                                                if(snd.item(x).getNodeType() == Node.ELEMENT_NODE){
-                                                    e = (Element) snd.item(x);
-                                                    System.err.println(snd.item(x).getNodeName()+" : "+e.getAttribute("idObject"));
-                                                    NodeList object = (NodeList) snd.item(x); //Liste object rcv de barter
-                                                    for(int y=0; y<object.getLength(); y++){
-                                                        if(object.item(y).getNodeType() == Node.ELEMENT_NODE){
-                                                            e = (Element) object.item(y);
-                                                            System.err.println("    "+e.getNodeName()+" : "+e.getTextContent());
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        else{
-                                            System.err.println("    "+e.getNodeName()+" : "+e.getTextContent());
-                                        }
-                                    }
-                                }    
+                p++;
+            }
+        }
+        if(p == n){ //Test si le nombre de message est respecté
+
+            for(int i=0; i<messages.getLength(); i++){ //parcourir la liste des messages
+                if(messages.item(i).getNodeType() == Node.ELEMENT_NODE){
+                    e = (Element) messages.item(i);
+                    System.err.println("   "+e.getNodeName());
+                    message = e.getChildNodes();
+                    for(int j = 0; j<message.getLength(); j++){
+                        if(message.item(j).getNodeType() == Node.ELEMENT_NODE){
+                            e = (Element) message.item(j);
+                            if(e.getNodeName().equals("dateMsg")){
+                                System.err.println("    "+e.getNodeName()+" : "+e.getTextContent());
+                                m.addAttribute("dateMsg", e.getTextContent());
                             }
-                        }
-                        else{
-                            if(e.getNodeName().equals("request")){ //request
+                            if(e.getNodeName().equals("validityDuration")){
+                                System.err.println("    "+e.getNodeName()+" : "+e.getTextContent());
+                                m.addAttribute("validityDuration", e.getTextContent());
+                            }
+                            /*TYPE Msg*/
+                            if(e.getNodeName().equals("barter")){ //Barter
                                 m.addAttribute("typeMsg", e.getNodeName());
                                 System.out.println(e.getNodeName());
-                                NodeList type = (NodeList) message.item(j); //liste des attributs de request
+                                NodeList type = (NodeList) message.item(j); //liste des attributs de barter
                                 for(int k=0; k<type.getLength(); k++){
                                     if(type.item(k).getNodeType() == Node.ELEMENT_NODE){
                                         e = (Element) type.item(k);
                                         if(e.getNodeName().equals("rcvObjectList")){ 
-                                            NodeList rcv = (NodeList) type.item(k); //liste des attributs de rcv de request  
+                                            NodeList rcv = (NodeList) type.item(k); //liste des attributs de rcv de barter   
                                             for(int x=0; x<rcv.getLength(); x++){
                                                 if(rcv.item(x).getNodeType() == Node.ELEMENT_NODE){
                                                     e = (Element) rcv.item(x);
                                                     System.err.println(rcv.item(x).getNodeName()+" : "+e.getAttribute("idObject"));
-                                                    NodeList object = (NodeList) rcv.item(x); //Liste object rcv de request
+                                                    NodeList object = (NodeList) rcv.item(x); //Liste object rcv de barter
                                                     for(int y=0; y<object.getLength(); y++){
                                                         if(object.item(y).getNodeType() == Node.ELEMENT_NODE){
                                                             e = (Element) object.item(y);
@@ -198,26 +163,13 @@ public class ReadXMLController {
                                             }
                                         }
                                         else{
-                                            System.err.println("    "+e.getNodeName()+" : "+e.getTextContent());
-                                        }
-                                    }
-                                }                               
-                            }
-                            else{
-                                if(e.getNodeName().equals("donation")){ //donation
-                                    m.addAttribute("typeMsg", e.getNodeName());
-                                    System.out.println(e.getNodeName());
-                                    NodeList type = (NodeList) message.item(j); //liste des attributs de donation
-                                    for(int k=0; k<type.getLength(); k++){
-                                        if(type.item(k).getNodeType() == Node.ELEMENT_NODE){
-                                            e = (Element) type.item(k);
-                                            if(e.getNodeName().equals("sndObjectList")){ 
-                                                NodeList snd = (NodeList) type.item(k); //liste des attributs de rcv de donation 
+                                            if(e.getNodeName().equals("sndObjectList")){ //liste des attributs de snd de barter
+                                                NodeList snd = (NodeList) type.item(k);
                                                 for(int x=0; x<snd.getLength(); x++){
                                                     if(snd.item(x).getNodeType() == Node.ELEMENT_NODE){
                                                         e = (Element) snd.item(x);
                                                         System.err.println(snd.item(x).getNodeName()+" : "+e.getAttribute("idObject"));
-                                                        NodeList object = (NodeList) snd.item(x); //Liste object snd de donation
+                                                        NodeList object = (NodeList) snd.item(x); //Liste object rcv de barter
                                                         for(int y=0; y<object.getLength(); y++){
                                                             if(object.item(y).getNodeType() == Node.ELEMENT_NODE){
                                                                 e = (Element) object.item(y);
@@ -228,28 +180,80 @@ public class ReadXMLController {
                                                 }
                                             }
                                             else{
-                                                System.err.println("    "+e.getNodeName()+" : "+e.getTextContent());
+                                                System.err.println("    "+e.getNodeName()+" : "+e.getTextContent()); //idprev dans barter
+                                                //idprev.add(Integer.parseInt(e.getTextContent()));
                                             }
                                         }
-                                    }
+                                    }    
+                                }
+                            }
+                            else{
+                                if(e.getNodeName().equals("request")){ //request
+                                    m.addAttribute("typeMsg", e.getNodeName());
+                                    System.out.println(e.getNodeName());
+                                    NodeList type = (NodeList) message.item(j); //liste des attributs de request
+                                    for(int k=0; k<type.getLength(); k++){
+                                        if(type.item(k).getNodeType() == Node.ELEMENT_NODE){
+                                            e = (Element) type.item(k);
+                                            if(e.getNodeName().equals("rcvObjectList")){ 
+                                                NodeList rcv = (NodeList) type.item(k); //liste des attributs de rcv de request  
+                                                for(int x=0; x<rcv.getLength(); x++){
+                                                    if(rcv.item(x).getNodeType() == Node.ELEMENT_NODE){
+                                                        e = (Element) rcv.item(x);
+                                                        System.err.println(rcv.item(x).getNodeName()+" : "+e.getAttribute("idObject"));
+                                                        NodeList object = (NodeList) rcv.item(x); //Liste object rcv de request
+                                                        for(int y=0; y<object.getLength(); y++){
+                                                            if(object.item(y).getNodeType() == Node.ELEMENT_NODE){
+                                                                e = (Element) object.item(y);
+                                                                System.err.println("    "+e.getNodeName()+" : "+e.getTextContent());
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            else{
+                                                System.err.println("    "+e.getNodeName()+" : "+e.getTextContent()); //idprev of request
+                                                //idprev.add(Integer.parseInt(e.getTextContent()));
+                                            }
+                                        }
+                                    }                               
                                 }
                                 else{
-                                    if(e.getNodeName().equals("accept")){ //accept
+                                    if(e.getNodeName().equals("donation")){ //donation
                                         m.addAttribute("typeMsg", e.getNodeName());
                                         System.out.println(e.getNodeName());
-                                        NodeList type = (NodeList) message.item(j); //liste des attributs de accept
+                                        NodeList type = (NodeList) message.item(j); //liste des attributs de donation
                                         for(int k=0; k<type.getLength(); k++){
                                             if(type.item(k).getNodeType() == Node.ELEMENT_NODE){
                                                 e = (Element) type.item(k);
-                                                System.err.println("    "+e.getNodeName()+" : "+e.getTextContent());
+                                                if(e.getNodeName().equals("sndObjectList")){ 
+                                                    NodeList snd = (NodeList) type.item(k); //liste des attributs de rcv de donation 
+                                                    for(int x=0; x<snd.getLength(); x++){
+                                                        if(snd.item(x).getNodeType() == Node.ELEMENT_NODE){
+                                                            e = (Element) snd.item(x);
+                                                            System.err.println(snd.item(x).getNodeName()+" : "+e.getAttribute("idObject"));
+                                                            NodeList object = (NodeList) snd.item(x); //Liste object snd de donation
+                                                            for(int y=0; y<object.getLength(); y++){
+                                                                if(object.item(y).getNodeType() == Node.ELEMENT_NODE){
+                                                                    e = (Element) object.item(y);
+                                                                    System.err.println("    "+e.getNodeName()+" : "+e.getTextContent());
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                else{
+                                                    System.err.println("    "+e.getNodeName()+" : "+e.getTextContent()); //idprev de donation
+                                                    //idprev.add(Integer.parseInt(e.getTextContent()));
+                                                }
                                             }
                                         }
                                     }
                                     else{
-                                        if(e.getNodeName().equals("deny")){ //deny
+                                        if(e.getNodeName().equals("accept")){ //accept
                                             m.addAttribute("typeMsg", e.getNodeName());
                                             System.out.println(e.getNodeName());
-                                            NodeList type = (NodeList) message.item(j); //liste des attributs de deny
+                                            NodeList type = (NodeList) message.item(j); //liste des attributs de accept
                                             for(int k=0; k<type.getLength(); k++){
                                                 if(type.item(k).getNodeType() == Node.ELEMENT_NODE){
                                                     e = (Element) type.item(k);
@@ -258,10 +262,10 @@ public class ReadXMLController {
                                             }
                                         }
                                         else{
-                                            if(e.getNodeName().equals("auth")){ //auth
+                                            if(e.getNodeName().equals("deny")){ //deny
                                                 m.addAttribute("typeMsg", e.getNodeName());
                                                 System.out.println(e.getNodeName());
-                                                NodeList type = (NodeList) message.item(j); //liste des attributs de auth
+                                                NodeList type = (NodeList) message.item(j); //liste des attributs de deny
                                                 for(int k=0; k<type.getLength(); k++){
                                                     if(type.item(k).getNodeType() == Node.ELEMENT_NODE){
                                                         e = (Element) type.item(k);
@@ -270,10 +274,10 @@ public class ReadXMLController {
                                                 }
                                             }
                                             else{
-                                                if(e.getNodeName().equals("authRequest")){ //authRequest
+                                                if(e.getNodeName().equals("auth")){ //auth
                                                     m.addAttribute("typeMsg", e.getNodeName());
                                                     System.out.println(e.getNodeName());
-                                                    NodeList type = (NodeList) message.item(j); //liste des attributs de authRequest
+                                                    NodeList type = (NodeList) message.item(j); //liste des attributs de auth
                                                     for(int k=0; k<type.getLength(); k++){
                                                         if(type.item(k).getNodeType() == Node.ELEMENT_NODE){
                                                             e = (Element) type.item(k);
@@ -282,10 +286,10 @@ public class ReadXMLController {
                                                     }
                                                 }
                                                 else{
-                                                    if(e.getNodeName().equals("nocat")){ //nocat
+                                                    if(e.getNodeName().equals("authRequest")){ //authRequest
                                                         m.addAttribute("typeMsg", e.getNodeName());
                                                         System.out.println(e.getNodeName());
-                                                        NodeList type = (NodeList) message.item(j); //liste des attributs de nocat
+                                                        NodeList type = (NodeList) message.item(j); //liste des attributs de authRequest
                                                         for(int k=0; k<type.getLength(); k++){
                                                             if(type.item(k).getNodeType() == Node.ELEMENT_NODE){
                                                                 e = (Element) type.item(k);
@@ -294,10 +298,10 @@ public class ReadXMLController {
                                                         }
                                                     }
                                                     else{
-                                                        if(e.getNodeName().equals("catRequest")){ //catRequest
+                                                        if(e.getNodeName().equals("nocat")){ //nocat
                                                             m.addAttribute("typeMsg", e.getNodeName());
                                                             System.out.println(e.getNodeName());
-                                                            NodeList type = (NodeList) message.item(j); //liste des attributs de catRequest
+                                                            NodeList type = (NodeList) message.item(j); //liste des attributs de nocat
                                                             for(int k=0; k<type.getLength(); k++){
                                                                 if(type.item(k).getNodeType() == Node.ELEMENT_NODE){
                                                                     e = (Element) type.item(k);
@@ -306,36 +310,49 @@ public class ReadXMLController {
                                                             }
                                                         }
                                                         else{
-                                                            if(e.getNodeName().equals("cat")){ //cat
+                                                            if(e.getNodeName().equals("catRequest")){ //catRequest
                                                                 m.addAttribute("typeMsg", e.getNodeName());
                                                                 System.out.println(e.getNodeName());
-                                                                NodeList type = (NodeList) message.item(j); //liste des attributs de cat
-                                                                for(int k=0; k<type.getLength(); k++){
-                                                                    if(type.item(k).getNodeType() == Node.ELEMENT_NODE){
-                                                                        e = (Element) type.item(k);
-                                                                        if(e.getNodeName().equals("object")){
-                                                                            NodeList object = (NodeList) type.item(k); //Liste object snd de donation
-                                                                            for(int y=0; y<object.getLength(); y++){
-                                                                                if(object.item(y).getNodeType() == Node.ELEMENT_NODE){
-                                                                                    e = (Element) object.item(y);
-                                                                                    System.err.println("    "+e.getNodeName()+" : "+e.getTextContent());
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                        else{
-                                                                            System.err.println("    "+e.getNodeName()+" : "+e.getTextContent());
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                            if(e.getNodeName().equals("errorMsg")){ //errorMsg
-                                                                m.addAttribute("typeMsg", e.getNodeName());
-                                                                System.out.println("  "+e.getNodeName()+" : idMsg "+e.getAttribute("idMsg")+" , idError"+ e.getAttribute("idError"));
-                                                                NodeList type = (NodeList) message.item(j); //liste des attributs de errorMsg
+                                                                NodeList type = (NodeList) message.item(j); //liste des attributs de catRequest
                                                                 for(int k=0; k<type.getLength(); k++){
                                                                     if(type.item(k).getNodeType() == Node.ELEMENT_NODE){
                                                                         e = (Element) type.item(k);
                                                                         System.err.println("    "+e.getNodeName()+" : "+e.getTextContent());
+                                                                    }
+                                                                }
+                                                            }
+                                                            else{
+                                                                if(e.getNodeName().equals("cat")){ //cat
+                                                                    m.addAttribute("typeMsg", e.getNodeName());
+                                                                    System.out.println(e.getNodeName());
+                                                                    NodeList type = (NodeList) message.item(j); //liste des attributs de cat
+                                                                    for(int k=0; k<type.getLength(); k++){
+                                                                        if(type.item(k).getNodeType() == Node.ELEMENT_NODE){
+                                                                            e = (Element) type.item(k);
+                                                                            if(e.getNodeName().equals("object")){
+                                                                                NodeList object = (NodeList) type.item(k); //Liste object snd de donation
+                                                                                for(int y=0; y<object.getLength(); y++){
+                                                                                    if(object.item(y).getNodeType() == Node.ELEMENT_NODE){
+                                                                                        e = (Element) object.item(y);
+                                                                                        System.err.println("    "+e.getNodeName()+" : "+e.getTextContent());
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            else{
+                                                                                System.err.println("    "+e.getNodeName()+" : "+e.getTextContent());
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                                if(e.getNodeName().equals("errorMsg")){ //errorMsg
+                                                                    m.addAttribute("typeMsg", e.getNodeName());
+                                                                    System.out.println("  "+e.getNodeName()+" : idMsg "+e.getAttribute("idMsg")+" , idError"+ e.getAttribute("idError"));
+                                                                    NodeList type = (NodeList) message.item(j); //liste des attributs de errorMsg
+                                                                    for(int k=0; k<type.getLength(); k++){
+                                                                        if(type.item(k).getNodeType() == Node.ELEMENT_NODE){
+                                                                            e = (Element) type.item(k);
+                                                                            System.err.println("    "+e.getNodeName()+" : "+e.getTextContent());
+                                                                        }
                                                                     }
                                                                 }
                                                             }
@@ -346,13 +363,16 @@ public class ReadXMLController {
                                         }
                                     }
                                 }
+                                
                             }
-                            
                         }
+                        
                     }
-                    
                 }
             }
+        }
+        else{
+            System.err.println("Erreur : le fichier ne porte pas le bon nombre de messages.");
         }
         return "reading";
     }

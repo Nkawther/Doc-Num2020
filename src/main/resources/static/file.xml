@@ -2,7 +2,7 @@
 <!DOCTYPE file SYSTEM "final.dtd">
 <file>
     <header idF="1">
-        <nbMsg>1</nbMsg>
+        <nbMsg>4</nbMsg>
         <transmitter idUser="Kawther"></transmitter>
         <receiver idUser="Namane"></receiver>
         <authRef>12-12-2020</authRef>
