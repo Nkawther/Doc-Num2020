@@ -1,7 +1,6 @@
 package doc.num.projet.controller;
 
 import java.util.Date;
-import java.util.Optional;
 
 import javax.inject.Inject;
 
