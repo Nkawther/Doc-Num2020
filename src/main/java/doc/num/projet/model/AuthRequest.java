@@ -9,5 +9,6 @@ public class AuthRequest extends Message {
 
     public AuthRequest(Date date, Date validity, Long idHeader) {
         super(date, validity, idHeader);
+        this.roles.add(AttributRole.AUTHREQUEST);
     }
 }

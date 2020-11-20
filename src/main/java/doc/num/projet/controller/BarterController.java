@@ -49,6 +49,6 @@ public class BarterController {
             h.getLsMessage().add(b);
             headerrepo.save(h);
         }
-        return "reading";
+        return "redirect:reading";
     }
 }

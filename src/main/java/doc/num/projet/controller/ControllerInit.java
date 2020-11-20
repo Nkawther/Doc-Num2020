@@ -45,6 +45,11 @@ public class ControllerInit {
     @RequestMapping("/reading")
     public String creading(Model m) {
         m.addAttribute("pageName", "Reading XML");
+        m.addAttribute("lsHeader", headerrepo.findAll());
+        m.addAttribute("vide", "");
+        if(headerrepo.count()==0){
+            m.addAttribute("vide", "No file");
+        }
         return "reading";
     }
     @RequestMapping("add-a-message")

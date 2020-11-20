@@ -44,6 +44,6 @@ public class DonationController {
             h.getLsMessage().add(d);
             headerrepo.save(h);
         }
-        return "reading";
+        return "redirect:reading";
     }
 }

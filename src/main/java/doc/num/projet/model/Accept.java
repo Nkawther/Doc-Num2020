@@ -15,5 +15,6 @@ public class Accept extends Message {
     public Accept(Date date, Date validity, String idPropositionMsg, Long idHeader) {
         super(date, validity, idHeader);
         this.idPropositionMsg = idPropositionMsg;
+        this.roles.add(AttributRole.ACCEPT);
     }
 }

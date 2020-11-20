@@ -41,7 +41,7 @@ public class CatalogueRequestController {
             h.getLsMessage().add(catreq);
             headerrepo.save(h);
         }
-        return "reading";
+        return "redirect:reading";
     }
 
 }

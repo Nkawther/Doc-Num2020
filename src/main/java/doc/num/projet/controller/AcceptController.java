@@ -35,6 +35,6 @@ public class AcceptController {
             h.getLsMessage().add(a);
             headerrepo.save(h);
         }
-        return "reading";
+        return "redirect:reading";
     }
 }

@@ -44,6 +44,6 @@ public class RequestController {
             h.getLsMessage().add(r);
             headerrepo.save(h);
         }
-        return "reading";
+        return "redirect:reading";
     }
 }

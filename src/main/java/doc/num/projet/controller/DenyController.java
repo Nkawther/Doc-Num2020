@@ -34,6 +34,6 @@ public class DenyController {
             h.getLsMessage().add(d);
             headerrepo.save(h);
         }
-        return "reading";
+        return "redirect:reading";
     }
 }

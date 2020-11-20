@@ -32,6 +32,6 @@ public class AuthController {
             h.getLsMessage().add(auth);
             headerrepo.save(h);
         }
-        return "reading";
+        return "redirect:reading";
     }
 }
