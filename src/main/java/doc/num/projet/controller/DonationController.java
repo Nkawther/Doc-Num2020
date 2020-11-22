@@ -1,6 +1,6 @@
 package doc.num.projet.controller;
 
-import java.sql.Date;
+import java.util.Date;
 import java.text.ParseException;
 
 import org.springframework.beans.factory.annotation.Autowired;

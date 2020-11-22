@@ -28,7 +28,7 @@
         <select
           name="type"
           id="type"
-          onchange="if(this.selectedIndex==1) ajouterbarter(); else if(this.selectedIndex==2) ajouterrequest();else if(this.selectedIndex==4) acceptresponse();else if(this.selectedIndex==5) denyresponse();else if(this.selectedIndex==6) ajouterCat();else if(this.selectedIndex==7) ajouterCatReq();else if(this.selectedIndex==8) ajouterNoCat();else if(this.selectedIndex==10) authresponse();"
+          onchange="if(this.selectedIndex==1) ajouterbarter(); else if(this.selectedIndex==2) ajouterrequest();else if(this.selectedIndex==4) acceptresponse();else if(this.selectedIndex==5) denyresponse();else if(this.selectedIndex==6) ajouterCat();else if(this.selectedIndex==7) ajouterCatReq();else if(this.selectedIndex==8) ajouterNoCat();else if(this.selectedIndex==10) authresponse();else if(this.selectedIndex==3) ajouterdonation();else if(this.selectedIndex==11)ajouterAuthReq();"
         >
           <option value="default" selected>Select-type</option>
           <option value="barter">Barter</option>
@@ -86,6 +86,16 @@
             document.getElementById("enplus").innerHTML =
               '<label ><strong>ID of proposition msg</strong></label><input type="text" name="id" required>';
             document.getElementById("monForm").action = "/accept";
+          }
+          function ajouterdonation() {
+            document.getElementById("enplus").innerHTML =
+              '<label ><strong>Object sender Name</strong></label> <input type="text" name="objectnamesnd" required><br> <label ><strong>Object Details</strong></label> <input type="text" name="objectdetailssnd" required><br> <label ><strong>ID of PrevMsg</strong></label> <input type="text" name="id" required><br>';
+            document.getElementById("monForm").action = "/add-donation";
+          }
+
+          function ajouterAuthReq() {
+            document.getElementById("enplus").innerHTML = "";
+            document.getElementById("monForm").action = "/add-authreq";
           }
         </script>
 
