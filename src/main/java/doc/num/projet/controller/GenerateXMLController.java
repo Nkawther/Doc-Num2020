@@ -2,6 +2,7 @@ package doc.num.projet.controller;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
+import org.w3c.dom.DocumentType;
 import org.w3c.dom.Element;
 
 import java.io.File;
@@ -10,6 +11,7 @@ import javax.inject.Inject;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -57,7 +59,7 @@ public class GenerateXMLController {
             Attr idF = doc.createAttribute("idF");
             idF.setValue(String.valueOf(h.getId()));
 
-            Element idMsg = doc.createElement("idMsg");
+            Element idMsg = doc.createElement("nbMsg");
             idMsg.appendChild(doc.createTextNode(String.valueOf(h.getNbMsg())));
             
             Element transmitter = doc.createElement("transmitter");
@@ -66,7 +68,7 @@ public class GenerateXMLController {
             transmitter.setAttributeNode(idUsertrans);
 
             Element receiver = doc.createElement("receiver");
-            Attr idUserrec = doc.createAttribute("IdUser");
+            Attr idUserrec = doc.createAttribute("idUser");
             idUserrec.setValue(String.valueOf(h.getNameReceiver()));
             receiver.setAttributeNode(idUserrec);
 
@@ -118,6 +120,7 @@ public class GenerateXMLController {
                         Element objectDetails = doc.createElement("objectDetails");
                         objectDetails.appendChild(doc.createTextNode(String.valueOf(b.getRcvObjectList().get(j).getObjectDetails())));
                         Element objectImage = doc.createElement("objectImage");
+                        objectImage.appendChild((doc.createTextNode("Any")));
                         o.appendChild(objectName);
                         o.appendChild(objectDetails);
                         o.appendChild(objectImage);
@@ -131,6 +134,7 @@ public class GenerateXMLController {
                         Element objectDetails = doc.createElement("objectDetails");
                         objectDetails.appendChild(doc.createTextNode(String.valueOf(b.getSndObjectList().get(j).getObjectDetails())));
                         Element objectImage = doc.createElement("objectImage");
+                        objectImage.appendChild((doc.createTextNode("Any")));
                         o.appendChild(objectName);
                         o.appendChild(objectDetails);
                         o.appendChild(objectImage);
@@ -154,6 +158,7 @@ public class GenerateXMLController {
                             Element objectDetails = doc.createElement("objectDetails");
                             objectDetails.appendChild(doc.createTextNode(String.valueOf(b.getListMsgRcv().get(j).getObjectDetails())));
                             Element objectImage = doc.createElement("objectImage");
+                            objectImage.appendChild((doc.createTextNode("Any")));
                             o.appendChild(objectName);
                             o.appendChild(objectDetails);
                             o.appendChild(objectImage);
@@ -177,6 +182,7 @@ public class GenerateXMLController {
                                 Element objectDetails = doc.createElement("objectDetails");
                                 objectDetails.appendChild(doc.createTextNode(String.valueOf(b.getListMsgSnd().get(j).getObjectDetails())));
                                 Element objectImage = doc.createElement("objectImage");
+                                objectImage.appendChild((doc.createTextNode("Any")));
                                 o.appendChild(objectName);
                                 o.appendChild(objectDetails);
                                 o.appendChild(objectImage);
@@ -254,6 +260,7 @@ public class GenerateXMLController {
                                                             Element objectDetails = doc.createElement("objectDetails");
                                                             objectDetails.appendChild(doc.createTextNode(String.valueOf(b.getCatObjectList().get(j).getObjectDetails())));
                                                             Element objectImage = doc.createElement("objectImage");
+                                                            objectImage.appendChild((doc.createTextNode("Any")));
                                                             o.appendChild(objectName);
                                                             o.appendChild(objectDetails);
                                                             o.appendChild(objectImage);
@@ -294,8 +301,9 @@ public class GenerateXMLController {
            //write the content into xml file
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, "final.dtd");
             DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File("file.xml"));
+            StreamResult result = new StreamResult(new File("src/main/resources/static/generer.xml"));
     
            //Output to console for testing
            //StreamResult result = new StreamResult(System.out);
@@ -310,6 +318,6 @@ public class GenerateXMLController {
             tfe.printStackTrace();
         }
         
-        return "writing";
+        return "redirect:reading";
     }
 }
