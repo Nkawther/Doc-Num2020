@@ -23,6 +23,7 @@
         </li>
     </ul>
     </div>
+    <p style="color: red;">[[ ${Error} ]]</p>
     <div class="containermsg">
         <form method="POST" action="" id="formMessage">
         <h2>Body</h2>
@@ -40,7 +41,7 @@
         <select
           name="type"
           id="type"
-          onchange="if(this.selectedIndex==1) ajouterbarter(); else if(this.selectedIndex==2) ajouterrequest();else if(this.selectedIndex==4) acceptresponse();else if(this.selectedIndex==5) denyresponse();else if(this.selectedIndex==6) ajouterCat();else if(this.selectedIndex==7) ajouterCatReq();else if(this.selectedIndex==8) ajouterNoCat();else if(this.selectedIndex==10) authresponse();"
+          onchange="if(this.selectedIndex==1) ajouterbarter(); else if(this.selectedIndex==2) ajouterrequest();else if(this.selectedIndex==3) donation();else if(this.selectedIndex==4) acceptresponse();else if(this.selectedIndex==5) denyresponse();else if(this.selectedIndex==6) ajouterCat();else if(this.selectedIndex==7) ajouterCatReq();else if(this.selectedIndex==8) ajouterNoCat();else if(this.selectedIndex==9) errorMsg(); else if(this.selectedIndex==10) authresponse();else if(this.selectedIndex==11) authrequest()"
         >
           <option value="default" selected>Select-type</option>
           <option value="barter">Barter</option>
@@ -111,6 +112,21 @@
             document.getElementById("enplus").innerHTML =
               '<label ><strong>ID of proposition msg</strong></label><input type="text" name="id" required>';
             document.getElementById("formMessage").action = "/accept";
+          }
+          function errorMsg() {
+            document.getElementById("enplus").innerHTML =
+            '<label ><strong>ID of message</strong></label><input type="Text" name="id" required><label ><strong>ID of Error message</strong></label><input type="Text" name="iderror" required>';
+            document.getElementById("formMessage").action = "/errormsg";
+          }
+          function donation() {
+            document.getElementById("enplus").innerHTML =
+            '<label ><strong>Object Name</strong></label> <input type="text" name="objectname" required><br> <label ><strong>Object Details</strong></label> <input type="text" name="objectdetail" required><br> <label ><strong>ID of PrevMsg</strong></label> <input type="text" name="id" required><br>'
+            document.getElementById("formMessage").action = "/donation";
+          }
+          function authrequest() {
+            document.getElementById("enplus").innerHTML =
+            "<label> Envoi une demande de message</label>";
+            document.getElementById("formMessage").action = "/authrequest";
           }
         </script>
     </div>

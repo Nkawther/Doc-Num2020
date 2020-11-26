@@ -1,6 +1,6 @@
 package doc.num.projet.model;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;

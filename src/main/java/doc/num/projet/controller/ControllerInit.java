@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import doc.num.projet.model.Header;
 import doc.num.projet.repository.HeaderRepository;
 
 @Controller
@@ -54,7 +55,15 @@ public class ControllerInit {
     }
     @RequestMapping("add-a-message")
     public String addmessage(Model m, @RequestParam long ind) {
-        m.addAttribute("idheader", ind);
+        Header h = headerrepo.findHeaderById(ind);
+        if(h.getLsMessage().size()==h.getNbMsg()){
+            m.addAttribute("Error", "Error : You can't add message in this file !");
+            m.addAttribute("idheader", " ");
+        }
+        else{
+            m.addAttribute("Error", " ");
+            m.addAttribute("idheader", ind);
+        }
         m.addAttribute("lsHeader", headerrepo.findAll());
         m.addAttribute("vide", "");
         if(headerrepo.count()==0){

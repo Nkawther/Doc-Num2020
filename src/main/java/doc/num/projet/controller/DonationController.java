@@ -1,6 +1,6 @@
 package doc.num.projet.controller;
 
-import java.sql.Date;
+import java.util.Date;
 import java.text.ParseException;
 
 import javax.inject.Inject;
@@ -29,21 +29,23 @@ public class DonationController {
     @Inject
     HeaderRepository headerrepo;
 
-    @RequestMapping(value = "/add-donation", method = RequestMethod.POST)
+    @RequestMapping(value = "/donation", method = RequestMethod.POST)
     public String adddonation(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
-            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateV, @RequestParam String objectnamesnd,
-            @RequestParam String objectdetailssnd, @RequestParam String id, @RequestParam Long idHeader)
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateV, @RequestParam String objectname,
+            @RequestParam String objectdetail, @RequestParam String id, @RequestParam Long idHeader)
             throws ParseException {
-
-        Objects o = new Objects(objectnamesnd, objectdetailssnd);
+                System.err.println("je suis la premier");
+        Objects o = new Objects(objectname, objectdetail);
         objrepo.save(o);
         Donation d = new Donation(date, dateV, id, o, idHeader);
         donationrepo.save(d);
+        System.err.println("je suis la milieu");
         if (headerrepo.findAllByOrderById().contains(headerrepo.findHeaderById(idHeader))) {
             Header h = headerrepo.findHeaderById(idHeader);
             h.getLsMessage().add(d);
             headerrepo.save(h);
         }
+        System.err.println("je suis la dernier");
         return "redirect:reading";
     }
 }
