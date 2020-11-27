@@ -19,9 +19,9 @@ public class Header {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     int nbMsg;
-    String nameTransmitter;
-    String nameReceiver;
-    Date authRef;
+    Long idTransmitter;
+    Long idReceiver;
+    String authRef;
     Date authDate;
     @OneToMany
     List<Message> lsMessage = new ArrayList<>();
@@ -30,10 +30,10 @@ public class Header {
 
     }
 
-    public Header(int nbMsg, String nameTransmitter, String nameReceiver, Date authRef, Date authDate) {
+    public Header(int nbMsg, Long idTransmitter, Long idReceiver, String authRef, Date authDate) {
         this.nbMsg = nbMsg;
-        this.nameTransmitter = nameTransmitter;
-        this.nameReceiver = nameReceiver;
+        this.idTransmitter = idTransmitter;
+        this.idReceiver = idReceiver;
         this.authRef = authRef;
         this.authDate = authDate;
     }

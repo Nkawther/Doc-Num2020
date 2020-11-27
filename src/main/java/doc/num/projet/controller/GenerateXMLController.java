@@ -2,7 +2,6 @@ package doc.num.projet.controller;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
-import org.w3c.dom.DocumentType;
 import org.w3c.dom.Element;
 
 import java.io.File;
@@ -35,12 +34,15 @@ import doc.num.projet.model.Header;
 import doc.num.projet.model.NoCatalogue;
 import doc.num.projet.model.Request;
 import doc.num.projet.repository.HeaderRepository;
+import doc.num.projet.repository.UserRepository;
 
 @Controller
 public class GenerateXMLController {
     @Inject
     HeaderRepository headerrepo;
-    
+    @Inject
+    UserRepository userrepo;
+
     @RequestMapping("xml-file")
     public String addmessage(Model m, @RequestParam long ind) {
         Header h = headerrepo.findHeaderById(ind);
@@ -64,12 +66,14 @@ public class GenerateXMLController {
             
             Element transmitter = doc.createElement("transmitter");
             Attr idUsertrans = doc.createAttribute("idUser");
-            idUsertrans.setValue(String.valueOf(h.getNameTransmitter()));
+            idUsertrans.setValue(String.valueOf(h.getIdTransmitter()));
+            transmitter.appendChild(doc.createTextNode(userrepo.findHeaderById(h.getIdTransmitter()).getName()));
             transmitter.setAttributeNode(idUsertrans);
 
             Element receiver = doc.createElement("receiver");
             Attr idUserrec = doc.createAttribute("idUser");
-            idUserrec.setValue(String.valueOf(h.getNameReceiver()));
+            idUserrec.setValue(String.valueOf(h.getIdReceiver()));
+            receiver.appendChild(doc.createTextNode(userrepo.findHeaderById(h.getIdReceiver()).getName()));
             receiver.setAttributeNode(idUserrec);
 
             Element authRef = doc.createElement("authRef");

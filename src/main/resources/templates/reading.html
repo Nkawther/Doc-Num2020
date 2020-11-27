@@ -21,8 +21,8 @@
 
       <li data-th-each="num,info : ${lsHeader}"> 
         [[ ${num.nbMsg} ]]
-        [[ ${num.nameTransmitter} ]]
-        [[ ${num.nameReceiver} ]]
+        [[ ${num.idTransmitter} ]]
+        [[ ${num.idReceiver} ]]
         [[ ${num.authRef} ]]
         [[ ${num.authDate} ]] 
         <a data-th-href="@{xml-file(ind=${num.id})}">Generate an xml file</a>

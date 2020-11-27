@@ -14,11 +14,11 @@
       <p>[[${vide}]]</p>
       <ul>
         <li data-th-each="num,info : ${lsHeader}"> 
-          [[ ${num.nbMsg} ]]
-          [[ ${num.nameTransmitter} ]]
-          [[ ${num.nameReceiver} ]]
-          [[ ${num.authRef} ]]
-          [[ ${num.authDate} ]] 
+          Number of message [[ ${num.nbMsg} ]]
+          Id of Tranmetter [[ ${num.idTransmitter} ]]
+          Id of receiver [[ ${num.idReceiver} ]]
+          N of auth Ref [[ ${num.authRef} ]]
+          Date of Auth[[ ${num.authDate} ]] 
           <a data-th-href="@{add-a-message(ind=${num.id})}">Add Message</a>
         </li>
     </ul>
