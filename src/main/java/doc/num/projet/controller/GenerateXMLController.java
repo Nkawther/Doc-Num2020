@@ -94,13 +94,15 @@ public class GenerateXMLController {
 
             for(int i=0; i<h.getLsMessage().size(); i++){
                 Element message =  doc.createElement("message");
+                Attr idmsg = doc .createAttribute("idMsg");
+                idmsg.setValue(String.valueOf(h.getLsMessage().get(i).getId()));
                 Element dateMsg = doc.createElement("dateMsg");
                 dateMsg.appendChild(doc.createTextNode(String.valueOf(h.getLsMessage().get(i).getDate())));
                 Element validityDuration = doc.createElement("validityDuration");
                 validityDuration.appendChild(doc.createTextNode(String.valueOf(h.getLsMessage().get(i).getDate())));
                 message.appendChild(dateMsg);
                 message.appendChild(validityDuration);
-
+                message.setAttributeNode(idmsg);
                 Element barter = doc.createElement("barter");
                 Element request = doc.createElement("request");
                 Element donation = doc.createElement("donation");
