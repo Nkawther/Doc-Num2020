@@ -120,7 +120,7 @@ public class GenerateXMLController {
                     Element sndObjectList = doc.createElement("sndObjectList");
                     Element rcvObjectList = doc.createElement("rcvObjectList");
                     for(int j=0; j<b.getRcvObjectList().size();j++){
-                        Element o = doc.createElement("Object");
+                        Element o = doc.createElement("object");
                         Element objectName = doc.createElement("objectName");
                         objectName.appendChild(doc.createTextNode(String.valueOf(b.getRcvObjectList().get(j).getObjectName())));
                         Element objectDetails = doc.createElement("objectDetails");
@@ -134,7 +134,7 @@ public class GenerateXMLController {
                     }
                     barter.appendChild(rcvObjectList);
                     for(int j=0; j<b.getSndObjectList().size();j++){
-                        Element o = doc.createElement("Object");
+                        Element o = doc.createElement("object");
                         Element objectName = doc.createElement("objectName");
                         objectName.appendChild(doc.createTextNode(String.valueOf(b.getSndObjectList().get(j).getObjectName())));
                         Element objectDetails = doc.createElement("objectDetails");
@@ -158,7 +158,7 @@ public class GenerateXMLController {
                         Request b = ((Request) h.getLsMessage().get(i));
                         Element rcvObjectList = doc.createElement("rcvObjectList");
                         for(int j=0; j<b.getListMsgRcv().size();j++){
-                            Element o = doc.createElement("Object");
+                            Element o = doc.createElement("object");
                             Element objectName = doc.createElement("objectName");
                             objectName.appendChild(doc.createTextNode(String.valueOf(b.getListMsgRcv().get(j).getObjectName())));
                             Element objectDetails = doc.createElement("objectDetails");
@@ -182,7 +182,7 @@ public class GenerateXMLController {
                             Donation b = ((Donation) h.getLsMessage().get(i));
                             Element sndObjectList = doc.createElement("sndObjectList");
                             for(int j=0; j<b.getListMsgSnd().size();j++){
-                                Element o = doc.createElement("Object");
+                                Element o = doc.createElement("object");
                                 Element objectName = doc.createElement("objectName");
                                 objectName.appendChild(doc.createTextNode(String.valueOf(b.getListMsgSnd().get(j).getObjectName())));
                                 Element objectDetails = doc.createElement("objectDetails");
@@ -260,7 +260,7 @@ public class GenerateXMLController {
                                                         cat.appendChild(date);
                                                         System.err.println(3);
                                                         for(int j=0; j<b.getCatObjectList().size();j++){
-                                                            Element o = doc.createElement("Object");
+                                                            Element o = doc.createElement("object");
                                                             Element objectName = doc.createElement("objectName");
                                                             objectName.appendChild(doc.createTextNode(String.valueOf(b.getCatObjectList().get(j).getObjectName())));
                                                             Element objectDetails = doc.createElement("objectDetails");
