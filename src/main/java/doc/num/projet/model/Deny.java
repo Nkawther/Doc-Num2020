@@ -3,24 +3,23 @@ package doc.num.projet.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 import lombok.Data;
 
 @Data
 @Entity
 public class Deny extends Message {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+
     String idPropositionMsg;
     String reason;
 
-    public Deny(Date date, Date validity, String idPropositionMsg, String reason) {
-        super(date, validity);
+    public Deny() {
+        super();
+    }
+    public Deny(Date date, Date validity, String idPropositionMsg, String reason, Long idHeader) {
+        super(date, validity, idHeader);
         this.idPropositionMsg = idPropositionMsg;
         this.reason = reason;
+        this.roles.add(AttributRole.DENY);
     }
 }

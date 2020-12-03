@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>[[ ${pageName}]]</title>
+  </head>
+
+  <body>
+    <div class="containermsg">
+      <form method="POST" action="/addHeader">
+      <h1>XML Writing</h1>
+      <h2>Header</h2>
+      <hr />
+        <label><strong>Number of messages</strong></label> 
+        <input type="number" name="nbMsg" required />
+        <label><strong>Name of receiver</strong></label> 
+        <input type="text" placeholder="Name" name="namersv" required />
+        <label><strong>Name of Transmitter</strong></label>
+        <input type="text" placeholder="Name" name="nametrm" required />
+        <label><strong>Authorisation ref</strong></label>
+        <input type="text" placeholder="Authorisation ref" name="authRef" required />
+        <label><strong>Authorisation date</strong></label>
+        <input type="Date" placeholder="Authorisation date" name="authDate" required />
+        <input type="submit" id="submit" value="Create file" />
+      </form>
+    </div>
+  </body>
+</html>

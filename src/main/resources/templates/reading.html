@@ -6,5 +6,48 @@
     <title>[[ ${pageName}]]</title>
   </head>
 
-  <body></body>
+  <body>
+    <ul>
+      <button
+        id="bouton"
+        class="positionbonen, accordion"
+      >
+        XML Writing
+      </button>
+      <div class="panel">
+        <button onclick="window.location.href='header'">Write un new file</button><br/>
+        <button onclick="window.location.href='writing'">Write un new message</button>
+      </div>
+
+      <li data-th-each="num,info : ${lsHeader}"> 
+        [[ ${num.nbMsg} ]]
+        [[ ${num.idTransmitter} ]]
+        [[ ${num.idReceiver} ]]
+        [[ ${num.authRef} ]]
+        [[ ${num.authDate} ]] 
+        <a data-th-href="@{xml-file(ind=${num.id})}">Generate an xml file</a>
+      </li>
+      <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+        
+        for (i = 0; i < acc.length; i++) {
+          acc[i].addEventListener("click", function() {
+            /* Toggle between adding and removing the "active" class,
+            to highlight the button that controls the panel */
+            this.classList.toggle("active");
+        
+            /* Toggle between hiding and showing the active panel */
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+              panel.style.display = "none";
+            } else {
+              panel.style.display = "block";
+            }
+          });
+        } 
+      </script>
+  </ul>
+  </body>
+
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,15 +8,31 @@
   </head>
 
   <body>
-    <div class="container">
-      <form method="POST" action="" id="monForm">
-        <h1>XML Writing</h1>
-        <label><strong>Name of receiver</strong></label>
-        <input type="text" placeholder="Name" name="namersv" required />
-
-        <label><strong>Name of Transmitter</strong></label>
-        <input type="text" placeholder="Name" name="nametrm" required />
-
+    <h1>Write a new message</h1>
+    <div class="containerfile">
+      <h2>Liste of file</h2>
+      <p>[[${vide}]]</p>
+      <ul>
+        <li data-th-each="num,info : ${lsHeader}">
+          Number of message [[ ${num.nbMsg} ]] Id of Tranmetter [[
+          ${num.idTransmitter} ]] Id of receiver [[ ${num.idReceiver} ]] N of
+          auth Ref [[ ${num.authRef} ]] Date of Auth[[ ${num.authDate} ]]
+          <a data-th-href="@{add-a-message(ind=${num.id})}">Add Message</a>
+        </li>
+      </ul>
+    </div>
+    <p style="color: red">[[ ${Error} ]]</p>
+    <div class="containermsg">
+      <form method="POST" action="" id="formMessage">
+        <h2>Body</h2>
+        <hr />
+        <label><strong>Id Header</strong></label>
+        <input
+          type="number"
+          th:value="${idheader}"
+          name="idHeader"
+          required
+        /><br />
         <label><strong>Date</strong></label>
         <input type="Date" name="date" required />
 
@@ -28,7 +44,7 @@
         <select
           name="type"
           id="type"
-          onchange="if(this.selectedIndex==1) ajouterbarter(); else if(this.selectedIndex==2) ajouterrequest();else if(this.selectedIndex==4) acceptresponse();else if(this.selectedIndex==5) denyresponse();else if(this.selectedIndex==6) ajouterCat();else if(this.selectedIndex==7) ajouterCatReq();else if(this.selectedIndex==8) ajouterNoCat();else if(this.selectedIndex==10) authresponse();"
+          onchange="if(this.selectedIndex==1) ajouterbarter(); else if(this.selectedIndex==2) ajouterrequest();else if(this.selectedIndex==3) donation();else if(this.selectedIndex==4) acceptresponse();else if(this.selectedIndex==5) denyresponse();else if(this.selectedIndex==6) ajouterCat();else if(this.selectedIndex==7) ajouterCatReq();else if(this.selectedIndex==8) ajouterNoCat();else if(this.selectedIndex==9) errorMsg(); else if(this.selectedIndex==10) authresponse();else if(this.selectedIndex==11) authrequest()"
         >
           <option value="default" selected>Select-type</option>
           <option value="barter">Barter</option>
@@ -44,58 +60,83 @@
           <option value="authrequest">AuthRequest</option></select
         ><br />
         <div id="enplus"></div>
-        <script>
-          function ajouterbarter() {
-            document.getElementById("enplus").innerHTML =
-              '<label ><strong>Object Name</strong></label> <input type="text" name="objectnamercv" required><br> <label ><strong>Object Details</strong></label> <input type="text" name="objectdetailsrcv" required><br> <label ><strong>Object Name send</strong></label> <input type="text" name="objectnamesnd" required><br> <label ><strong>Object Details send</strong></label> <input type="text" name="objectdetailssnd" required><br> <label ><strong>ID of PrevMsg</strong></label> <input type="text" name="id" required><br>';
-            document.getElementById("monForm").action = "/add-barter";
-          }
-          function ajouterrequest() {
-            document.getElementById("enplus").innerHTML =
-              '<label ><strong>Object receiver Name</strong></label> <input type="text" name="objectnamercv" required><br> <label ><strong>Object Details</strong></label> <input type="text" name="objectdetailsrcv" required><br> <label ><strong>ID of PrevMsg</strong></label> <input type="text" name="id" required><br>';
-            document.getElementById("monForm").action = "/add-request";
-          }
+        <input type="submit" value="Add message" onclick="ajouterMessage();" />
 
-          function ajouterCat() {
-            document.getElementById("enplus").innerHTML =
-              '<label ><strong>Objet Nom Init</strong></label><input type="text" name="objectname" required><br> <label ><strong>Object Nom Details</strong></label> <input type="text" name="objectdetails" required><br><div id="plusCat"></div> <label><strong>Date Validity</strong></label><input type="Date" name="catDate" required> <br><input type="button" value="Clique-moi" onclick="ajouterObjet()">';
-            document.getElementById("monForm").action = "/add-cat";
-          }
-
-          function ajouterObjet() {
-            document.getElementById("plusCat").innerHTML +=
-              '<label > <strong>Objet Nom Init</strong></label > <input type="text" name="objectname" required><br> <label ><strong>Object Nom Details</strong></label> <input type="text" name="objectdetails" required><br>';
-          }
-
-          function ajouterCatReq() {
-            document.getElementById("enplus").innerHTML = "";
-            document.getElementById("monForm").action = "/add-catreq";
-          }
-          function ajouterNoCat() {
-            document.getElementById("enplus").innerHTML =
-              '<label ><strong>Raison : </strong></label><input type="text" name="reason" required>';
-            document.getElementById("monForm").action = "/add-nocat";
-          }
-          function authresponse() {
-            console.log("auth");
-            document.getElementById("enplus").innerHTML =
-              "<label> Envoi une demande de message</label>";
-            document.getElementById("monForm").action = "/auth";
-          }
-          function denyresponse() {
-            document.getElementById("enplus").innerHTML =
-              '<label ><strong>ID of proposition msg</strong></label><input type="text" name="id" required><br><label ><strong>Raison : </strong></label><input type="text" name="reason" required>';
-            document.getElementById("monForm").action = "/deny";
-          }
-          function acceptresponse() {
-            document.getElementById("enplus").innerHTML =
-              '<label ><strong>ID of proposition msg</strong></label><input type="text" name="id" required>';
-            document.getElementById("monForm").action = "/accept";
-          }
-        </script>
-
-        <input type="submit" id="submit" value="write" />
+        <!-- List of message -->
+        <ol id="listMsg"></ol>
       </form>
+      <!-- JavaScipt -->
+      <script>
+        function ajouterMessage() {
+          newMsg = document.createElement("li");
+          newMsg.id = document.getElementById("listMsg").childNodes.length;
+          console.log(newMsg.id);
+
+          document.getElementById("listMsg").appendChild(newMsg);
+        }
+        function ajouterbarter() {
+          document.getElementById("enplus").innerHTML =
+            '<label ><strong>Object Name</strong></label> <input type="text" name="objectnamercv" required><br> <label ><strong>Object Details</strong></label> <input type="text" name="objectdetailsrcv" required><br> <label ><strong>Object Name send</strong></label> <input type="text" name="objectnamesnd" required><br> <label ><strong>Object Details send</strong></label> <input type="text" name="objectdetailssnd" required><br> <label ><strong>ID of PrevMsg</strong></label> <input type="text" name="id" required><br>';
+          document.getElementById("formMessage").action = "/add-barter";
+        }
+        function ajouterrequest() {
+          document.getElementById("enplus").innerHTML =
+            '<label ><strong>Object receiver Name</strong></label> <input type="text" name="objectnamercv" required><br> <label ><strong>Object Details</strong></label> <input type="text" name="objectdetailsrcv" required><br> <label ><strong>ID of PrevMsg</strong></label> <input type="text" name="id" required><br>';
+          document.getElementById("formMessage").action = "/add-request";
+        }
+
+        function ajouterCat() {
+          document.getElementById("enplus").innerHTML =
+            '<label ><strong>Objet Nom Init</strong></label><input type="text" name="objectnameinit" required><br> <label ><strong>Object Nom Details</strong></label> <input type="text" name="objectdetailsinit" required><br> <label><strong>Date Catalogue</strong></label><input type="Date" name="catDate" required> <br><label><strong>Id Catalogue Request</strong></label><input type="Text" name="idcat" required> <br>';
+          document.getElementById("formMessage").action = "/add-cat";
+        }
+
+        function ajouterObjet() {
+          document.getElementById("plusCat").innerHTML +=
+            '<label > <strong>Objet Nom Init</strong></label > <input type="text" name="objectname" required><br> <label ><strong>Object Nom Details</strong></label> <input type="text" name="objectdetails" required><br>';
+        }
+
+        function ajouterCatReq() {
+          document.getElementById("enplus").innerHTML = "";
+          document.getElementById("formMessage").action = "/add-catreq";
+        }
+        function ajouterNoCat() {
+          document.getElementById("enplus").innerHTML =
+            '<label ><strong>Raison : </strong></label><input type="text" name="reason" required><br/><label><strong>Id Catalogue Request</strong></label><input type="Text" name="idcat" required> <br>';
+          document.getElementById("formMessage").action = "/add-nocat";
+        }
+        function authresponse() {
+          console.log("auth");
+          document.getElementById("enplus").innerHTML =
+            "<label> Envoi une demande de message</label>";
+          document.getElementById("formMessage").action = "/auth";
+        }
+        function denyresponse() {
+          document.getElementById("enplus").innerHTML =
+            '<label ><strong>ID of proposition msg</strong></label><input type="text" name="id" required><br><label ><strong>Raison : </strong></label><input type="text" name="reason" required>';
+          document.getElementById("formMessage").action = "/deny";
+        }
+        function acceptresponse() {
+          document.getElementById("enplus").innerHTML =
+            '<label ><strong>ID of proposition msg</strong></label><input type="text" name="id" required>';
+          document.getElementById("formMessage").action = "/accept";
+        }
+        function errorMsg() {
+          document.getElementById("enplus").innerHTML =
+            '<label ><strong>ID of message</strong></label><input type="Text" name="id" required><label ><strong>ID of Error message</strong></label><input type="Text" name="iderror" required>';
+          document.getElementById("formMessage").action = "/errormsg";
+        }
+        function donation() {
+          document.getElementById("enplus").innerHTML =
+            '<label ><strong>Object Name</strong></label> <input type="text" name="objectname" required><br> <label ><strong>Object Details</strong></label> <input type="text" name="objectdetail" required><br> <label ><strong>ID of PrevMsg</strong></label> <input type="text" name="id" required><br>';
+          document.getElementById("formMessage").action = "/donation";
+        }
+        function authrequest() {
+          document.getElementById("enplus").innerHTML =
+            "<label> Envoi une demande de message</label>";
+          document.getElementById("formMessage").action = "/authrequest";
+        }
+      </script>
     </div>
   </body>
 </html>

@@ -3,20 +3,23 @@ package doc.num.projet.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
+import lombok.Data;
+
+@Data
 @Entity
 public class NoCatalogue extends Message {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
-    String reason;
 
-    public NoCatalogue(Date date, Date dateV, String reason) {
-        super(date, dateV);
+    String reason;
+    String idCatRequestMsg;
+
+    public NoCatalogue() {
+        super();
+    }
+    public NoCatalogue(Date date, Date dateV, String reason, Long idHeader, String idCat) {
+        super(date, dateV, idHeader);
         this.reason = reason;
+        this.idCatRequestMsg=idCat;
         this.roles.add(AttributRole.NOCAT);
     }
 

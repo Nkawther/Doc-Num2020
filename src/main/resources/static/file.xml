@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE file SYSTEM "final.dtd">
+<file>
+    <header idF="1">
+        <nbMsg>4</nbMsg>
+        <transmitter idUser="Kawther"></transmitter>
+        <receiver idUser="Namane"></receiver>
+        <authRef>12-12-2020</authRef>
+        <authDate>12-12-2020</authDate>
+    </header>
+    <body>
+        <listMsg>
+            <message idMsg="1">
+                <dateMsg>12-12-2020</dateMsg>
+                <validityDuration>12-12-2020</validityDuration>
+                <barter>
+                    <rcvObjectList>
+                        <object idObject="2">
+                            <objectName>FisrtObject</objectName>
+                            <objectDetails>SecondObject</objectDetails>
+                            <objectImage>Any</objectImage>
+                        </object> 
+                    </rcvObjectList>
+                    <sndObjectList>
+                        <object idObject="3">
+                            <objectName>FisrtObject</objectName>
+                            <objectDetails>SecondObject</objectDetails>
+                            <objectImage>Any</objectImage>
+                        </object>
+                    </sndObjectList>
+                    <idPrevMsg>1</idPrevMsg>
+                </barter>
+            </message>
+            <message idMsg="2">
+                <dateMsg>11-12-2020</dateMsg>
+                <validityDuration>11-12-2020</validityDuration>
+                <request>
+                    <rcvObjectList>
+                        <object idObject="3">
+                            <objectName>FisrtObject</objectName>
+                            <objectDetails>SecondObject</objectDetails>
+                            <objectImage>Any</objectImage>
+                        </object> 
+                    </rcvObjectList>
+                    <idPrevMsg>1</idPrevMsg>
+                </request>
+            </message>
+            <message idMsg="3">
+                <dateMsg>10-12-2020</dateMsg>
+                <validityDuration>10-12-2020</validityDuration>
+                <donation>
+                    <sndObjectList>
+                        <object idObject="4">
+                            <objectName>FisrtObject</objectName>
+                            <objectDetails>SecondObject</objectDetails>
+                            <objectImage>Any</objectImage>
+                        </object>
+                    </sndObjectList>
+                    <idPrevMsg>1</idPrevMsg>
+                </donation>
+            </message>
+            <message idMsg="4">
+                <dateMsg>10-12-2020</dateMsg>
+                <validityDuration>10-12-2020</validityDuration>
+                <cat>
+                    <idCatRequestMsg>1</idCatRequestMsg>
+                    <catDate>10-12-2020</catDate>
+                    <object idObject="4">
+                        <objectName>FisrtObject</objectName>
+                        <objectDetails>SecondObject</objectDetails>
+                        <objectImage>Any</objectImage>
+                    </object>
+                    <object idObject="5">
+                        <objectName>FisrtObject</objectName>
+                        <objectDetails>SecondObject</objectDetails>
+                        <objectImage>Any</objectImage>
+                    </object>
+                </cat>
+            </message>
+        </listMsg>
+    </body>
+</file>

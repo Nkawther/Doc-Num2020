@@ -5,17 +5,14 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import lombok.Data;
+
+@Data
 @Entity
 public class Request extends Message {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
     @OneToMany
     List<Objects> listMsgRcv = new ArrayList<Objects>();
     String idPrevMsg;
@@ -24,15 +21,15 @@ public class Request extends Message {
         super();
     }
 
-    public Request(Date date, Date dateV, String idPrevMsg, List<Objects> rcvObjectList) {
-        super(date, dateV);
+    public Request(Date date, Date dateV, String idPrevMsg, List<Objects> rcvObjectList, Long idHeader) {
+        super(date, dateV, idHeader);
         this.idPrevMsg = idPrevMsg;
         this.listMsgRcv = rcvObjectList;
         this.roles.add(AttributRole.REQUEST);
     }
 
-    public Request(Date date, Date dateV, String idPrevMsg, Objects rcvObject) {
-        super(date, dateV);
+    public Request(Date date, Date dateV, String idPrevMsg, Objects rcvObject, Long idHeader) {
+        super(date, dateV, idHeader);
         this.idPrevMsg = idPrevMsg;
         this.listMsgRcv.add(rcvObject);
         this.roles.add(AttributRole.REQUEST);

@@ -27,14 +27,16 @@ public class Message {
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     public Set<AttributRole> roles = new HashSet<>();
+    Long idHeader;
 
     public Message() {
 
     }
 
-    public Message(Date date, Date validity) {
+    public Message(Date date, Date validity, Long idHeader) {
         this.date = date;
         this.validity = validity;
         this.roles.add(AttributRole.MESSAGE);
+        this.idHeader = idHeader;
     }
 }

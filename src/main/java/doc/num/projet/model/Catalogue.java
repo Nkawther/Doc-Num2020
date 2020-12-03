@@ -5,32 +5,36 @@ import java.util.List;
 import java.util.ArrayList;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
+import lombok.Data;
+
+@Data
 @Entity
 public class Catalogue extends Message {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
-    @ManyToMany
-    List<Objects> catObjectList = new ArrayList<Objects>();
 
+    @OneToMany
+    List<Objects> catObjectList = new ArrayList<Objects>();
+    String idCatRequestMsg;
     Date catDate;
 
-    public Catalogue(Date date, Date dateV, Date catDate, List<Objects> catObjectList) {
-        super(date, dateV);
+    public Catalogue() {
+        super();
+    }
+
+    public Catalogue(Date date, Date dateV, Date catDate, List<Objects> catObjectList, Long idHeader, String idcat) {
+        super(date, dateV, idHeader);
         this.catDate = catDate;
         this.catObjectList = catObjectList;
+        this.idCatRequestMsg = idcat;
         this.roles.add(AttributRole.CAT);
     }
 
-    public Catalogue(Date date, Date dateV, Date catDate, Objects unObjectList) {
-        super(date, dateV);
+    public Catalogue(Date date, Date dateV, Date catDate, Objects unObjectList, Long idHeader, String idcat) {
+        super(date, dateV, idHeader);
         this.catDate = catDate;
         this.catObjectList.add(unObjectList);
+        this.idCatRequestMsg = idcat;
         this.roles.add(AttributRole.CAT);
     }
 

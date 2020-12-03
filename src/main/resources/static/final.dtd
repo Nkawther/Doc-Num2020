@@ -55,7 +55,7 @@
 <!ELEMENT catDate (#PCDATA)>
 <!ELEMENT idCatRequestMsg (#PCDATA)>
 
-<!ELEMENT sndObjectList (object)+>
-<!ELEMENT rcvObjectList (object)+>
+<!ELEMENT sndObjectList (object+)>
+<!ELEMENT rcvObjectList (object+)>
 
 <!ELEMENT idPrevMsg (#PCDATA)>

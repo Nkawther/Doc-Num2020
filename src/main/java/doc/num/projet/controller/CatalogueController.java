@@ -4,14 +4,18 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.inject.Inject;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.stereotype.Controller;
 import doc.num.projet.repository.CatalogueRepository;
+import doc.num.projet.repository.HeaderRepository;
 import doc.num.projet.repository.ObjectsRepository;
 import doc.num.projet.model.Catalogue;
+import doc.num.projet.model.Header;
 import doc.num.projet.model.Objects;
 
 @Controller
@@ -22,34 +26,36 @@ public class CatalogueController {
 
     @Autowired
     ObjectsRepository objrepo;
+    @Inject
+    HeaderRepository headerrepo;
 
     /*
      * @Autowired MessageRepository msgrepo;
      */
     @RequestMapping(value = "/add-cat", method = RequestMethod.POST)
     public String addcat(@RequestParam String date, @RequestParam String dateV, @RequestParam String catDate,
-            @RequestParam String[] objectname, @RequestParam String[] objectdetails) throws ParseException {
+            @RequestParam String objectnameinit, @RequestParam String objectdetailsinit, @RequestParam Long idHeader,
+            @RequestParam String idcat) throws ParseException {
 
-        System.err.println("test " + objectdetails[0]);
+        System.err.println("test " + objectdetailsinit);
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Objects initobj = new Objects(objectname[0], objectdetails[0]);
+        Objects initobj = new Objects(objectnameinit, objectdetailsinit);
         objrepo.save(initobj);
         Date dateS = formatter.parse(date);
         Date dateVS = formatter.parse(dateV);
         Date catDateS = formatter.parse(catDate);
-        Catalogue cat = new Catalogue(dateS, dateVS, catDateS, initobj);
-        int i = 1;
-        for (i = 1; i < objectdetails.length && i < objectname.length; i++) {
-            Objects o = new Objects(objectname[i], objectdetails[i]);
-            objrepo.save(o);
-            cat.add(o);
-        }
 
+        Catalogue cat = new Catalogue(dateS, dateVS, catDateS, initobj, idHeader, idcat);
         System.err.println(dateS);
         // msgrepo.save(initobj);
 
         catrepo.save(cat);
-        return "writing";
+        if (headerrepo.findAllByOrderById().contains(headerrepo.findHeaderById(idHeader))) {
+            Header h = headerrepo.findHeaderById(idHeader);
+            h.getLsMessage().add(cat);
+            headerrepo.save(h);
+        }
+        return "redirect:reading";
     }
 
 }
