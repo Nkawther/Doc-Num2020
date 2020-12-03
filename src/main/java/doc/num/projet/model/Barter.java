@@ -22,6 +22,7 @@ public class Barter extends Message {
 
     public Barter() {
         super();
+        this.roles.add(AttributRole.BARTER);
     }
 
     public Barter(Date date, Date dateV, String idPrevMsg, List<Objects> rcvObjectList, List<Objects> sndObjectList,
@@ -39,5 +40,13 @@ public class Barter extends Message {
         this.rcvObjectList.add(rcvObject);
         this.sndObjectList.add(sndObject);
         this.roles.add(AttributRole.BARTER);
+    }
+
+    public void addrcv(Objects o) {
+        this.rcvObjectList.add(o);
+    }
+
+    public void addsnd(Objects o) {
+        this.sndObjectList.add(o);
     }
 }

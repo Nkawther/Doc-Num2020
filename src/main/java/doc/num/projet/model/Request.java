@@ -19,6 +19,7 @@ public class Request extends Message {
 
     public Request() {
         super();
+        this.roles.add(AttributRole.REQUEST);
     }
 
     public Request(Date date, Date dateV, String idPrevMsg, List<Objects> rcvObjectList, Long idHeader) {
