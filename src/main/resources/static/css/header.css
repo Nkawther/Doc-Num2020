@@ -5,40 +5,11 @@ body {
   display: block;
 }
 
-h1 {
+h1,
+h2 {
   text-align: center;
 }
-#bouton {
-  border: none;
-  padding: 6px 0 6px 0;
-  border-radius: 8px;
-  background: #feb836;
-  font: bold 50px Arial;
-  box-shadow: 3px 3px 12px #999;
-  color: #fff;
-  padding: 2%;
-  cursor: pointer;
-  margin: 0% 3%;
-}
-.active,
-.accordion:hover {
-  background-color: #ccc;
-}
-.panel {
-  padding: 0 18px;
-  background-color: white;
-  display: none;
-  overflow: hidden;
-}
-.menu {
-  display: block;
-  margin-top: 18%;
-}
-.position {
-  margin: 15%;
-}
 
-/********************Writing***********************/
 .containerfile {
   width: 400px;
   margin: 11% auto;
@@ -47,10 +18,8 @@ h1 {
 }
 .containermsg {
   width: 400px;
-  margin: 11% auto;
-  padding-bottom: 10%;
+  margin: 3% auto 0%;
   filter: brightness(100%);
-  background: #fff;
 }
 
 form {
@@ -70,13 +39,11 @@ label {
   margin: 8px 0;
 }
 /* Full-width inputs */
-input[type="text"],
-input[type="file"],
-input[type="date"],
+input,
 select {
   width: 100%;
   padding: 12px 20px;
-  margin: 8px 0;
+  margin: 14px 0;
   display: inline-block;
   border: 1px solid #ccc;
   box-sizing: border-box;
@@ -102,10 +69,18 @@ input[type="submit"] {
 
   /* Just for presentation */
   display: inline;
-  margin: 0 auto;
+  margin: 20 auto;
 }
 input[type="submit"]:hover {
   background-color: #5ab8dd;
   color: white;
   border: 1px solid white;
+}
+
+.listmsg {
+  padding: 18px 45px;
+  border: 1px solid #f1f1f1;
+  background: #fff;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  margin: 2% 35% 1% 39.4%;
 }

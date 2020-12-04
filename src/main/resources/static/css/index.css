@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fe5936;
+  display: block;
+}
+
+h1 {
+  text-align: center;
+  color: #fff;
+  text-shadow: 4px 3px 0px rgb(0, 0, 0), 9px 8px 0px rgba(0, 0, 0, 0.15);
+  margin: 10%;
+  font-size: xxx-large;
+}
+#bouton {
+  border: none;
+  padding: 6px 0 6px 0;
+  border-radius: 8px;
+  background: #feb836;
+  font: bold 50px Arial;
+  box-shadow: 3px 3px 12px #999;
+  color: #fff;
+  padding: 2%;
+  cursor: pointer;
+  margin: 0% 2%;
+}
+.active,
+.accordion:hover {
+  background-color: #ccc;
+}
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  display: none;
+  overflow: hidden;
+}
+.menu {
+  display: block;
+  margin: 5% 6%;
+}
+.position {
+  margin: 15%;
+}

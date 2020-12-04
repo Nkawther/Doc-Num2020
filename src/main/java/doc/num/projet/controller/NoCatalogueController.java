@@ -39,7 +39,7 @@ public class NoCatalogueController {
             h.getLsMessage().add(nocat);
             headerrepo.save(h);
         }
-        return "redirect:reading";
+        return "redirect:writing";
     }
 
 }

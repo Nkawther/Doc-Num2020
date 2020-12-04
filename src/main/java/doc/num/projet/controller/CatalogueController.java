@@ -26,7 +26,7 @@ public class CatalogueController {
 
     @Autowired
     ObjectsRepository objrepo;
-    @Inject 
+    @Inject
     HeaderRepository headerrepo;
 
     /*
@@ -34,8 +34,8 @@ public class CatalogueController {
      */
     @RequestMapping(value = "/add-cat", method = RequestMethod.POST)
     public String addcat(@RequestParam String date, @RequestParam String dateV, @RequestParam String catDate,
-            @RequestParam String objectnameinit, @RequestParam String objectdetailsinit, @RequestParam Long idHeader, @RequestParam String idcat)
-            throws ParseException {
+            @RequestParam String objectnameinit, @RequestParam String objectdetailsinit, @RequestParam Long idHeader,
+            @RequestParam String idcat) throws ParseException {
 
         System.err.println("test " + objectdetailsinit);
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -55,7 +55,7 @@ public class CatalogueController {
             h.getLsMessage().add(cat);
             headerrepo.save(h);
         }
-        return "redirect:reading";
+        return "redirect:writing";
     }
 
 }

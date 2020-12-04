@@ -27,8 +27,8 @@ public class ErrorMsgController {
 
     @RequestMapping(value = "/errormsg", method = RequestMethod.POST)
     public String adderror(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
-            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateV, @RequestParam String id, @RequestParam String iderror, @RequestParam Long idHeader)
-            throws ParseException {
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateV, @RequestParam String id,
+            @RequestParam String iderror, @RequestParam Long idHeader) throws ParseException {
 
         ErrorMsg d = new ErrorMsg(id, iderror, date, dateV, idHeader);
         errorrepo.save(d);
@@ -37,6 +37,6 @@ public class ErrorMsgController {
             h.getLsMessage().add(d);
             headerrepo.save(h);
         }
-        return "redirect:reading";
+        return "redirect:writing";
     }
 }

@@ -13,4 +13,6 @@ public interface MessageRepository extends CrudRepository<Message, Long> {
 
     public List<Message> findAllByOrderById();
 
+    public List<Message> findMessageByIdHeader(Long idHeader);
+
 }

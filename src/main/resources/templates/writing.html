@@ -3,14 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/entete.css" />
+    <link rel="stylesheet" href="/css/header.css" />
     <title>[[ ${pageName}]]</title>
   </head>
 
   <body>
-    <h1>Write a new message</h1>
-    <div class="containerfile">
+    <header th:replace="/entete :: my_entete"></header>
+    <div class="listmsg">
       <h2>Liste of file</h2>
+      <hr>
       <p>[[${vide}]]</p>
       <ul>
         <li data-th-each="num,info : ${lsHeader}"> 
@@ -23,10 +25,10 @@
         </li>
     </ul>
     </div>
-    <p style="color: red;">[[ ${Error} ]]</p>
     <div class="containermsg">
         <form method="POST" action="" id="formMessage">
-        <h2>Body</h2>
+        <p style="color: red;">[[ ${Error} ]]</p>
+        <h2>Write a new message</h2>
         <hr />
         <label><Strong>Id Header</Strong></label>
         <input type="number" th:value="${idheader}" name="idHeader" required><br/>
@@ -58,19 +60,20 @@
         ><br />
         <div id="enplus"></div>
         <input type="submit" value="Add message" onclick="ajouterMessage();"/>
-
+        <hr>
         <!-- List of message -->
-        <ol id="listMsg"></ol>
+        <h3>List Message</h3>
+        <ol>
+          <li data-th-each="num : ${lsMsg}">
+            Message type [[ ${num.roles} ]]<br>
+            Creation date [[ ${num.date} ]]<br>
+            Validity date [[ ${num.validity} ]]<br>
+            Id header [[ ${num.idHeader} ]]<br>
+          </li>
+        </ol>
         </form>
         <!-- JavaScipt -->
         <script>
-          function ajouterMessage(){
-            newMsg = document.createElement("li");
-            newMsg.id = document.getElementById("listMsg").childNodes.length;
-            console.log(newMsg.id);
-            
-            document.getElementById("listMsg").appendChild(newMsg);
-          }
           function ajouterbarter() {
             document.getElementById("enplus").innerHTML =
               '<label ><strong>Object Name</strong></label> <input type="text" name="objectnamercv" required><br> <label ><strong>Object Details</strong></label> <input type="text" name="objectdetailsrcv" required><br> <label ><strong>Object Name send</strong></label> <input type="text" name="objectnamesnd" required><br> <label ><strong>Object Details send</strong></label> <input type="text" name="objectdetailssnd" required><br> <label ><strong>ID of PrevMsg</strong></label> <input type="text" name="id" required><br>';

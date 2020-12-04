@@ -36,7 +36,7 @@ public class AuthRequestController {
             h.getLsMessage().add(authreq);
             headerrepo.save(h);
         }
-        return "redirect:reading";
+        return "redirect:writing";
     }
 
 }
