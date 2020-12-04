@@ -329,7 +329,7 @@ public class ReadXMLController {
                                                                             + e.getTextContent());
                                                                     b.setIdPrevMsg(e.getTextContent()); // idprev dans
                                                                                                         // barter
-                                                                    // idprev.add(Integer.parseInt(e.getTextContent()));
+                                                                                                        // idprev.add(Integer.parseInt(e.getTextContent()));
                                                                 }
                                                             }
                                                         }
@@ -473,7 +473,7 @@ public class ReadXMLController {
                                                                                 + " : " + e.getTextContent()); // idprev
                                                                                                                // de
                                                                                                                // donation
-                                                                        // idprev.add(Integer.parseInt(e.getTextContent()));
+                                                                                                               // idprev.add(Integer.parseInt(e.getTextContent()));
                                                                     }
                                                                 }
                                                             }
@@ -765,6 +765,8 @@ public class ReadXMLController {
                                                                                                                 + e.getTextContent());
                                                                                             }
                                                                                         }
+                                                                                        h.getLsMessage().add(errmsg);
+                                                                                        errormsgrepo.save(errmsg);
                                                                                     }
                                                                                 }
                                                                             }
@@ -789,6 +791,7 @@ public class ReadXMLController {
                 }
             }
         }
+        headerrepo.save(h);
         return "reading";
     }
 }
