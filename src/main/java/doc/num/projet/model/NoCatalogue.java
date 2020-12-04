@@ -15,11 +15,13 @@ public class NoCatalogue extends Message {
 
     public NoCatalogue() {
         super();
+        this.roles.add(AttributRole.NOCAT);
     }
+
     public NoCatalogue(Date date, Date dateV, String reason, Long idHeader, String idCat) {
         super(date, dateV, idHeader);
         this.reason = reason;
-        this.idCatRequestMsg=idCat;
+        this.idCatRequestMsg = idCat;
         this.roles.add(AttributRole.NOCAT);
     }
 

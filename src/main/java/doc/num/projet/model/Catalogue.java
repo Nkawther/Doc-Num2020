@@ -20,6 +20,7 @@ public class Catalogue extends Message {
 
     public Catalogue() {
         super();
+        this.roles.add(AttributRole.CAT);
     }
 
     public Catalogue(Date date, Date dateV, Date catDate, List<Objects> catObjectList, Long idHeader, String idcat) {

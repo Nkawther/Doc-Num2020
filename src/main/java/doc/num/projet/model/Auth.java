@@ -12,9 +12,11 @@ public class Auth extends Message {
 
     Date authDate;
 
-    public Auth(){
+    public Auth() {
         super();
+        this.roles.add(AttributRole.AUTH);
     }
+
     public Auth(Date date, Date validity, Long idHeader) {
         super(date, validity, idHeader);
         this.authDate = date;

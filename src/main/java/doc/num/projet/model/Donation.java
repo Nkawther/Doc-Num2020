@@ -18,6 +18,7 @@ public class Donation extends Message {
 
     public Donation() {
         super();
+        this.roles.add(AttributRole.DONATION);
     }
 
     public Donation(Date date, Date dateV, String idPrevMsg, List<Objects> sndObjectList, Long idHeader) {

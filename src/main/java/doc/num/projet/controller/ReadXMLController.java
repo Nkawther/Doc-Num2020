@@ -21,7 +21,14 @@ import org.xml.sax.SAXException;
 
 import doc.num.projet.model.Barter;
 import doc.num.projet.model.Catalogue;
+import doc.num.projet.model.CatalogueRequest;
+import doc.num.projet.model.Deny;
+import doc.num.projet.model.Donation;
+import doc.num.projet.model.ErrorMsg;
+
 import javax.inject.Inject;
+
+import org.apache.tomcat.util.http.fileupload.DeferredFileOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,8 +50,12 @@ import doc.num.projet.repository.ObjectsRepository;
 import doc.num.projet.repository.RequestRepository;
 import doc.num.projet.repository.UserRepository;
 import doc.num.projet.model.Header;
+import doc.num.projet.model.NoCatalogue;
 import doc.num.projet.model.Objects;
 import doc.num.projet.model.Request;
+import doc.num.projet.model.Accept;
+import doc.num.projet.model.Auth;
+import doc.num.projet.model.AuthRequest;
 
 @Controller
 public class ReadXMLController {
@@ -211,6 +222,7 @@ public class ReadXMLController {
                                                 }
                                                 /* TYPE Msg */
                                                 if (e.getNodeName().equals("barter")) { // Barter
+                                                    // Initialisation Date et validity
                                                     Barter b = new Barter();
                                                     b.setDate(date);
                                                     b.setValidity(validity);
@@ -326,7 +338,10 @@ public class ReadXMLController {
                                                     h.getLsMessage().add(b);
                                                 } else {
                                                     if (e.getNodeName().equals("request")) { // request
+                                                        // Initialisation Date et validity
                                                         Request r = new Request();
+                                                        r.setDate(date);
+                                                        r.setValidity(validity);
                                                         m.addAttribute("typeMsg", e.getNodeName());
                                                         System.out.println(e.getNodeName());
                                                         NodeList type = (NodeList) message.item(j); // liste des
@@ -393,6 +408,10 @@ public class ReadXMLController {
                                                         reqrepo.save(r);
                                                     } else {
                                                         if (e.getNodeName().equals("donation")) { // donation
+                                                            // Initialisation Date et validity
+                                                            Donation donate = new Donation();
+                                                            donate.setDate(date);
+                                                            donate.setValidity(validity);
                                                             m.addAttribute("typeMsg", e.getNodeName());
                                                             System.out.println(e.getNodeName());
                                                             NodeList type = (NodeList) message.item(j); // liste des
@@ -410,6 +429,7 @@ public class ReadXMLController {
                                                                                                                 // de
                                                                                                                 // donation
                                                                         for (int x = 0; x < snd.getLength(); x++) {
+                                                                            Objects o = new Objects();
                                                                             if (snd.item(x)
                                                                                     .getNodeType() == Node.ELEMENT_NODE) {
                                                                                 e = (Element) snd.item(x);
@@ -428,11 +448,27 @@ public class ReadXMLController {
                                                                                                 + e.getNodeName()
                                                                                                 + " : "
                                                                                                 + e.getTextContent());
+                                                                                        if (e.getNodeName()
+                                                                                                .equals("objectName")) {
+                                                                                            o.setObjectName(
+                                                                                                    e.getTextContent());
+
+                                                                                        } else if (e.getNodeName()
+                                                                                                .equals("objectDetails")) {
+                                                                                            o.setObjectDetails(
+                                                                                                    e.getTextContent());
+
+                                                                                            donate.getListMsgSnd()
+                                                                                                    .add(o);
+                                                                                            objrepo.save(o);
+
+                                                                                        }
                                                                                     }
                                                                                 }
                                                                             }
                                                                         }
                                                                     } else {
+                                                                        donate.setIdPrevMsg(e.getTextContent());
                                                                         System.err.println("    " + e.getNodeName()
                                                                                 + " : " + e.getTextContent()); // idprev
                                                                                                                // de
@@ -441,8 +477,14 @@ public class ReadXMLController {
                                                                     }
                                                                 }
                                                             }
+                                                            h.getLsMessage().add(donate);
+                                                            donarepo.save(donate);
                                                         } else {
                                                             if (e.getNodeName().equals("accept")) { // accept
+                                                                // Initialisation Date et validity
+                                                                Accept acc = new Accept();
+                                                                acc.setDate(date);
+                                                                acc.setValidity(validity);
                                                                 m.addAttribute("typeMsg", e.getNodeName());
                                                                 System.out.println(e.getNodeName());
                                                                 NodeList type = (NodeList) message.item(j); // liste des
@@ -454,10 +496,18 @@ public class ReadXMLController {
                                                                         e = (Element) type.item(k);
                                                                         System.err.println("    " + e.getNodeName()
                                                                                 + " : " + e.getTextContent());
+                                                                        acc.setIdPropositionMsg(e.getTextContent());
                                                                     }
                                                                 }
+                                                                h.getLsMessage().add(acc);
+                                                                acceptrepo.save(acc);
                                                             } else {
                                                                 if (e.getNodeName().equals("deny")) { // deny
+
+                                                                    // Initialisation Date et validity
+                                                                    Deny den = new Deny();
+                                                                    den.setDate(date);
+                                                                    den.setValidity(validity);
                                                                     m.addAttribute("typeMsg", e.getNodeName());
                                                                     System.out.println(e.getNodeName());
                                                                     NodeList type = (NodeList) message.item(j); // liste
@@ -471,10 +521,23 @@ public class ReadXMLController {
                                                                             e = (Element) type.item(k);
                                                                             System.err.println("    " + e.getNodeName()
                                                                                     + " : " + e.getTextContent());
+                                                                            if (e.getNodeName()
+                                                                                    .equals("idPropositionMsg")) {
+                                                                                den.setIdPropositionMsg(
+                                                                                        e.getTextContent());
+                                                                            } else {
+                                                                                den.setReason(e.getTextContent());
+                                                                            }
                                                                         }
                                                                     }
+                                                                    h.getLsMessage().add(den);
+                                                                    denyrepo.save(den);
                                                                 } else {
                                                                     if (e.getNodeName().equals("auth")) { // auth
+                                                                        // Initialisation Date et validity
+                                                                        Auth aut = new Auth();
+                                                                        aut.setDate(date);
+                                                                        aut.setValidity(validity);
                                                                         m.addAttribute("typeMsg", e.getNodeName());
                                                                         System.out.println(e.getNodeName());
                                                                         NodeList type = (NodeList) message.item(j); // liste
@@ -489,10 +552,18 @@ public class ReadXMLController {
                                                                                 System.err.println(
                                                                                         "    " + e.getNodeName() + " : "
                                                                                                 + e.getTextContent());
+                                                                                aut.setAuthDate(formatter
+                                                                                        .parse(e.getTextContent()));
                                                                             }
                                                                         }
+                                                                        h.getLsMessage().add(aut);
+                                                                        authrepo.save(aut);
                                                                     } else {
                                                                         if (e.getNodeName().equals("authRequest")) { // authRequest
+                                                                            // Initialisation Date et validity
+                                                                            AuthRequest autreq = new AuthRequest();
+                                                                            autreq.setDate(date);
+                                                                            autreq.setValidity(validity);
                                                                             m.addAttribute("typeMsg", e.getNodeName());
                                                                             System.out.println(e.getNodeName());
                                                                             NodeList type = (NodeList) message.item(j); // liste
@@ -509,8 +580,15 @@ public class ReadXMLController {
                                                                                             + e.getTextContent());
                                                                                 }
                                                                             }
+                                                                            h.getLsMessage().add(autreq);
+                                                                            authreqrepo.save(autreq);
                                                                         } else {
+
                                                                             if (e.getNodeName().equals("nocat")) { // nocat
+                                                                                // Initialisation Date et validity
+                                                                                NoCatalogue nocat = new NoCatalogue();
+                                                                                nocat.setDate(date);
+                                                                                nocat.setValidity(validity);
                                                                                 m.addAttribute("typeMsg",
                                                                                         e.getNodeName());
                                                                                 System.out.println(e.getNodeName());
@@ -526,13 +604,27 @@ public class ReadXMLController {
                                                                                                 + e.getNodeName()
                                                                                                 + " : "
                                                                                                 + e.getTextContent());
+                                                                                        if (e.getNodeName().equals(
+                                                                                                "idCatRequestMsg")) {
+                                                                                            nocat.setIdCatRequestMsg(
+                                                                                                    e.getTextContent());
+                                                                                        } else {
+                                                                                            nocat.setReason(
+                                                                                                    e.getTextContent());
+                                                                                        }
                                                                                     }
                                                                                 }
+                                                                                h.getLsMessage().add(nocat);
+                                                                                nocatrepo.save(nocat);
                                                                             } else {
                                                                                 if (e.getNodeName()
                                                                                         .equals("catRequest")) { // catRequest
                                                                                     m.addAttribute("typeMsg",
                                                                                             e.getNodeName());
+                                                                                    // Initialisation Date et validity
+                                                                                    CatalogueRequest catreq = new CatalogueRequest();
+                                                                                    catreq.setDate(date);
+                                                                                    catreq.setValidity(validity);
                                                                                     System.out.println(e.getNodeName());
                                                                                     NodeList type = (NodeList) message
                                                                                             .item(j); // liste des
@@ -549,10 +641,17 @@ public class ReadXMLController {
                                                                                                     + e.getTextContent());
                                                                                         }
                                                                                     }
+                                                                                    h.getLsMessage().add(catreq);
+                                                                                    catreqrepo.save(catreq);
                                                                                 } else {
                                                                                     if (e.getNodeName().equals("cat")) { // cat
                                                                                         m.addAttribute("typeMsg",
                                                                                                 e.getNodeName());
+                                                                                        // Initialisation Date et
+                                                                                        // validity
+                                                                                        Catalogue cat = new Catalogue();
+                                                                                        cat.setDate(date);
+                                                                                        cat.setValidity(validity);
                                                                                         System.out.println(
                                                                                                 e.getNodeName());
                                                                                         NodeList type = (NodeList) message
@@ -561,6 +660,7 @@ public class ReadXMLController {
                                                                                                           // de cat
                                                                                         for (int k = 0; k < type
                                                                                                 .getLength(); k++) {
+                                                                                            Objects o = new Objects();
                                                                                             if (type.item(k)
                                                                                                     .getNodeType() == Node.ELEMENT_NODE) {
                                                                                                 e = (Element) type
@@ -591,6 +691,22 @@ public class ReadXMLController {
                                                                                                                                     .getNodeName()
                                                                                                                                     + " : "
                                                                                                                                     + e.getTextContent());
+                                                                                                            if (e.getNodeName()
+                                                                                                                    .equals("objectName")) {
+                                                                                                                o.setObjectName(
+                                                                                                                        e.getTextContent());
+
+                                                                                                            } else if (e
+                                                                                                                    .getNodeName()
+                                                                                                                    .equals("objectDetails")) {
+                                                                                                                o.setObjectDetails(
+                                                                                                                        e.getTextContent());
+
+                                                                                                                cat.add(o);
+                                                                                                                objrepo.save(
+                                                                                                                        o);
+
+                                                                                                            }
                                                                                                         }
                                                                                                     }
                                                                                                 } else {
@@ -602,9 +718,16 @@ public class ReadXMLController {
                                                                                                 }
                                                                                             }
                                                                                         }
+                                                                                        h.getLsMessage().add(cat);
+                                                                                        catrepo.save(cat);
                                                                                     }
                                                                                     if (e.getNodeName()
                                                                                             .equals("errorMsg")) { // errorMsg
+                                                                                        // Initialisation Date et
+                                                                                        // validity
+                                                                                        ErrorMsg errmsg = new ErrorMsg();
+                                                                                        errmsg.setDate(date);
+                                                                                        errmsg.setValidity(validity);
                                                                                         m.addAttribute("typeMsg",
                                                                                                 e.getNodeName());
                                                                                         System.out.println("  "
@@ -625,6 +748,16 @@ public class ReadXMLController {
                                                                                                     .getNodeType() == Node.ELEMENT_NODE) {
                                                                                                 e = (Element) type
                                                                                                         .item(k);
+                                                                                                // Récupération et
+                                                                                                // instentiation du
+                                                                                                // errmsg
+                                                                                                errmsg.setIdMsg(
+                                                                                                        e.getAttribute(
+                                                                                                                "idMsg"));
+                                                                                                errmsg.setIdError(
+                                                                                                        e.getAttribute(
+                                                                                                                "idError"));
+
                                                                                                 System.err.println(
                                                                                                         "    " + e
                                                                                                                 .getNodeName()

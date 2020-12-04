@@ -7,9 +7,11 @@ import javax.persistence.Entity;
 @Entity
 public class CatalogueRequest extends Message {
 
-    public CatalogueRequest(){
+    public CatalogueRequest() {
         super();
+        this.roles.add(AttributRole.CATREQUEST);
     }
+
     public CatalogueRequest(Date date, Date dateV, Long idHeader) {
         super(date, dateV, idHeader);
 
