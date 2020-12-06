@@ -2,17 +2,18 @@
 <html lang="en">
 
 <head>
+
     <head th:fragment="html_head">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/entete.css" />
-</head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/css/entete.css" />
+    </head>
 
 <body>
     <header class="entete" th:fragment="my_entete">
-            <button onclick="window.location.href='header'" id="bouton" class="position">Write un new file</button>
-            <button onclick="window.location.href='writing'" id="bouton" class="position">Write un new message</button>
-            <button id="bouton" class="position" onclick="window.location.href='reading'">XML Reading</button>
+        <button onclick="window.location.href='header'" id="bouton" class="position">Write a new file</button>
+        <button onclick="window.location.href='writing'" id="bouton" class="position">Write a new message</button>
+        <button id="bouton" class="position" onclick="window.location.href='reading'">XML Reading</button>
     </header>
 </body>
 
