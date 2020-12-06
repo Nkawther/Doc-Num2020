@@ -1,29 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/entete.css" />
-    <link rel="stylesheet" href="/css/header.css" />
-    <title>[[ ${pageName}]]</title>
-  </head>
 
-  <body>
-    <header th:replace="/entete :: my_entete"></header>
-    <div class="listmsg">
-      <h2>List XML file</h2>
-      <hr>
-      <ul>
-        <li data-th-each="num,info : ${lsHeader}"> 
-          Receiver : [[ ${num.idReceiver} ]]<br>
-          info : [[ ${num.nbMsg} ]]
-          [[ ${num.idTransmitter} ]]
-          [[ ${num.authRef} ]]
-          [[ ${num.authDate} ]]<br>
-          <a data-th-href="@{xml-file(ind=${num.id})}">Generate an xml file</a>
-        </li>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/entete.css" />
+  <link rel="stylesheet" href="/css/header.css" />
+  <title>[[ ${pageName}]]</title>
+</head>
+
+<body>
+  <header th:replace="/entete :: my_entete"></header>
+  <div class="listmsg">
+    <h2>List XML file</h2>
+    <hr>
+    <ul>
+      <li data-th-each="num,info : ${lsHeader}">
+        Receiver : [[ ${num.idReceiver} ]]<br>
+        info : [[ ${num.nbMsg} ]]
+        [[ ${num.idTransmitter} ]]
+        [[ ${num.authRef} ]]
+        [[ ${num.authDate} ]]<br>
+        <a data-th-href="@{xml-file(ind=${num.id})}">Generate an xml file</a>
+      </li>
     </ul>
   </div>
-  </body>
+  <div class="containermsg">
+    <form method="POST" action="/Parse">
+      <label><Strong>Read a xml file</Strong></label>
+      <input type="text" name="file" />
+      <input type="submit" id="submit" value=" Parser" />
+      <p>Exemple : src/main/resources/static/generer.xml</p>
+    </form>
+  </div>
+</body>
 
 </html>

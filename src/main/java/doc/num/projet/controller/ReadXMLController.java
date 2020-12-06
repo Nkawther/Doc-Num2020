@@ -18,16 +18,18 @@ import org.xml.sax.SAXException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ReadXMLController {
 
     public Document doc;
 
-    @RequestMapping("/Parse")
-    public String readXml() {
+    @RequestMapping(value = "/Parse", method = RequestMethod.POST)
+    public String readXml(@RequestParam String file) {
         try {
-            File document_xml = new File("src/main/resources/static/generer.xml");
+            File document_xml = new File(file);
             // Instanciation de la fabrique de parseurs
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 
