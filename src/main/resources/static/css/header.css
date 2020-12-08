@@ -17,17 +17,18 @@ h2 {
   filter: brightness(100%);
 }
 .containermsg {
-  width: 400px;
-  margin: 3% auto 0%;
+  /*! width: 21%; */
+  margin: 3% 35% 3%;
   filter: brightness(100%);
 }
 
 form {
-  width: 100%;
+  /*! width: 100%; */
   padding: 40px;
   border: 1px solid #f1f1f1;
   background: #fff;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  /*! margin: auto; */
 }
 
 form h1 {
@@ -82,5 +83,5 @@ input[type="submit"]:hover {
   border: 1px solid #f1f1f1;
   background: #fff;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-  margin: 2% 35% 1% 39.4%;
+  margin: 2% 35% 1%;
 }

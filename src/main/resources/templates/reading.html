@@ -13,17 +13,35 @@
     <div class="listmsg">
       <h2>List XML file</h2>
       <hr>
-      <ul>
+      <ul id="lsfile">
         <li data-th-each="num,info : ${lsHeader}"> 
-          Receiver : [[ ${num.idReceiver} ]]<br>
-          info : [[ ${num.nbMsg} ]]
-          [[ ${num.idTransmitter} ]]
-          [[ ${num.authRef} ]]
-          [[ ${num.authDate} ]]<br>
+          Receiver name : <span th:id="${num.idReceiver}"></span><br>
+          Transmitter name : <span th:id="${num.idTransmitter}"></span><br>
+          number of message : [[ ${num.nbMsg} ]]<br>
+          Reference authorization : [[ ${num.authRef} ]]<br>
+          Date authorization : [[ ${num.authDate} ]]<br>
           <a data-th-href="@{xml-file(ind=${num.id})}">Generate an xml file</a>
         </li>
     </ul>
   </div>
+  <script th:inline="javascript">
+    /*<![CDATA[*/
+    var lsUsername = /*[[${lsUsername}]]*/ 'default';
+    console.log(lsUsername);
+
+    lsfile = document.getElementById("lsfile").getElementsByTagName("li");
+    console.log(lsfile);
+    lsUsername.forEach(Element => {
+      console.log(Element.id);
+      //console.log(document.getElementById(Element.id).id);
+      if(document.getElementById(Element.id) != null){
+        console.log("dans if");      
+        document.getElementById(Element.id).append(Element.name);
+      }
+    });
+    
+    /*]]>*/
+  </script>
   </body>
 
 </html>
