@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.inject.Inject;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,7 +24,8 @@ public class AuthController {
     HeaderRepository headerrepo;
 
     @RequestMapping(value = "/auth", method = RequestMethod.POST)
-    public String addrequest(@RequestParam Date date, @RequestParam Date dateV, @RequestParam Long idHeader) {
+    public String addrequest(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateV, @RequestParam Long idHeader) {
         System.err.println("auth controller");
         Auth auth = new Auth(date, dateV, idHeader);
         authrepo.save(auth);
@@ -32,6 +34,6 @@ public class AuthController {
             h.getLsMessage().add(auth);
             headerrepo.save(h);
         }
-        return "redirect:reading";
+        return "redirect:writing";
     }
 }

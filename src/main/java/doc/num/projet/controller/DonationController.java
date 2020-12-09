@@ -34,7 +34,7 @@ public class DonationController {
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateV, @RequestParam String objectname,
             @RequestParam String objectdetail, @RequestParam String id, @RequestParam Long idHeader)
             throws ParseException {
-                System.err.println("je suis la premier");
+        System.err.println("je suis la premier");
         Objects o = new Objects(objectname, objectdetail);
         objrepo.save(o);
         Donation d = new Donation(date, dateV, id, o, idHeader);
@@ -46,6 +46,6 @@ public class DonationController {
             headerrepo.save(h);
         }
         System.err.println("je suis la dernier");
-        return "redirect:reading";
+        return "redirect:writing";
     }
 }

@@ -3,28 +3,64 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/entete.css" />
     <title>[[ ${pageName}]]</title>
   </head>
 
   <body>
+    <header th:replace="/entete :: my_entete"></header>
+    <div class="listmsg">
+      <h1>XML Writing File</h1>
+      <hr>
+      <h2>Liste of file</h2>
+      <hr>
+      <p>[[${vide}]]</p>
+      <ul id="lsfile">
+        <li data-th-each="num,info : ${lsHeader}">
+          Receiver name : <span th:id="${num.idReceiver}"></span><br>
+          Transmitter name : <span th:id="${num.idTransmitter}"></span><br>
+          number of message : [[ ${num.nbMsg} ]]<br>
+          Reference authorization : [[ ${num.authRef} ]]<br>
+          Date authorization : [[ ${num.authDate} ]]<br>
+          <a data-th-href="@{respondFile(ind=${num.authRef})}">Respond</a>
+        </li>
+      </ul>
+      <a data-th-href="@{respondFile(ind=0)}">Create new authorization</a>
+    </div>
     <div class="containermsg">
       <form method="POST" action="/addHeader">
-      <h1>XML Writing</h1>
       <h2>Header</h2>
       <hr />
-        <label><strong>Number of messages</strong></label> 
-        <input type="number" name="nbMsg" required />
-        <label><strong>Name of receiver</strong></label> 
+        <label><strong>Number of messages</strong></label>
+        <input type="number" name="nbMsg" value="1" min="1" required /></br>
+        <label><strong>Name of receiver</strong></label>
         <input type="text" placeholder="Name" name="namersv" required />
         <label><strong>Name of Transmitter</strong></label>
         <input type="text" placeholder="Name" name="nametrm" required />
         <label><strong>Authorisation ref</strong></label>
-        <input type="text" placeholder="Authorisation ref" name="authRef" required />
+        <input type="text" placeholder="authorization reference" th:value="${authoRef}" name="authRef" id="authRef" readonly="readonly" />
         <label><strong>Authorisation date</strong></label>
         <input type="Date" placeholder="Authorisation date" name="authDate" required />
         <input type="submit" id="submit" value="Create file" />
       </form>
     </div>
+    <script th:inline="javascript">
+      /*<![CDATA[*/
+      var lsUsername = /*[[${lsUsername}]]*/ 'default';
+      console.log(lsUsername);
+
+      lsfile = document.getElementById("lsfile").getElementsByTagName("li");
+      console.log(lsfile);
+      lsUsername.forEach(Element => {
+        console.log(Element.id);
+        //console.log(document.getElementById(Element.id));
+        if (document.getElementById(Element.id) != null) {
+          console.log("dans if");
+          document.getElementById(Element.id).append(Element.name);
+        }
+      });
+      /*]]>*/
+    </script>
   </body>
 </html>

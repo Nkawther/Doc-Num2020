@@ -1,113 +1,111 @@
 body {
-    margin: 0;
-    padding: 0;
-    background-color: #fe5936;
-    display: block;
+  margin: 0;
+  padding: 0;
+  background-color: #fe5936;
+  display: block;
 }
 
-h1{
-    text-decoration: underline overline solid #e4087e;
-    text-align: center;
+h1 {
+  text-align: center;
 }
 #bouton {
-    border:none;
-	padding:6px 0 6px 0;
-	border-radius:8px;
-	background:#feb836;
-    font:bold 50px Arial;
-    box-shadow:3px 3px 12px #999;
-    color:#fff;
-    padding: 2%;
-    cursor:pointer;
+  border: none;
+  padding: 6px 0 6px 0;
+  border-radius: 8px;
+  background: #feb836;
+  font: bold 50px Arial;
+  box-shadow: 3px 3px 12px #999;
+  color: #fff;
+  padding: 2%;
+  cursor: pointer;
+  margin: 0% 3%;
 }
-.active, .accordion:hover {
-    background-color: #ccc;
+.active,
+.accordion:hover {
+  background-color: #ccc;
 }
 .panel {
-    padding: 0 18px;
-    background-color: white;
-    display: none;
-    overflow: hidden;
-  }
-.menu{
-    display: block;
-    margin-top : 18%;
+  padding: 0 18px;
+  background-color: white;
+  display: none;
+  overflow: hidden;
 }
-.positionbone{
-    margin-left: 15%;
+.menu {
+  display: block;
+  margin-top: 18%;
 }
-.positionbtwo{
-    margin-left: 22%;
+.position {
+  margin: 15%;
 }
 
 /********************Writing***********************/
-.containerfile{
-    width: 400px;
-    margin: 11% auto;
-    padding-bottom: 10%;
-    filter: brightness(100%);
+.containerfile {
+  width: 400px;
+  margin: 11% auto;
+  padding-bottom: 10%;
+  filter: brightness(100%);
 }
-.containermsg{
-    width: 400px;
-    margin: 11% auto;
-    padding-bottom: 10%;
-    filter: brightness(100%);
-
+.containermsg {
+  width: 400px;
+  margin: 11% auto;
+  padding-bottom: 10%;
+  filter: brightness(100%);
+  background: #fff;
 }
 
 form {
-    width:100%;
-    padding: 40px;
-    border: 1px solid #f1f1f1;
-    background: #fff;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  width: 100%;
+  padding: 40px;
+  border: 1px solid #f1f1f1;
+  background: #fff;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
-form h1{
-    padding-bottom: 15px;
-    padding: 12px 20px;
+form h1 {
+  padding: 12px 20px;
 }
-label{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    
+label {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
 }
 /* Full-width inputs */
-input[type=text], input[type="file"], input[type="date"],select{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+input[type="text"],
+input[type="file"],
+input[type="date"],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
 }
 
 /* Button Submit Config */
-input[type=submit] {
-    width: 40%;
-    padding: 2% 5% 2% 5%;
-    background: linear-gradient(to bottom, #4eb5e5 0%,#389ed5 100%); /* W3C */
-    border: none;
-    border-radius: 5px;
-    position: relative;
-    border-bottom: 4px solid #2b8bc6;
-    color: #fbfbfb;
-    font-weight: 600;
-    font-family: 'Open Sans', sans-serif;
-    text-shadow: 1px 1px 1px rgba(0,0,0,.4);
-    font-size: 15px;
-    text-align: center;
-    box-shadow: 0px 3px 0px 0px rgba(0,0,0,.2);
-    cursor: pointer;
-  
-  /* Just for presentation */  
-    display: inline;
-    margin: 0 auto;
+input[type="submit"] {
+  width: 40%;
+  padding: 2% 5% 2% 5%;
+  background: linear-gradient(to bottom, #4eb5e5 0%, #389ed5 100%); /* W3C */
+  border: none;
+  border-radius: 5px;
+  position: relative;
+  border-bottom: 4px solid #2b8bc6;
+  color: #fbfbfb;
+  font-weight: 600;
+  font-family: "Open Sans", sans-serif;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+  font-size: 15px;
+  text-align: center;
+  box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 
+  /* Just for presentation */
+  display: inline;
+  margin: 0 auto;
 }
-input[type=submit]:hover {
-    background-color: #5ab8dd;
-    color: white;
-    border: 1px solid white;
+input[type="submit"]:hover {
+  background-color: #5ab8dd;
+  color: white;
+  border: 1px solid white;
 }

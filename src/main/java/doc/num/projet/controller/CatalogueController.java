@@ -55,7 +55,7 @@ public class CatalogueController {
             h.getLsMessage().add(cat);
             headerrepo.save(h);
         }
-        return "redirect:reading";
+        return "redirect:writing";
     }
 
 }

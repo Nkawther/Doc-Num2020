@@ -14,4 +14,6 @@ public interface HeaderRepository extends CrudRepository<Header, Long> {
     public List<Header> findAllByOrderById();
 
     public Header findHeaderById(Long id);
+
+    public Header findHeaderByAuthRef(String authRef);
 }

@@ -26,7 +26,7 @@ public class CatalogueRequestController {
     CatalogueRequestRepository nocatrepo;
     @Inject
     HeaderRepository headerrepo;
-    
+
     @RequestMapping(value = "/add-catreq", method = RequestMethod.POST)
     public String addcat(@RequestParam String date, @RequestParam String dateV, @RequestParam Long idHeader)
             throws ParseException {
@@ -41,7 +41,7 @@ public class CatalogueRequestController {
             h.getLsMessage().add(catreq);
             headerrepo.save(h);
         }
-        return "redirect:reading";
+        return "redirect:writing";
     }
 
 }
