@@ -51,6 +51,7 @@ public class ReadXMLController {
 		}
         return "redirect:stockage";
     }
+   
 
     @RequestMapping("/stockage")
     public String aandsXml(Model m){
