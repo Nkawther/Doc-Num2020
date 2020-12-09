@@ -4,16 +4,22 @@ import java.text.ParseException;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import doc.num.projet.model.Header;
 import doc.num.projet.model.Message;
+import doc.num.projet.model.User;
 import doc.num.projet.repository.HeaderRepository;
 import doc.num.projet.repository.MessageRepository;
+import doc.num.projet.repository.UserRepository;
 
 @Controller
 public class ControllerInit {
@@ -22,6 +28,9 @@ public class ControllerInit {
 
     @Inject
     MessageRepository msgrepo;
+
+    @Inject
+    UserRepository userrepo;
 
     @RequestMapping("/")
     public String enterIndex() {
@@ -51,8 +60,21 @@ public class ControllerInit {
     }
 
     @RequestMapping("/header")
-    public String header() {
+    public String header(Model m) {
+        m.addAttribute("pageName", "Writing Head");
+        m.addAttribute("lsHeader", headerrepo.findAll());
+        m.addAttribute("vide", "");
+        m.addAttribute("lsUsername", userrepo.findAllByOrderById());
+        if (headerrepo.count() == 0) {
+            m.addAttribute("vide", "No file");
+        }
         return "header";
+    }
+
+    @RequestMapping(value = "/getusername")
+    public User getCompanyRest(@RequestParam long ind) {
+        User lsUser = userrepo.findUserById(ind);
+        return lsUser;
     }
 
     @RequestMapping("/reading")
@@ -63,6 +85,7 @@ public class ControllerInit {
         if (headerrepo.count() == 0) {
             m.addAttribute("vide", "No file");
         }
+        m.addAttribute("lsUsername", userrepo.findAllByOrderById());
         return "reading";
     }
 

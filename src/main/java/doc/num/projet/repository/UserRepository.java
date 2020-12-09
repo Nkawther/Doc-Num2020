@@ -8,12 +8,13 @@ import org.springframework.stereotype.Repository;
 
 import doc.num.projet.model.User;
 
-
-
 @Repository
 @Primary
-public interface UserRepository extends CrudRepository<User,Long>{
-    
+public interface UserRepository extends CrudRepository<User, Long> {
+
     public List<User> findAllByOrderById();
+
     public User findHeaderById(Long id);
+
+    public User findUserById(Long ind);
 }
