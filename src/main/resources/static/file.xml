@@ -3,8 +3,8 @@
 <file>
     <header idF="1">
         <nbMsg>4</nbMsg>
-        <transmitter idUser="Kawther"></transmitter>
-        <receiver idUser="Namane"></receiver>
+        <transmitter idUser="1">Kawther</transmitter>
+        <receiver idUser="2">Namane</receiver>
         <authRef>12-12-2020</authRef>
         <authDate>12-12-2020</authDate>
     </header>

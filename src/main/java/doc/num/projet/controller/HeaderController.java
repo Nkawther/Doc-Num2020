@@ -28,6 +28,10 @@ public class HeaderController {
     @RequestMapping(value = "/respondFile")
     public String respondFile(Model m, @RequestParam String ind) {
         if (headerrepo.count() == 0) {
+            if (ind.equals("0")) {
+                UUID refAuth = UUID.randomUUID();
+                m.addAttribute("authoRef", refAuth);
+            }
             m.addAttribute("Error", "Create file before");
             m.addAttribute("vide", "No file");
         } else {

@@ -65,7 +65,7 @@
           <option value="authrequest">AuthRequest</option></select
         ><br />
         <div id="enplus"></div>
-        <input type="submit" value="Add message" onclick="ajouterMessage();" />
+        <input type="submit" value="Add message" />
         <hr />
         <!-- List of message -->
         <h3>List Message</h3>
@@ -92,9 +92,29 @@
         }
 
         function ajouterCat() {
-          document.getElementById("enplus").innerHTML =
-            '<label ><strong>Objet Nom Init</strong></label><input type="text" name="objectnameinit" required><br> <label ><strong>Object Nom Details</strong></label> <input type="text" name="objectdetailsinit" required><br> <label><strong>Date Catalogue</strong></label><input type="Date" name="catDate" required> <br><label><strong>Id Catalogue Request</strong></label><input type="Text" name="idcat" required> <br>';
+          document.getElementById(
+            "enplus"
+          ).innerHTML = `<label ><strong>Objet Nom Init</strong></label>
+            <input type="text" name="objectnameinit" required><br> 
+            <label ><strong>Object Nom Details</strong></label>
+             <input type="text" name="objectdetailsinit" required><br> 
+             <div id="ajoutObjet"></div>
+             <label><strong>Date Catalogue</strong></label>
+             <input type="Date" name="catDate" required> <br>
+             <label><strong>Id Catalogue Request</strong></label>
+             <input type="Text" name="idcat" required> <br>
+             <button onclick="ajouterObjet()">Ajouter Objet</button>`;
           document.getElementById("formMessage").action = "/add-cat";
+        }
+
+        function ajouterObjet() {
+          document.getElementById(
+            "ajoutObjet"
+          ).innerHTML += `<label ><strong>Objet Nom Init</strong></label>
+            <input type="text" name="objectnameinit" required><br> 
+            <label ><strong>Object Nom Details</strong></label>
+            <input type="text" name="objectdetailsinit" required><br> 
+            <div id="ajoutObjet"></div>`;
         }
 
         function ajouterCatReq() {

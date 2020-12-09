@@ -58,6 +58,7 @@ import doc.num.projet.model.Request;
 import doc.num.projet.model.Accept;
 import doc.num.projet.model.Auth;
 import doc.num.projet.model.AuthRequest;
+import doc.num.projet.model.User;
 
 @Controller
 public class ReadXMLController {
@@ -156,13 +157,26 @@ public class ReadXMLController {
                             }
                             if (e.getNodeName().equals("transmitter")) {
                                 System.err.println("  " + e.getNodeName() + " idUser = " + e.getAttribute("idUser"));
-                                h.setIdTransmitter(Long.valueOf(e.getAttribute("idUser")));
+                                Long iduser = Long.valueOf(e.getAttribute("idUser"));
+                                String username = e.getTextContent();
+                                User u = new User(username);
+                                if (userrepo.findUserByName(u.getName()) != null) {
+                                    userrepo.save(u);
+                                }
+
+                                h.setIdTransmitter(iduser);
+
                                 m.addAttribute("transmetter", e.getAttribute("idUser"));
                             }
                             if (e.getNodeName().equals("receiver")) {
                                 System.err.println("  " + e.getNodeName() + " idUser = " + e.getAttribute("idUser"));
                                 h.setIdReceiver(Long.valueOf(e.getAttribute("idUser")));
                                 m.addAttribute("receiver", e.getAttribute("idUser"));
+                                String username = e.getTextContent();
+                                User u = new User(username);
+                                if (userrepo.findUserByName(u.getName()) != null) {
+                                    userrepo.save(u);
+                                }
                             }
                             if (e.getNodeName().equals("authRef")) {
                                 System.err.println("  " + e.getNodeName() + " = " + e.getTextContent());
