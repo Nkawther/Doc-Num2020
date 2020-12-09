@@ -3474,14 +3474,9 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/java.nio.channels.FileChannel.tryLock(FileChannel.java:1165)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
 	... 28 more
-<<<<<<< HEAD
-2020-12-03 16:18:36 database: flush
-org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
-=======
 2020-11-27 15:54:37 database: flush
 org.h2.message.DbException: Erreur générale: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]"
 General error: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
->>>>>>> 005bfa5d539fe9b80149c49a635c62674f340d22
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
 	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:93)
@@ -3515,20 +3510,12 @@ General error: "java.lang.IllegalStateException: The file is locked: nio:/home/a
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:834)
-<<<<<<< HEAD
-Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
-	... 33 more
-Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]
-=======
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Erreur générale: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]"
 General error: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
 	... 33 more
 Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]
->>>>>>> 005bfa5d539fe9b80149c49a635c62674f340d22
 	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:950)
 	at org.h2.mvstore.FileStore.open(FileStore.java:166)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:381)
@@ -3541,14 +3528,9 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/java.nio.channels.FileChannel.tryLock(FileChannel.java:1165)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
 	... 28 more
-<<<<<<< HEAD
-2020-12-03 18:21:23 database: flush
-org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
-=======
 2020-12-03 16:22:39 database: flush
 org.h2.message.DbException: Erreur générale: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]"
 General error: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
->>>>>>> 005bfa5d539fe9b80149c49a635c62674f340d22
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
 	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:93)
@@ -3582,20 +3564,12 @@ General error: "java.lang.IllegalStateException: The file is locked: nio:/home/a
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:834)
-<<<<<<< HEAD
-Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
-	... 33 more
-Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]
-=======
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Erreur générale: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]"
 General error: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
 	... 33 more
 Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]
->>>>>>> 005bfa5d539fe9b80149c49a635c62674f340d22
 	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:950)
 	at org.h2.mvstore.FileStore.open(FileStore.java:166)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:381)
@@ -3608,14 +3582,9 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/java.nio.channels.FileChannel.tryLock(FileChannel.java:1165)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
 	... 28 more
-<<<<<<< HEAD
-2020-12-03 19:09:19 database: flush
-org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
-=======
 2020-12-03 16:43:08 database: flush
 org.h2.message.DbException: Erreur générale: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]"
 General error: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
->>>>>>> 005bfa5d539fe9b80149c49a635c62674f340d22
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
 	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:93)
@@ -3649,20 +3618,12 @@ General error: "java.lang.IllegalStateException: The file is locked: nio:/home/a
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:834)
-<<<<<<< HEAD
-Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
-	... 33 more
-Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]
-=======
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Erreur générale: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]"
 General error: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
 	... 33 more
 Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]
->>>>>>> 005bfa5d539fe9b80149c49a635c62674f340d22
 	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:950)
 	at org.h2.mvstore.FileStore.open(FileStore.java:166)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:381)
@@ -3675,14 +3636,9 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/java.nio.channels.FileChannel.tryLock(FileChannel.java:1165)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
 	... 28 more
-<<<<<<< HEAD
-2020-12-03 19:12:30 database: flush
-org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
-=======
 2020-12-03 16:46:00 database: flush
 org.h2.message.DbException: Erreur générale: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]"
 General error: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
->>>>>>> 005bfa5d539fe9b80149c49a635c62674f340d22
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
 	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:93)
@@ -3716,20 +3672,12 @@ General error: "java.lang.IllegalStateException: The file is locked: nio:/home/a
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:834)
-<<<<<<< HEAD
-Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
-	... 33 more
-Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]
-=======
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Erreur générale: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]"
 General error: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
 	... 33 more
 Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]
->>>>>>> 005bfa5d539fe9b80149c49a635c62674f340d22
 	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:950)
 	at org.h2.mvstore.FileStore.open(FileStore.java:166)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:381)
@@ -3742,14 +3690,9 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/java.nio.channels.FileChannel.tryLock(FileChannel.java:1165)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
 	... 28 more
-<<<<<<< HEAD
-2020-12-03 19:14:36 database: flush
-org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
-=======
 2020-12-03 16:47:41 database: flush
 org.h2.message.DbException: Erreur générale: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]"
 General error: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
->>>>>>> 005bfa5d539fe9b80149c49a635c62674f340d22
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
 	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:93)
@@ -3783,20 +3726,12 @@ General error: "java.lang.IllegalStateException: The file is locked: nio:/home/a
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:834)
-<<<<<<< HEAD
-Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
-	... 33 more
-Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]
-=======
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Erreur générale: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]"
 General error: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
 	... 33 more
 Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]
->>>>>>> 005bfa5d539fe9b80149c49a635c62674f340d22
 	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:950)
 	at org.h2.mvstore.FileStore.open(FileStore.java:166)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:381)
@@ -3809,14 +3744,9 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/java.nio.channels.FileChannel.tryLock(FileChannel.java:1165)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
 	... 28 more
-<<<<<<< HEAD
-2020-12-03 19:17:54 database: flush
-org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
-=======
 2020-12-03 16:49:59 database: flush
 org.h2.message.DbException: Erreur générale: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]"
 General error: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
->>>>>>> 005bfa5d539fe9b80149c49a635c62674f340d22
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
 	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:93)
@@ -3850,20 +3780,12 @@ General error: "java.lang.IllegalStateException: The file is locked: nio:/home/a
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:834)
-<<<<<<< HEAD
-Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
-	... 33 more
-Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]
-=======
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Erreur générale: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]"
 General error: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
 	... 33 more
 Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]
->>>>>>> 005bfa5d539fe9b80149c49a635c62674f340d22
 	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:950)
 	at org.h2.mvstore.FileStore.open(FileStore.java:166)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:381)
@@ -3876,14 +3798,9 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/java.nio.channels.FileChannel.tryLock(FileChannel.java:1165)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
 	... 28 more
-<<<<<<< HEAD
-2020-12-03 19:19:31 database: flush
-org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
-=======
 2020-12-03 16:53:37 database: flush
 org.h2.message.DbException: Erreur générale: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]"
 General error: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
->>>>>>> 005bfa5d539fe9b80149c49a635c62674f340d22
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
 	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:93)
@@ -3917,20 +3834,12 @@ General error: "java.lang.IllegalStateException: The file is locked: nio:/home/a
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:834)
-<<<<<<< HEAD
-Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
-	... 33 more
-Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]
-=======
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Erreur générale: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]"
 General error: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
 	... 33 more
 Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]
->>>>>>> 005bfa5d539fe9b80149c49a635c62674f340d22
 	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:950)
 	at org.h2.mvstore.FileStore.open(FileStore.java:166)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:381)
@@ -3943,14 +3852,9 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/java.nio.channels.FileChannel.tryLock(FileChannel.java:1165)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
 	... 28 more
-<<<<<<< HEAD
-2020-12-03 19:20:34 database: flush
-org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
-=======
 2020-12-03 16:55:44 database: flush
 org.h2.message.DbException: Erreur générale: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]"
 General error: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
->>>>>>> 005bfa5d539fe9b80149c49a635c62674f340d22
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
 	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:93)
@@ -3984,20 +3888,12 @@ General error: "java.lang.IllegalStateException: The file is locked: nio:/home/a
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:834)
-<<<<<<< HEAD
-Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
-	... 33 more
-Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]
-=======
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Erreur générale: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]"
 General error: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
 	... 33 more
 Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]
->>>>>>> 005bfa5d539fe9b80149c49a635c62674f340d22
 	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:950)
 	at org.h2.mvstore.FileStore.open(FileStore.java:166)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:381)
@@ -4010,14 +3906,9 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/java.nio.channels.FileChannel.tryLock(FileChannel.java:1165)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
 	... 28 more
-<<<<<<< HEAD
-2020-12-03 20:16:29 database: flush
-org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
-=======
 2020-12-03 17:01:26 database: flush
 org.h2.message.DbException: Erreur générale: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]"
 General error: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
->>>>>>> 005bfa5d539fe9b80149c49a635c62674f340d22
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
 	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:93)
@@ -4051,20 +3942,12 @@ General error: "java.lang.IllegalStateException: The file is locked: nio:/home/a
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:834)
-<<<<<<< HEAD
-Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
-	... 33 more
-Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]
-=======
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Erreur générale: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]"
 General error: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
 	... 33 more
 Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]
->>>>>>> 005bfa5d539fe9b80149c49a635c62674f340d22
 	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:950)
 	at org.h2.mvstore.FileStore.open(FileStore.java:166)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:381)
@@ -4077,14 +3960,9 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/java.nio.channels.FileChannel.tryLock(FileChannel.java:1165)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
 	... 28 more
-<<<<<<< HEAD
-2020-12-03 20:20:34 database: flush
-org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
-=======
 2020-12-03 17:03:33 database: flush
 org.h2.message.DbException: Erreur générale: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]"
 General error: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
->>>>>>> 005bfa5d539fe9b80149c49a635c62674f340d22
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
 	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:93)
@@ -4118,20 +3996,12 @@ General error: "java.lang.IllegalStateException: The file is locked: nio:/home/a
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:834)
-<<<<<<< HEAD
-Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
-	... 33 more
-Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]
-=======
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Erreur générale: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]"
 General error: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
 	... 33 more
 Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]
->>>>>>> 005bfa5d539fe9b80149c49a635c62674f340d22
 	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:950)
 	at org.h2.mvstore.FileStore.open(FileStore.java:166)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:381)
@@ -4144,14 +4014,9 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/java.nio.channels.FileChannel.tryLock(FileChannel.java:1165)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
 	... 28 more
-<<<<<<< HEAD
-2020-12-03 20:22:44 database: flush
-org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
-=======
 2020-12-03 17:09:53 database: flush
 org.h2.message.DbException: Erreur générale: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]"
 General error: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
->>>>>>> 005bfa5d539fe9b80149c49a635c62674f340d22
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
 	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:93)
@@ -4185,20 +4050,12 @@ General error: "java.lang.IllegalStateException: The file is locked: nio:/home/a
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:834)
-<<<<<<< HEAD
-Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
-	... 33 more
-Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]
-=======
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Erreur générale: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]"
 General error: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
 	... 33 more
 Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]
->>>>>>> 005bfa5d539fe9b80149c49a635c62674f340d22
 	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:950)
 	at org.h2.mvstore.FileStore.open(FileStore.java:166)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:381)
@@ -4211,17 +4068,9 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/java.nio.channels.FileChannel.tryLock(FileChannel.java:1165)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
 	... 28 more
-<<<<<<< HEAD
-2020-12-09 13:27:27 jdbc[13]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "HEADER_LS_MESSAGE[*]"; expected "HELP"; SQL statement:
-HEADER_LS_MESSAGE [42001-200]
-2020-12-09 13:31:58 database: flush
-org.h2.message.DbException: General error: "java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
-=======
 2020-12-03 17:15:46 database: flush
 org.h2.message.DbException: Erreur générale: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]"
 General error: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
->>>>>>> 005bfa5d539fe9b80149c49a635c62674f340d22
 	at org.h2.message.DbException.get(DbException.java:194)
 	at org.h2.message.DbException.convert(DbException.java:347)
 	at org.h2.mvstore.db.MVTableEngine$1.uncaughtException(MVTableEngine.java:93)
@@ -4255,20 +4104,12 @@ General error: "java.lang.IllegalStateException: The file is locked: nio:/home/a
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:834)
-<<<<<<< HEAD
-Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
-	... 33 more
-Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/joris/Desktop/M1/Document_Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]
-=======
 Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Erreur générale: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]"
 General error: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
 	... 33 more
 Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]
->>>>>>> 005bfa5d539fe9b80149c49a635c62674f340d22
 	at org.h2.mvstore.DataUtils.newIllegalStateException(DataUtils.java:950)
 	at org.h2.mvstore.FileStore.open(FileStore.java:166)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:381)
@@ -4281,8 +4122,6 @@ Caused by: java.nio.channels.OverlappingFileLockException
 	at java.base/java.nio.channels.FileChannel.tryLock(FileChannel.java:1165)
 	at org.h2.mvstore.FileStore.open(FileStore.java:163)
 	... 28 more
-<<<<<<< HEAD
-=======
 2020-12-03 17:21:17 database: flush
 org.h2.message.DbException: Erreur générale: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]"
 General error: "java.lang.IllegalStateException: The file is locked: nio:/home/arsene/Document Numérique/Doc-Num2020/bdd.mv.db [1.4.200/7]" [50000-200]
@@ -6505,4 +6344,3 @@ Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/arsene
 	at org.h2.mvstore.FileStore.open(FileStore.java:172)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:381)
 	... 46 more
->>>>>>> 005bfa5d539fe9b80149c49a635c62674f340d22

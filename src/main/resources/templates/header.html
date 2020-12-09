@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/header.css" />
     <link rel="stylesheet" href="/css/entete.css" />
@@ -39,7 +40,7 @@
         <label><strong>Name of Transmitter</strong></label>
         <input type="text" placeholder="Name" name="nametrm" required />
         <label><strong>Authorisation ref</strong></label>
-        <input type="text" placeholder="authorization reference" th:value="${authoRef}" name="authRef" id="authRef" readonly="readonly" />
+        <input type="text" placeholder="authorization reference" th:value="${authoRef}" name="authRef" id="authRef" class="readonly"  required />
         <label><strong>Authorisation date</strong></label>
         <input type="Date" placeholder="Authorisation date" name="authDate" required />
         <input type="submit" id="submit" value="Create file" />
@@ -60,6 +61,11 @@
           document.getElementById(Element.id).append(Element.name);
         }
       });
+
+       $(".readonly").keydown(function (e) {
+          e.preventDefault();
+        });
+     
       /*]]>*/
     </script>
   </body>
