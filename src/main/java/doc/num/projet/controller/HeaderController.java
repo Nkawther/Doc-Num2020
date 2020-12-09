@@ -1,5 +1,7 @@
 package doc.num.projet.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.inject.Inject;
@@ -26,10 +28,10 @@ public class HeaderController {
     UserRepository userrepo;
 
     @RequestMapping(value = "/respondFile")
-    public String respondFile(Model m, @RequestParam String ind) {
-        if (headerrepo.count() == 0) {
-            if (ind.equals("0")) {
+    public String respondFile(Model m, @RequestParam Long id) throws ParseException {
 
+        if (headerrepo.count() == 0) {
+            if (id == 0) {
                 m.addAttribute("authoRef", "");
             }
             m.addAttribute("Error", "Create file before");
@@ -37,10 +39,24 @@ public class HeaderController {
         } else {
             m.addAttribute("Error", "");
             m.addAttribute("vide", "");
-            if (!ind.equals("0")) {
-                m.addAttribute("authoRef", ind);
-            } else {
+            if (id != 0) {
+                Header header = headerrepo.findHeaderById(id);
+                System.err.println(header.getIdReceiver());
+                System.err.println(header.getAuthDate());
+                User userRec = userrepo.findUserById(header.getIdReceiver());
+                User userTra = userrepo.findUserById(header.getIdTransmitter());
+                System.err.println(userRec.getName());
+                System.err.println(userTra.getName());
 
+                String dateS = header.getAuthDate().toString();
+                System.err.println(dateS);
+                String[] dateTAB = dateS.split(" ");
+
+                m.addAttribute("authoRef", header.getAuthRef());
+                m.addAttribute("nameTrans", userRec.getName());
+                m.addAttribute("nameRec", userTra.getName());
+                m.addAttribute("authDate", dateTAB[0]);
+            } else {
                 m.addAttribute("authoRef", "");
             }
         }

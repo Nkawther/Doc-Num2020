@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="/css/header.css" />
     <title>[[ ${pageName}]]</title>
   </head>
-
   <body>
     <header th:replace="/entete :: my_entete"></header>
     <div class="listmsg">
@@ -16,14 +15,13 @@
       <p>[[${vide}]]</p>
       <ul>
         <li data-th-each="num,info : ${lsHeader}">
-          Number of message [[ ${num.nbMsg} ]] Id of Tranmetter [[
-          ${num.idTransmitter} ]] Id of receiver [[ ${num.idReceiver} ]] N of
-          auth Ref [[ ${num.authRef} ]] Date of Auth[[ ${num.authDate} ]]
-          <a data-th-href="@{add-a-message(ind=${num.id})}">Add Message</a>
+          Receiver name : <span th:id="${num.idReceiver}"></span><br>
+          Transmitter name : <span th:id="${num.idTransmitter}"></span><br>
+          number of message : [[ ${num.nbMsg} ]]<br>
+          Reference authorization : [[ ${num.authRef} ]]<br>
+          Date authorization : [[ ${num.authDate} ]]<br>
+          <a data-th-href="@{add-a-message(ind=${num.id})}">Select</a>
         </li>
-        <button onclick="window.location.href='header'">
-          Write a new file
-        </button>
       </ul>
     </div>
     <div class="containermsg">
@@ -39,10 +37,11 @@
           required
         /><br />
         <label><strong>Date</strong></label>
-        <input type="Date" name="date" required />
-
+        <input type="Date" name="date" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" readonly="readonly"/>
+        
+        <label id="erreurDate"><strong>Date non valide</strong></label>
         <label><strong>Date Validity</strong></label>
-        <input type="Date" name="dateV" required />
+        <input type="Date" name="dateV" onchange="isFutureDate(this)" required />
 
         <!-- Type of message -->
         <label for="type"><strong>Type</strong></label>
@@ -115,7 +114,7 @@
              <input type="text" name="objectdetailsinit" required><br> 
              <div id="ajoutObjet"></div>
              <label><strong>Date Catalogue</strong></label>
-             <input type="Date" name="catDate" required> <br>
+             <input type="Date" name="catDate" onchange="isFutureDate(this)" required> <br>
              <label><strong>Id Catalogue Request</strong></label>
              <input type="Text" name="idcat" required> <br>
              <button onclick="ajouterObjet()">Ajouter Objet</button>`;
@@ -145,7 +144,7 @@
           console.log("auth");
           document.getElementById("enplus").innerHTML = `
             <label ><strong>Auth Date</strong></label>
-            <input type="date" name="dateRef" required><br> 
+            <input type="date" name="dateRef" onchange="isFutureDate(this)" required><br> 
             
             `;
           document.getElementById("formMessage").action = "/auth";
@@ -175,6 +174,23 @@
           document.getElementById("enplus").innerHTML =
             '<label ><strong>Object Name</strong></label> <input type="text" name="objectname" required><br> <label ><strong>Object Details</strong></label> <input type="text" name="objectdetail" required><br> <label ><strong>ID of PrevMsg</strong></label> <input type="text" name="id" required><br>';
           document.getElementById("formMessage").action = "/donation";
+        }
+
+        function isFutureDate(balise) {
+          var idate = balise.value;
+          var choose = new Date(idate).getTime();
+          console.log(idate)
+          var today = new Date().getTime();
+          console.log(today)
+          console.log(choose)
+          if (today > choose) {
+            console.log("block")
+            document.getElementById("erreurDate").style.display = "block";
+            balise.value = "";
+          } else {
+            console.log("none")
+            document.getElementById("erreurDate").style.display = "none";
+          }
         }
       </script>
     </div>
