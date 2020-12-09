@@ -16,11 +16,11 @@
       <p>[[${vide}]]</p>
       <ul>
         <li data-th-each="num,info : ${lsHeader}"> 
-          Number of message [[ ${num.nbMsg} ]]
-          Id of Tranmetter [[ ${num.idTransmitter} ]]
-          Id of receiver [[ ${num.idReceiver} ]]
-          N of auth Ref [[ ${num.authRef} ]]
-          Date of Auth[[ ${num.authDate} ]] 
+          Receiver name : <span th:id="${num.idReceiver}"></span><br>
+          Transmitter name : <span th:id="${num.idTransmitter}"></span><br>
+          number of message : [[ ${num.nbMsg} ]]<br>
+          Reference authorization : [[ ${num.authRef} ]]<br>
+          Date authorization : [[ ${num.authDate} ]]<br>
           <a data-th-href="@{add-a-message(ind=${num.id})}">Add Message</a>
         </li>
     </ul>
@@ -73,6 +73,24 @@
         </ol>
         </form>
         <!-- JavaScipt -->
+        <script th:inline="javascript">
+          /*<![CDATA[*/
+          var lsUsername = /*[[${lsUsername}]]*/ 'default';
+          console.log(lsUsername);
+
+          lsfile = document.getElementById("lsfile").getElementsByTagName("li");
+          console.log(lsfile);
+          lsUsername.forEach(Element => {
+            console.log(Element.id);
+            //console.log(document.getElementById(Element.id).id);
+            if (document.getElementById(Element.id) != null) {
+              console.log("dans if");
+              document.getElementById(Element.id).append(Element.name);
+            }
+          });
+
+          /*]]>*/
+        </script>
         <script>
           function ajouterbarter() {
             document.getElementById("enplus").innerHTML =
