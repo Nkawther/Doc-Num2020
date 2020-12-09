@@ -87,6 +87,36 @@ public class InitController {
         }
         m.addAttribute("lsUsername", userrepo.findAllByOrderById());
         return "reading";
+
+    }
+
+    @RequestMapping("readinggg")
+    public String creadinggg(Model m, @RequestParam long ind) {
+        m.addAttribute("pageName", "Reading XML");
+        m.addAttribute("lsHeader", headerrepo.findAll());
+        m.addAttribute("vide", "");
+        if (headerrepo.count() == 0) {
+            m.addAttribute("vide", "No file");
+        }
+        m.addAttribute("lsUsername", userrepo.findAllByOrderById());
+        m.addAttribute("generer", "kdcbsdj");
+        m.addAttribute("id", ind);
+        return "reading";
+
+    }
+
+    @RequestMapping("/readingg")
+    public String creadingg(Model m) {
+        m.addAttribute("pageName", "Reading XML");
+        m.addAttribute("lsHeader", headerrepo.findAll());
+        m.addAttribute("vide", "");
+        if (headerrepo.count() == 0) {
+            m.addAttribute("vide", "No file");
+        }
+        m.addAttribute("lsUsername", userrepo.findAllByOrderById());
+        m.addAttribute("erreur", "File does not exist");
+        return "reading";
+
     }
 
     @RequestMapping("add-a-message")
