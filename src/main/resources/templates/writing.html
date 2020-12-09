@@ -47,9 +47,10 @@
         <!-- Type of message -->
         <label for="type"><strong>Type</strong></label>
         <select
+          th:if='${authRef != ""}'
           name="type"
           id="type"
-          onchange="if(this.selectedIndex==1) ajouterbarter(); else if(this.selectedIndex==2) ajouterrequest();else if(this.selectedIndex==3) donation();else if(this.selectedIndex==4) acceptresponse();else if(this.selectedIndex==5) denyresponse();else if(this.selectedIndex==6) ajouterCat();else if(this.selectedIndex==7) ajouterCatReq();else if(this.selectedIndex==8) ajouterNoCat();else if(this.selectedIndex==9) errorMsg(); else if(this.selectedIndex==10) authresponse();else if(this.selectedIndex==11) authrequest()"
+          onchange="if(this.selectedIndex==0) vider();else if(this.selectedIndex==1) ajouterbarter(); else if(this.selectedIndex==2) ajouterrequest();else if(this.selectedIndex==3) donation();else if(this.selectedIndex==4) acceptresponse();else if(this.selectedIndex==5) denyresponse();else if(this.selectedIndex==6) ajouterCat();else if(this.selectedIndex==7) ajouterCatReq();else if(this.selectedIndex==8) ajouterNoCat();else if(this.selectedIndex==9) errorMsg(); else if(this.selectedIndex==10) authresponse();else if(this.selectedIndex==11) authrequest()"
         >
           <option value="default" selected>Select-type</option>
           <option value="barter">Barter</option>
@@ -61,9 +62,18 @@
           <option value="catrequest">Catalogue Request</option>
           <option value="nocat">No Catalogue</option>
           <option value="errormsg">Error Message</option>
+        </select>
+        <select
+          th:unless='${authRef != ""}'
+          name="type"
+          id="type"
+          onchange="if(this.selectedIndex==0) vider();else if(this.selectedIndex==1) authresponse();else if(this.selectedIndex==2) authrequest();"
+        >
+          <option value="default" selected>Select-type</option>
           <option value="auth">Auth</option>
-          <option value="authrequest">AuthRequest</option></select
-        ><br />
+          <option value="authrequest">AuthRequest</option>
+        </select>
+        <br />
         <div id="enplus"></div>
         <input type="submit" value="Add message" />
         <hr />
@@ -89,6 +99,11 @@
           document.getElementById("enplus").innerHTML =
             '<label ><strong>Object receiver Name</strong></label> <input type="text" name="objectnamercv" required><br> <label ><strong>Object Details</strong></label> <input type="text" name="objectdetailsrcv" required><br> <label ><strong>ID of PrevMsg</strong></label> <input type="text" name="id" required><br>';
           document.getElementById("formMessage").action = "/add-request";
+        }
+
+        function vider() {
+          document.getElementById("enplus").innerHTML = " ";
+          document.getElementById("formMessage").action = "";
         }
 
         function ajouterCat() {
@@ -128,9 +143,18 @@
         }
         function authresponse() {
           console.log("auth");
+          document.getElementById("enplus").innerHTML = `
+            <label ><strong>Auth Date</strong></label>
+            <input type="date" name="dateRef" required><br> 
+            
+            `;
+          document.getElementById("formMessage").action = "/auth";
+        }
+
+        function authrequest() {
           document.getElementById("enplus").innerHTML =
             "<label> Envoi une demande de message</label>";
-          document.getElementById("formMessage").action = "/auth";
+          document.getElementById("formMessage").action = "/authrequest";
         }
         function denyresponse() {
           document.getElementById("enplus").innerHTML =
@@ -151,11 +175,6 @@
           document.getElementById("enplus").innerHTML =
             '<label ><strong>Object Name</strong></label> <input type="text" name="objectname" required><br> <label ><strong>Object Details</strong></label> <input type="text" name="objectdetail" required><br> <label ><strong>ID of PrevMsg</strong></label> <input type="text" name="id" required><br>';
           document.getElementById("formMessage").action = "/donation";
-        }
-        function authrequest() {
-          document.getElementById("enplus").innerHTML =
-            "<label> Envoi une demande de message</label>";
-          document.getElementById("formMessage").action = "/authrequest";
         }
       </script>
     </div>

@@ -11,15 +11,17 @@ import lombok.Data;
 public class Auth extends Message {
 
     Date authDate;
+    String authRef;
 
     public Auth() {
         super();
         this.roles.add(AttributRole.AUTH);
     }
 
-    public Auth(Date date, Date validity, Long idHeader) {
+    public Auth(String authRef, Date date, Date dateRef, Date validity, Long idHeader) {
         super(date, validity, idHeader);
-        this.authDate = date;
+        this.authDate = dateRef;
+        this.authRef = authRef;
         this.roles.add(AttributRole.AUTH);
     }
 }

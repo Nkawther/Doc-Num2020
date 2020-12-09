@@ -1,6 +1,7 @@
 package doc.num.projet.controller;
 
 import java.util.Date;
+import java.util.UUID;
 
 import javax.inject.Inject;
 
@@ -25,13 +26,17 @@ public class AuthController {
 
     @RequestMapping(value = "/auth", method = RequestMethod.POST)
     public String addrequest(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
-            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateV, @RequestParam Long idHeader) {
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateV, @RequestParam Long idHeader,
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateRef) {
         System.err.println("auth controller");
-        Auth auth = new Auth(date, dateV, idHeader);
+        UUID refAuth = UUID.randomUUID();
+
+        Auth auth = new Auth(refAuth.toString(), dateRef, date, dateV, idHeader);
         authrepo.save(auth);
         if (headerrepo.findAllByOrderById().contains(headerrepo.findHeaderById(idHeader))) {
             Header h = headerrepo.findHeaderById(idHeader);
             h.getLsMessage().add(auth);
+            h.setAuthRef(refAuth.toString());
             headerrepo.save(h);
         }
         return "redirect:writing";

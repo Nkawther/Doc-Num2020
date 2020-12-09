@@ -27,20 +27,20 @@
           <a data-th-href="@{respondFile(ind=${num.authRef})}">Respond</a>
         </li>
       </ul>
-      <a data-th-href="@{respondFile(ind=0)}">Create new authorization</a>
+      <a data-th-href="@{respondFile(ind=0)}">Empty authorization</a>
     </div>
     <div class="containermsg">
       <form method="POST" action="/addHeader">
       <h2>Header</h2>
       <hr />
         <label><strong>Number of messages</strong></label>
-        <input type="number" name="nbMsg" value="1" min="1" required /></br>
+        <input type="number" name="nbMsg" id="nbMsg" value="1" min="1" required onchange="verifAuth()" /></br>
         <label><strong>Name of receiver</strong></label>
         <input type="text" placeholder="Name" name="namersv" required />
         <label><strong>Name of Transmitter</strong></label>
         <input type="text" placeholder="Name" name="nametrm" required />
         <label><strong>Authorisation ref</strong></label>
-        <input type="text" placeholder="authorization reference" th:value="${authoRef}" name="authRef" id="authRef" class="readonly"  required />
+        <input type="text" placeholder="authorization reference" th:value="${authoRef}" name="authRef" id="authRef" class="readonly"/>
         <label><strong>Authorisation date</strong></label>
         <input type="Date" placeholder="Authorisation date" name="authDate" required />
         <input type="submit" id="submit" value="Create file" />
@@ -62,9 +62,22 @@
         }
       });
 
-       $(".readonly").keydown(function (e) {
+
+
+      $(".readonly").keydown(function (e) {
           e.preventDefault();
         });
+
+      function verifAuth(){
+          var auth= document.getElementById("authRef").value;
+          console.log(auth);
+          if(auth==""){
+              document.getElementById("nbMsg").value=1;
+              document.getElementById("nbMsg").class="readonly";
+          }else{
+            document.getElementById("nbMsg").class = "";
+          }
+        }
      
       /*]]>*/
     </script>

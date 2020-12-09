@@ -22,7 +22,7 @@ import doc.num.projet.repository.MessageRepository;
 import doc.num.projet.repository.UserRepository;
 
 @Controller
-public class ControllerInit {
+public class InitController {
     @Inject
     HeaderRepository headerrepo;
 
@@ -98,7 +98,6 @@ public class ControllerInit {
             m.addAttribute("Error", "Create file before");
             m.addAttribute("lsHeader", headerrepo.findAll());
             m.addAttribute("vide", "No file");
-
             return "writing";
         }
         if (h.getLsMessage().size() == h.getNbMsg()) {
@@ -107,7 +106,9 @@ public class ControllerInit {
         } else {
             m.addAttribute("Error", " ");
             m.addAttribute("idheader", ind);
+
         }
+        m.addAttribute("authRef", h.getAuthRef());
         m.addAttribute("lsHeader", headerrepo.findAll());
         m.addAttribute("vide", "");
 

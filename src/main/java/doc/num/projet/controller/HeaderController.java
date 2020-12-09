@@ -29,8 +29,8 @@ public class HeaderController {
     public String respondFile(Model m, @RequestParam String ind) {
         if (headerrepo.count() == 0) {
             if (ind.equals("0")) {
-                UUID refAuth = UUID.randomUUID();
-                m.addAttribute("authoRef", refAuth);
+
+                m.addAttribute("authoRef", "");
             }
             m.addAttribute("Error", "Create file before");
             m.addAttribute("vide", "No file");
@@ -40,8 +40,8 @@ public class HeaderController {
             if (!ind.equals("0")) {
                 m.addAttribute("authoRef", ind);
             } else {
-                UUID refAuth = UUID.randomUUID();
-                m.addAttribute("authoRef", refAuth);
+
+                m.addAttribute("authoRef", "");
             }
         }
 
