@@ -3,26 +3,12 @@
 <file>
     <header idF="3">
         <nbMsg>1</nbMsg>
-        <transmitter idUser="1">qsdqsd</transmitter>
-        <receiver idUser="2">sqdsqd</receiver>
-        <authRef>77687731-4158-4390-b197-b700f452b9f4</authRef>
+        <transmitter idUser="1">jhsdvl</transmitter>
+        <receiver idUser="2">lksdhlv</receiver>
+        <authRef/>
         <authDate>2020-12-31 00:00:00.0</authDate>
     </header>
     <body>
-        <listMsg>
-            <message idMsg="4">
-                <dateMsg>2020-12-15 00:00:00.0</dateMsg>
-                <validityDuration>2020-12-15 00:00:00.0</validityDuration>
-                <cat>
-                    <idCatRequestMsg>1</idCatRequestMsg>
-                    <catDate>2020-12-24 00:00:00.0</catDate>
-                    <object>
-                        <objectName>Test1,Test2,Test3,Test4</objectName>
-                        <objectDetails>Test1,Test2,Test3,Test4</objectDetails>
-                        <objectImage>Any</objectImage>
-                    </object>
-                </cat>
-            </message>
-        </listMsg>
+        <listMsg/>
     </body>
 </file>
