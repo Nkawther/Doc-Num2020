@@ -1,28 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/entete.css" />
-    <link rel="stylesheet" href="/css/header.css" />
-    <title>[[ ${pageName}]]</title>
-  </head>
 
-  <body>
-    <header th:replace="/entete :: my_entete"></header>
-    <div class="listmsg">
-      <h2>List XML file</h2>
-      <hr>
-      <ul id="lsfile">
-        <li data-th-each="num,info : ${lsHeader}"> 
-          Receiver name : <span class="affname" th:id="${num.idReceiver}"></span><br>
-          Transmitter name : <span class="affname" th:id="${num.idTransmitter}"></span><br>
-          number of message : [[ ${num.nbMsg} ]]<br>
-          Reference authorization : [[ ${num.authRef} ]]<br>
-          Date authorization : [[ ${num.authDate} ]]<br>
-          <a data-th-href="@{xml-file(ind=${num.id})}">Generate an xml file</a>
-        </li>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/entete.css" />
+  <link rel="stylesheet" href="/css/header.css" />
+  <title>[[ ${pageName}]]</title>
+</head>
+
+<body>
+  <header th:replace="/entete :: my_entete"></header>
+  <div class="listmsg">
+    <h2>List XML file</h2>
+    <hr>
+    <ul id="lsfile">
+      <li data-th-each="num,info : ${lsHeader}">
+        Receiver name : <span class="affname" th:id="${num.idReceiver}"></span><br>
+        Transmitter name : <span class="affname" th:id="${num.idTransmitter}"></span><br>
+        number of message : [[ ${num.nbMsg} ]]<br>
+        Reference authorization : [[ ${num.authRef} ]]<br>
+        Date authorization : [[ ${num.authDate} ]]<br>
+        <a data-th-href="@{readinggg(ind=${num.id})}">Generate an xml file</a>
+        <div th:if='${generer!=""}'>
+          <div th:if='${id == num.id}'>
+            <form method="POST" action="/xml-file">
+              <label><strong>Enter a name for the file</strong></label>
+              <input type="Text" name="filee" />
+              <input type="text" name="idLong" th:value="${num.id}" readonly="readonly" />
+              <input type="submit" value="Generate" />
+            </form>
+          </div>
+        </div>
+      </li>
     </ul>
+  </div>
+  <div class="containermsg">
+    <form method="POST" action="/Parse">
+      <label><strong>Parser a file</strong></label>
+      <input type="Text" name="file" />
+      <input type="submit" value="Parser" />
+      <p>Exemple : src/main/resources/static/file.xml</p>
+      <p style="color: red;">[[${erreur}]]</p>
+    </form>
   </div>
   <script th:inline="javascript">
     /*<![CDATA[*/
@@ -39,6 +59,6 @@
     }
     /*]]>*/
   </script>
-  </body>
+</body>
 
 </html>

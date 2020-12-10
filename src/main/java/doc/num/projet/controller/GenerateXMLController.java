@@ -20,6 +20,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import doc.num.projet.model.Accept;
@@ -43,9 +44,10 @@ public class GenerateXMLController {
     @Inject
     UserRepository userrepo;
 
-    @RequestMapping("xml-file")
-    public String addmessage(Model m, @RequestParam long ind) {
-        Header h = headerrepo.findHeaderById(ind);
+    @RequestMapping(value = "xml-file", method = RequestMethod.POST)
+    public String addmessage(Model m, @RequestParam String idLong, @RequestParam String filee) {
+        long monLong = Long.parseLong(idLong);
+        Header h = headerrepo.findHeaderById(monLong);
 
         try {
 
@@ -317,7 +319,7 @@ public class GenerateXMLController {
 
             transformer.setOutputProperty("{http://xml.apache.org/xslt%7Dindent-amount", "4");
             DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File("src/main/resources/static/generer.xml"));
+            StreamResult result = new StreamResult(new File(filee));
 
             // Output to console for testing
             // StreamResult result = new StreamResult(System.out);

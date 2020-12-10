@@ -97,10 +97,10 @@ public class ReadXMLController {
 
     public Document doc;
 
-    @RequestMapping("/Parse")
-    public String readXml() {
+    @RequestMapping(value = "/Parse", method = RequestMethod.POST)
+    public String readXml(@RequestParam String file) {
         try {
-            File document_xml = new File("src/main/resources/static/generer.xml");
+            File document_xml = new File(file);
             // Instanciation de la fabrique de parseurs
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 
@@ -114,12 +114,16 @@ public class ReadXMLController {
         } catch (SAXException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            return "redirect:readingg";
+
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            return "redirect:readingg";
         } catch (ParserConfigurationException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            return "redirect:readingg";
         }
         return "redirect:stockage";
     }
