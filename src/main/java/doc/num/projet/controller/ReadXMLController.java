@@ -169,6 +169,7 @@ public class ReadXMLController {
                                 }
 
                                 h.setIdTransmitter(iduser);
+                                h.setNomTransmitter(username);
 
                                 m.addAttribute("transmetter", e.getAttribute("idUser"));
                             }
@@ -181,6 +182,7 @@ public class ReadXMLController {
                                 if (userrepo.findUserByName(u.getName()) != null) {
                                     userrepo.save(u);
                                 }
+                                h.setNomReceiver(username);
                             }
                             if (e.getNodeName().equals("authRef")) {
                                 System.err.println("  " + e.getNodeName() + " = " + e.getTextContent());

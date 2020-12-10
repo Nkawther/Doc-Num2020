@@ -16,14 +16,14 @@
                 <barter>
                     <rcvObjectList>
                         <object idObject="2">
-                            <objectName>FisrtObject</objectName>
+                            <objectName>kjsgdvkj</objectName>
                             <objectDetails>SecondObject</objectDetails>
                             <objectImage>Any</objectImage>
-                        </object> 
+                        </object>
                     </rcvObjectList>
                     <sndObjectList>
                         <object idObject="3">
-                            <objectName>FisrtObject</objectName>
+                            <objectName>jdsvjb</objectName>
                             <objectDetails>SecondObject</objectDetails>
                             <objectImage>Any</objectImage>
                         </object>
@@ -40,7 +40,7 @@
                             <objectName>FisrtObject</objectName>
                             <objectDetails>SecondObject</objectDetails>
                             <objectImage>Any</objectImage>
-                        </object> 
+                        </object>
                     </rcvObjectList>
                     <idPrevMsg>1</idPrevMsg>
                 </request>
@@ -71,7 +71,7 @@
                         <objectImage>Any</objectImage>
                     </object>
                     <object idObject="5">
-                        <objectName>FisrtObject</objectName>
+                        <objectName>Fisrtkjdbcqkbvk</objectName>
                         <objectDetails>SecondObject</objectDetails>
                         <objectImage>Any</objectImage>
                     </object>

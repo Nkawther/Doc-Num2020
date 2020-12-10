@@ -69,13 +69,13 @@ public class GenerateXMLController {
             Element transmitter = doc.createElement("transmitter");
             Attr idUsertrans = doc.createAttribute("idUser");
             idUsertrans.setValue(String.valueOf(h.getIdTransmitter()));
-            transmitter.appendChild(doc.createTextNode(userrepo.findHeaderById(h.getIdTransmitter()).getName()));
+            transmitter.appendChild(doc.createTextNode(h.getNomTransmitter()));
             transmitter.setAttributeNode(idUsertrans);
 
             Element receiver = doc.createElement("receiver");
             Attr idUserrec = doc.createAttribute("idUser");
             idUserrec.setValue(String.valueOf(h.getIdReceiver()));
-            receiver.appendChild(doc.createTextNode(userrepo.findHeaderById(h.getIdReceiver()).getName()));
+            receiver.appendChild(doc.createTextNode(h.getNomReceiver()));
             receiver.setAttributeNode(idUserrec);
 
             Element authRef = doc.createElement("authRef");

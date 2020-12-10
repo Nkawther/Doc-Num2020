@@ -1,43 +1,40 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/entete.css" />
-    <link rel="stylesheet" href="/css/header.css" />
-    <title>[[ ${pageName}]]</title>
-  </head>
-  <body>
-    <header th:replace="/entete :: my_entete"></header>
-    <div class="listmsg">
-      <h2>Liste of file</h2>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/entete.css" />
+  <link rel="stylesheet" href="/css/header.css" />
+  <title>[[ ${pageName}]]</title>
+</head>
+
+<body>
+  <header th:replace="/entete :: my_entete"></header>
+  <div class="listmsg">
+    <h2>Liste of file</h2>
+    <hr />
+    <p>[[${vide}]]</p>
+    <ul>
+      <li data-th-each="num,info : ${lsHeader}">
+        Receiver name : [[ ${num.nomReceiver} ]]<br>
+        Transmitter name : [[ ${num.nomTransmitter} ]]<br>
+        number of message : [[ ${num.nbMsg} ]]<br>
+        Reference authorization : [[ ${num.authRef} ]]<br>
+        Date authorization : [[ ${num.authDate} ]]<br>
+        <a data-th-href="@{add-a-message(ind=${num.id})}">Select</a>
+      </li>
+    </ul>
+  </div>
+  <div class="containermsg">
+    <form method="POST" action="" id="formMessage">
+      <p style="color: red">[[ ${Error} ]]</p>
+      <h2>Write a new message</h2>
       <hr />
-      <p>[[${vide}]]</p>
-      <ul>
-        <li data-th-each="num,info : ${lsHeader}">
-          Receiver name : <span th:id="${num.idReceiver}"></span><br>
-          Transmitter name : <span th:id="${num.idTransmitter}"></span><br>
-          number of message : [[ ${num.nbMsg} ]]<br>
-          Reference authorization : [[ ${num.authRef} ]]<br>
-          Date authorization : [[ ${num.authDate} ]]<br>
-          <a data-th-href="@{add-a-message(ind=${num.id})}">Select</a>
-        </li>
-      </ul>
-    </div>
-    <div class="containermsg">
-      <form method="POST" action="" id="formMessage">
-        <p style="color: red">[[ ${Error} ]]</p>
-        <h2>Write a new message</h2>
-        <hr />
-        <label><strong>Id Header</strong></label>
-        <input
-          type="number"
-          th:value="${idheader}"
-          name="idHeader"
-          required
-        /><br />
-        <label><strong>Date</strong></label>
-        <input type="Date" name="date" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" readonly="readonly"/>
+      <label><strong>Id Header</strong></label>
+      <input type="number" th:value="${idheader}" name="idHeader" required /><br />
+      <label><strong>Date</strong></label>
+      <input type="Date" name="date" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" readonly="readonly"/>
         
         <label id="erreurDate"><strong>Date non valide</strong></label>
         <label><strong>Date Validity</strong></label>

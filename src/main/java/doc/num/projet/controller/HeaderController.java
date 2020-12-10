@@ -75,7 +75,7 @@ public class HeaderController {
         User r = new User(namersv);
         userrepo.save(t);
         userrepo.save(r);
-        Header h = new Header(nbMsg, t.getId(), r.getId(), authRef, authDate);
+        Header h = new Header(nbMsg, t.getName(), t.getId(), r.getName(), r.getId(), authRef, authDate);
         headerrepo.save(h);
         return "redirect:writing";
     }

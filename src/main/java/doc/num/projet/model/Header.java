@@ -21,6 +21,8 @@ public class Header {
     int nbMsg;
     Long idTransmitter;
     Long idReceiver;
+    String nomTransmitter;
+    String nomReceiver;
     String authRef;
     Date authDate;
     @OneToMany
@@ -30,10 +32,13 @@ public class Header {
 
     }
 
-    public Header(int nbMsg, Long idTransmitter, Long idReceiver, String authRef, Date authDate) {
+    public Header(int nbMsg, String transmitter, Long idTransmitter, String receiver, Long idReceiver, String authRef,
+            Date authDate) {
         this.nbMsg = nbMsg;
         this.idTransmitter = idTransmitter;
         this.idReceiver = idReceiver;
+        this.nomTransmitter = transmitter;
+        this.nomReceiver = receiver;
         this.authRef = authRef;
         this.authDate = authDate;
     }

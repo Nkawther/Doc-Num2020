@@ -16,8 +16,8 @@
     <hr>
     <ul id="lsfile">
       <li data-th-each="num,info : ${lsHeader}">
-        Receiver name : <span th:id="${num.idReceiver}"></span><br>
-        Transmitter name : <span th:id="${num.idTransmitter}"></span><br>
+        Receiver name : [[ ${num.nomReceiver} ]]<br>
+        Transmitter name : [[ ${num.nomTransmitter} ]]<br>
         number of message : [[ ${num.nbMsg} ]]<br>
         Reference authorization : [[ ${num.authRef} ]]<br>
         Date authorization : [[ ${num.authDate} ]]<br>
