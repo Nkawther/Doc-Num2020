@@ -16,17 +16,18 @@
     <hr>
     <ul id="lsfile">
       <li data-th-each="num,info : ${lsHeader}">
-        Receiver name : [[ ${num.nomReceiver} ]]<br>
-        Transmitter name : [[ ${num.nomTransmitter} ]]<br>
+        Receiver name : <span class="affname" th:id="${num.idReceiver}"></span><br>
+        Transmitter name : <span class="affname" th:id="${num.idTransmitter}"></span><br>
         number of message : [[ ${num.nbMsg} ]]<br>
         Reference authorization : [[ ${num.authRef} ]]<br>
         Date authorization : [[ ${num.authDate} ]]<br>
+        Message : [[ ${num.lsMessage} ]]<br>
         <a data-th-href="@{readinggg(ind=${num.id})}">Generate an xml file</a>
         <div th:if='${generer!=""}'>
           <div th:if='${id == num.id}'>
             <form method="POST" action="/xml-file">
               <label><strong>Enter a name for the file</strong></label>
-              <input type="Text" name="filee" />
+              <input type="Text" name="filee" value="src/main/resources/static/"/>
               <input type="text" name="idLong" th:value="${num.id}" readonly="readonly" />
               <input type="submit" value="Generate" />
             </form>
@@ -38,7 +39,7 @@
   <div class="containermsg">
     <form method="POST" action="/Parse">
       <label><strong>Parser a file</strong></label>
-      <input type="Text" name="file" />
+      <input type="Text" name="file" value="src/main/resources/static/"/>
       <input type="submit" value="Parser" />
       <p>Exemple : src/main/resources/static/file.xml</p>
       <p style="color: red;">[[${erreur}]]</p>
@@ -49,17 +50,14 @@
     var lsUsername = /*[[${lsUsername}]]*/ 'default';
     console.log(lsUsername);
 
-    lsfile = document.getElementById("lsfile").getElementsByTagName("li");
+    lsfile = document.getElementById("lsfile").getElementsByClassName("affname");
+    lsfilelength = document.getElementById("lsfile").getElementsByClassName("affname").length;
     console.log(lsfile);
-    lsUsername.forEach(Element => {
-      console.log(Element.id);
-      //console.log(document.getElementById(Element.id).id);
-      if (document.getElementById(Element.id) != null) {
-        console.log("dans if");
-        document.getElementById(Element.id).append(Element.name);
-      }
-    });
-
+    for (i = 0; i < lsfilelength; i++) {
+      elem = lsUsername.find(element => element.id == lsfile[i].id);
+      console.log(elem);
+      lsfile[i].append(elem.name);
+    }
     /*]]>*/
   </script>
 </body>

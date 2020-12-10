@@ -156,43 +156,60 @@ public class ReadXMLController {
                             if (e.getNodeName().equals("nbMsg")) {
                                 nbmsg = e;
                                 h.setNbMsg(Integer.valueOf(e.getTextContent()));
-                                System.err.println("  " + nbmsg.getNodeName() + " = " + nbmsg.getTextContent());
+                                System.err.println(" " + nbmsg.getNodeName() + " = " + nbmsg.getTextContent());
                                 m.addAttribute("nbMsg", nbmsg.getTextContent());
                             }
                             if (e.getNodeName().equals("transmitter")) {
                                 System.err.println("  " + e.getNodeName() + " idUser = " + e.getAttribute("idUser"));
                                 Long iduser = Long.valueOf(e.getAttribute("idUser"));
                                 String username = e.getTextContent();
+                                System.err.println(username);
                                 User u = new User(username);
-                                if (userrepo.findUserByName(u.getName()) != null) {
+
+                                System.err.println(userrepo.findUserByName(u.getName()));
+                                if (userrepo.findUserByName(u.getName()) == null) {
+                                    System.err.println("dans if" + username);
                                     userrepo.save(u);
                                 }
-
-                                h.setIdTransmitter(iduser);
-                                h.setNomTransmitter(username);
+                                System.err.println("idTran " + u.getId());
+                                System.err.println("idTran " + userrepo.findUserByName(u.getName()).getId());
+                                h.setIdTransmitter(userrepo.findUserByName(u.getName()).getId());
 
                                 m.addAttribute("transmetter", e.getAttribute("idUser"));
                             }
                             if (e.getNodeName().equals("receiver")) {
                                 System.err.println("  " + e.getNodeName() + " idUser = " + e.getAttribute("idUser"));
-                                h.setIdReceiver(Long.valueOf(e.getAttribute("idUser")));
+
                                 m.addAttribute("receiver", e.getAttribute("idUser"));
                                 String username = e.getTextContent();
+                                System.err.println(username);
                                 User u = new User(username);
-                                if (userrepo.findUserByName(u.getName()) != null) {
+
+                                System.err.println(userrepo.findUserByName(u.getName()));
+                                if (userrepo.findUserByName(u.getName()) == null) {
+                                    System.err.println("dans if" + username);
                                     userrepo.save(u);
                                 }
-                                h.setNomReceiver(username);
+                                System.err.println("idRcv " + u.getId());
+                                System.err.println("idTran " + userrepo.findUserByName(u.getName()).getId());
+                                h.setIdReceiver(userrepo.findUserByName(u.getName()).getId());
                             }
                             if (e.getNodeName().equals("authRef")) {
                                 System.err.println("  " + e.getNodeName() + " = " + e.getTextContent());
+                                System.err.println("lala" + e.getTextContent());
                                 h.setAuthRef(e.getTextContent());
+                                System.err.println("lelel" + h.getAuthRef());
                                 m.addAttribute("authRef", e.getTextContent());
                             }
                             if (e.getNodeName().equals("authDate")) {
                                 System.err.println("  " + e.getNodeName() + " = " + e.getTextContent());
-                                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-                                h.setAuthDate(formatter.parse(e.getTextContent()));
+                                if (e.getTextContent() != "") {
+                                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                                    h.setAuthDate(formatter.parse(e.getTextContent()));
+                                } else {
+                                    h.setAuthDate(null);
+                                }
+                                System.err.println(h.getAuthDate());
                                 m.addAttribute("auth", e.getTextContent());
                             }
 

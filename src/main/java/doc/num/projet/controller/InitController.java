@@ -5,14 +5,18 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import doc.num.projet.model.Header;
 import doc.num.projet.model.Message;
@@ -22,6 +26,7 @@ import doc.num.projet.repository.MessageRepository;
 import doc.num.projet.repository.UserRepository;
 
 @Controller
+@SessionAttributes(value = "currentUser", types = { Long.class })
 public class InitController {
     @Inject
     HeaderRepository headerrepo;
@@ -33,8 +38,9 @@ public class InitController {
     UserRepository userrepo;
 
     @RequestMapping("/")
-    public String enterIndex() {
-        return "redirect:index";
+    public String enterIndex(Model m) {
+        m.addAttribute("pageName", "Connection");
+        return "connexion";
     }
 
     @RequestMapping("/initParse")
@@ -42,17 +48,37 @@ public class InitController {
         return "redirect:Parse";
     }
 
+    @RequestMapping("/connecter")
+    public String connection(Model m, @RequestParam String userName, HttpSession s) {
+        System.err.println(userName);
+        try {
+            Long userId = userrepo.findUserByName(userName).getId();
+            System.err.println(userId);
+            s.setAttribute("currentUser", userId);
+
+        } catch (NullPointerException e) {
+            System.err.print("Caught the NullPointerException");
+            User errUser = new User(userName);
+            userrepo.save(errUser);
+            s.setAttribute("currentUser", errUser.getId());
+        }
+        m.addAttribute("pageName", "Index");
+        return "redirect:index";
+    }
+
     @RequestMapping("/index")
     public String afficher(Model m) {
-        m.addAttribute("pageName", "Index");
+        m.addAttribute("pageName", "Connection");
         return "index";
     }
 
     @RequestMapping("/writing")
-    public String writing(Model m) throws ParseException {
+    public String writing(Model m, HttpSession s) {
         m.addAttribute("pageName", "Writing XML");
         m.addAttribute("lsHeader", headerrepo.findAll());
+        System.err.println(headerrepo.findAll());
         m.addAttribute("vide", "");
+        m.addAttribute("lsUsername", userrepo.findAllByOrderById());
         if (headerrepo.count() == 0) {
             m.addAttribute("vide", "No file");
         }
@@ -60,7 +86,9 @@ public class InitController {
     }
 
     @RequestMapping("/header")
-    public String header(Model m) {
+    public String header(Model m, HttpSession s) {
+        Long userId = (Long) s.getAttribute("currentUser");
+        m.addAttribute("nameTrans", userrepo.findUserById(userId).getName());
         m.addAttribute("pageName", "Writing Head");
         m.addAttribute("lsHeader", headerrepo.findAll());
         m.addAttribute("vide", "");
@@ -81,11 +109,13 @@ public class InitController {
     public String creading(Model m) {
         m.addAttribute("pageName", "Reading XML");
         m.addAttribute("lsHeader", headerrepo.findAll());
+        System.err.println(headerrepo.findAll());
         m.addAttribute("vide", "");
         if (headerrepo.count() == 0) {
             m.addAttribute("vide", "No file");
         }
         m.addAttribute("lsUsername", userrepo.findAllByOrderById());
+        System.err.println(userrepo.findAll());
         return "reading";
 
     }
@@ -122,6 +152,7 @@ public class InitController {
     @RequestMapping("add-a-message")
     public String addmessage(Model m, @RequestParam long ind) {
         Header h = headerrepo.findHeaderById(ind);
+        m.addAttribute("lsUsername", userrepo.findAllByOrderById());
         List<Message> lmsg = msgrepo.findMessageByIdHeader(ind);
         m.addAttribute("lsMsg", lmsg);
         if (headerrepo.count() == 0) {
@@ -145,4 +176,9 @@ public class InitController {
         return "writing";
     }
 
+    @RequestMapping("/endsession")
+    public String endSessionHandlingMethod(SessionStatus status) {
+        status.setComplete();
+        return "redirect:";
+    }
 }
