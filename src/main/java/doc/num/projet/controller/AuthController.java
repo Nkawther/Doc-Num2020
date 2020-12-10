@@ -37,6 +37,7 @@ public class AuthController {
             Header h = headerrepo.findHeaderById(idHeader);
             h.getLsMessage().add(auth);
             h.setAuthRef(refAuth.toString());
+            h.setAuthDate(dateRef);
             headerrepo.save(h);
         }
         return "redirect:writing";

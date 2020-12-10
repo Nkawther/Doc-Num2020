@@ -13,10 +13,10 @@
       <h2>Liste of file</h2>
       <hr />
       <p>[[${vide}]]</p>
-      <ul>
-        <li data-th-each="num,info : ${lsHeader}">
-          Receiver name : <span th:id="${num.idReceiver}"></span><br>
-          Transmitter name : <span th:id="${num.idTransmitter}"></span><br>
+      <ul id="lsfile">
+        <li data-th-each="num,info : ${lsHeader}" th:if='${num.idTransmitter == currentUser}'>
+          Receiver name : <span class="affname" th:id="${num.idReceiver}"></span><br>
+          Transmitter name : <span class="affname" th:id="${num.idTransmitter}"></span><br>
           number of message : [[ ${num.nbMsg} ]]<br>
           Reference authorization : [[ ${num.authRef} ]]<br>
           Date authorization : [[ ${num.authDate} ]]<br>
@@ -88,6 +88,22 @@
         </ol>
       </form>
       <!-- JavaScipt -->
+      <script th:inline="javascript">
+        /*<![CDATA[*/
+        var lsUsername = /*[[${lsUsername}]]*/ 'default';
+        console.log(lsUsername);
+
+        lsfile = document.getElementById("lsfile").getElementsByClassName("affname");
+        lsfilelength = document.getElementById("lsfile").getElementsByClassName("affname").length;
+        console.log(lsfile);
+        for(i=0;i< lsfilelength;i++){
+          elem = lsUsername.find(element => element.id == lsfile[i].id);
+          console.log(elem);
+          lsfile[i].append(elem.name);
+        }
+        
+        /*]]>*/
+      </script>
       <script>
         function ajouterbarter() {
           document.getElementById("enplus").innerHTML =
@@ -145,7 +161,6 @@
           document.getElementById("enplus").innerHTML = `
             <label ><strong>Auth Date</strong></label>
             <input type="date" name="dateRef" onchange="isFutureDate(this)" required><br> 
-            
             `;
           document.getElementById("formMessage").action = "/auth";
         }

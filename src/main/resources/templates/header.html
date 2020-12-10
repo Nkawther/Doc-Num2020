@@ -12,19 +12,21 @@
   <body>
     <header th:replace="/entete :: my_entete"></header>
     <div class="listmsg">
-      <h1>XML Writing File</h1>
+      <h1>XML Writing File [[ ${currentUser} ]]</h1>
       <hr>
       <h2>Liste of file</h2>
       <hr>
       <p>[[${vide}]]</p>
       <ul id="lsfile">
-        <li data-th-each="num,info : ${lsHeader}">
-          Receiver name : <span th:id="${num.idReceiver}"></span><br>
-          Transmitter name : <span th:id="${num.idTransmitter}"></span><br>
+        <li data-th-each="num,info : ${lsHeader}" th:if='${num.idTransmitter != currentUser}'>
+          Receiver name : <span class="affname" th:id="${num.idReceiver}"></span><br>
+          Transmitter name : <span class="affname" th:id="${num.idTransmitter}"></span><br>
           number of message : [[ ${num.nbMsg} ]]<br>
           Reference authorization : [[ ${num.authRef} ]]<br>
-          Date authorization : [[ ${num.authDate} ]]<br>
+          Date authorization : <span class="authDate">[[ ${num.authDate} ]]</span><br>
+          Message : [[ ${num.lsMessage} ]]<br>
           <a data-th-href="@{respondFile(id=${num.id})}">Respond</a>
+          <a data-th-href="@{deleteFile(id=${num.id})}">Delete</a>
         </li>
       </ul>
       <a data-th-href="@{respondFile(id=0)}">Empty authorization</a>
@@ -43,7 +45,7 @@
         <input type="text" placeholder="authorization reference" th:value="${authoRef}" name="authRef" id="authRef" readonly="readonly" />
         <label id="erreurDate"><strong>Date non valide</strong></label>
         <label><strong>Authorisation date</strong></label>
-        <input id="dateAuth" type="Date" onchange="isFutureDate()" placeholder="Authorisation date" th:value="${authDate}"  name="authDate" required />
+        <input id="dateAuth" type="Date" placeholder="Authorisation date" th:value="${authDate}"  name="authDate" readonly="readonly" />
         <input type="submit" id="submit" value="Create file" />
       </form>
     </div>
@@ -52,16 +54,29 @@
       var lsUsername = /*[[${lsUsername}]]*/ 'default';
       console.log(lsUsername);
 
-      lsfile = document.getElementById("lsfile").getElementsByTagName("li");
+      lsfile = document.getElementById("lsfile").getElementsByClassName("affname");
+      lsfilelength = document.getElementById("lsfile").getElementsByClassName("affname").length;
       console.log(lsfile);
-      lsUsername.forEach(Element => {
-        console.log(Element.id);
-        //console.log(document.getElementById(Element.id));
-        if (document.getElementById(Element.id) != null) {
-          console.log("dans if");
-          document.getElementById(Element.id).append(Element.name);
+      for (i = 0; i < lsfilelength; i++) {
+        elem = lsUsername.find(element => element.id == lsfile[i].id);
+        console.log(elem);
+        lsfile[i].append(elem.name);
+      }
+
+      lsdate = document.getElementById("lsfile").getElementsByClassName("authDate");
+      var today = new Date().getTime();
+      for(i=0; i<lsdate.length; i++){
+        console.log(lsdate[i].textContent);
+        console.log(lsdate[i].innerHTML);
+        headDate = new Date(lsdate[i].innerHTML).getTime();
+        console.log(headDate)
+        if(headDate < today){
+          aNode = lsdate[i].nextSibling.nextSibling.nextSibling;
+          console.log(aNode);
+          aNode.remove();
+          lsdate[i].style.backgroundColor = "red";
         }
-      });
+      }
 
       $(".readonly").keydown(function (e) {
           e.preventDefault();
@@ -78,7 +93,6 @@
         }
       }
       /*]]>*/
-
       function isFutureDate() {
         var idate = document.getElementById("dateAuth").value;
         var choose = new Date(idate).getTime();

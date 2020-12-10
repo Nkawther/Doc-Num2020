@@ -9,7 +9,9 @@ h1,
 h2 {
   text-align: center;
 }
-
+a {
+  display: block;
+}
 .containerfile {
   width: 400px;
   margin: 11% auto;
