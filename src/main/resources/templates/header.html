@@ -12,13 +12,13 @@
   <body>
     <header th:replace="/entete :: my_entete"></header>
     <div class="listmsg">
-      <h1>XML Writing File [[ ${currentUser} ]]</h1>
+      <h1>XML Writing File</h1>
       <hr>
       <h2>Liste of file</h2>
       <hr>
       <p>[[${vide}]]</p>
       <ul id="lsfile">
-        <li data-th-each="num,info : ${lsHeader}" th:if='${num.idTransmitter != currentUser}'>
+        <li data-th-each="num,info : ${lsHeader}" th:if='${num.idReceiver == currentUser}'>
           Receiver name : <span class="affname" th:id="${num.idReceiver}"></span><br>
           Transmitter name : <span class="affname" th:id="${num.idTransmitter}"></span><br>
           number of message : [[ ${num.nbMsg} ]]<br>
@@ -71,7 +71,7 @@
         headDate = new Date(lsdate[i].innerHTML).getTime();
         console.log(headDate)
         if(headDate < today){
-          aNode = lsdate[i].nextSibling.nextSibling.nextSibling;
+          aNode = lsdate[i].nextSibling.nextSibling.nextSibling.nextSibling.nextSibling;
           console.log(aNode);
           aNode.remove();
           lsdate[i].style.backgroundColor = "red";

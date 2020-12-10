@@ -21,12 +21,13 @@
         number of message : [[ ${num.nbMsg} ]]<br>
         Reference authorization : [[ ${num.authRef} ]]<br>
         Date authorization : [[ ${num.authDate} ]]<br>
+        Message : [[ ${num.lsMessage} ]]<br>
         <a data-th-href="@{readinggg(ind=${num.id})}">Generate an xml file</a>
         <div th:if='${generer!=""}'>
           <div th:if='${id == num.id}'>
             <form method="POST" action="/xml-file">
               <label><strong>Enter a name for the file</strong></label>
-              <input type="Text" name="filee" />
+              <input type="Text" name="filee" value="src/main/resources/static/"/>
               <input type="text" name="idLong" th:value="${num.id}" readonly="readonly" />
               <input type="submit" value="Generate" />
             </form>
@@ -38,7 +39,7 @@
   <div class="containermsg">
     <form method="POST" action="/Parse">
       <label><strong>Parser a file</strong></label>
-      <input type="Text" name="file" />
+      <input type="Text" name="file" value="src/main/resources/static/"/>
       <input type="submit" value="Parser" />
       <p>Exemple : src/main/resources/static/file.xml</p>
       <p style="color: red;">[[${erreur}]]</p>

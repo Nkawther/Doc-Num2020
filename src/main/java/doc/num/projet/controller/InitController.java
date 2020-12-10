@@ -76,6 +76,7 @@ public class InitController {
     public String writing(Model m, HttpSession s) {
         m.addAttribute("pageName", "Writing XML");
         m.addAttribute("lsHeader", headerrepo.findAll());
+        System.err.println(headerrepo.findAll());
         m.addAttribute("vide", "");
         m.addAttribute("lsUsername", userrepo.findAllByOrderById());
         if (headerrepo.count() == 0) {
@@ -108,11 +109,13 @@ public class InitController {
     public String creading(Model m) {
         m.addAttribute("pageName", "Reading XML");
         m.addAttribute("lsHeader", headerrepo.findAll());
+        System.err.println(headerrepo.findAll());
         m.addAttribute("vide", "");
         if (headerrepo.count() == 0) {
             m.addAttribute("vide", "No file");
         }
         m.addAttribute("lsUsername", userrepo.findAllByOrderById());
+        System.err.println(userrepo.findAll());
         return "reading";
 
     }

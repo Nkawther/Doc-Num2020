@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE file SYSTEM "final.dtd">
+<file>
+    <header idF="8">
+        <nbMsg>1</nbMsg>
+        <transmitter idUser="6">Groupe5</transmitter>
+        <receiver idUser="7">Groupe1</receiver>
+        <authRef />
+        <authDate>2019-12-10 00:00:00.0</authDate>
+    </header>
+    <body>
+        <listMsg>
+            <message idMsg="9">
+                <dateMsg>2010-12-10 00:00:00.0</dateMsg>
+                <validityDuration>2020-12-10 00:00:00.0</validityDuration>
+                <authRequest />
+            </message>
+        </listMsg>
+    </body>
+</file>

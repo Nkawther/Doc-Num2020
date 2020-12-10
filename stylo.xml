@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE file SYSTEM "final.dtd">
+<file>
+    <header idF="28">
+        <nbMsg>4</nbMsg>
+        <transmitter idUser="1">arsene</transmitter>
+        <receiver idUser="23">heo</receiver>
+        <authRef>81fe4bf3-088d-4386-90e7-0adc7fca007a</authRef>
+        <authDate>2020-11-25 00:00:00.0</authDate>
+    </header>
+    <body>
+        <listMsg>
+            <message idMsg="29">
+                <dateMsg>2020-12-10 00:00:00.0</dateMsg>
+                <validityDuration>2020-12-10 00:00:00.0</validityDuration>
+                <catRequest />
+            </message>
+            <message idMsg="30">
+                <dateMsg>2020-12-10 00:00:00.0</dateMsg>
+                <validityDuration>2020-12-10 00:00:00.0</validityDuration>
+                <donation>
+                    <sndObjectList>
+                        <object>
+                            <objectName>sltylo</objectName>
+                            <objectDetails>bleue</objectDetails>
+                            <objectImage>Any</objectImage>
+                        </object>
+                    </sndObjectList>
+                    <idPrevMsg>27</idPrevMsg>
+                </donation>
+            </message>
+        </listMsg>
+    </body>
+</file>
